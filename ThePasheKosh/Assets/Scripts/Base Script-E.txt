@@ -1,0 +1,35 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class NewScript : MonoBehaviour
+{
+    #region Properties
+
+    #endregion
+
+    #region Fields
+
+    #endregion
+
+    #region Public Methods
+    #endregion
+
+
+    #region Private Methods
+    void Start()
+    {
+
+    }//Startttttt
+
+
+
+
+
+    void Update()
+    {
+
+
+    }//Updateeeee
+    #endregion
+}//EndClasssss/Ebrahim
