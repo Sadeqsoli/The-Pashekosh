@@ -23,7 +23,7 @@ public class AutomatedPrepare
     public static void PrepareForAndroidDebugging()
     {
         GameData.CurrentBuildMode = BuildMode.debug;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.a.de.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.a.de.thepashekosh");
         SwitchPlatform(BuildTargetGroup.Android, BuildTarget.Android);
         SetSpecificAndroid();
     }
@@ -33,7 +33,7 @@ public class AutomatedPrepare
     public static void PrepareForiOSDebugging()
     {
         GameData.CurrentBuildMode = BuildMode.debug;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.sloppy.iOS.de.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.sloppy.iOS.de.thepashekosh");
         SwitchPlatform(BuildTargetGroup.iOS, BuildTarget.iOS);
         SetSpecificiOS();
     }
@@ -49,7 +49,7 @@ public class AutomatedPrepare
         PlayerSettings.bundleVersion = cbVersion;
         PlayerSettings.Android.bundleVersionCode = cbVersionCode;
         GameData.CurrentStoreForBuild = Store.CafeBazaar;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.cb.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.cb.thepashekosh");
         SwitchPlatform(BuildTargetGroup.Android, BuildTarget.Android);
         SetSpecificAndroid();
     }
@@ -60,7 +60,7 @@ public class AutomatedPrepare
         PlayerSettings.bundleVersion = gsVersion;
         PlayerSettings.Android.bundleVersionCode = gsVersionCode;
         GameData.CurrentStoreForBuild = Store.GoogleStore;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.gs.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.gs.thepashekosh");
         SwitchPlatform(BuildTargetGroup.Android, BuildTarget.Android);
         SetSpecificAndroid();
     }
@@ -71,7 +71,7 @@ public class AutomatedPrepare
         PlayerSettings.bundleVersion = mkVersion;
         PlayerSettings.Android.bundleVersionCode = mkVersionCode;
         GameData.CurrentStoreForBuild = Store.Myket;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.mk.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.mk.thepashekosh");
         SwitchPlatform(BuildTargetGroup.Android, BuildTarget.Android);
         SetSpecificAndroid();
     }
@@ -82,7 +82,7 @@ public class AutomatedPrepare
         PlayerSettings.bundleVersion = iaVersion;
         PlayerSettings.Android.bundleVersionCode = iaVersionCode;
         GameData.CurrentStoreForBuild = Store.IranApps;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.ia.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.sloppy.ia.thepashekosh");
         SwitchPlatform(BuildTargetGroup.Android, BuildTarget.Android);
         SetSpecificAndroid();
     }
@@ -92,7 +92,7 @@ public class AutomatedPrepare
     {
         PlayerSettings.bundleVersion = saVersion;
         GameData.CurrentStoreForBuild = Store.SibApp;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.sloppy.sa.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.sloppy.sa.thepashekosh");
         SwitchPlatform(BuildTargetGroup.iOS, BuildTarget.iOS);
         SetSpecificiOS();
     }
@@ -102,7 +102,7 @@ public class AutomatedPrepare
     {
         PlayerSettings.bundleVersion = asVersion;
         GameData.CurrentStoreForBuild = Store.AppleStore;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.sloppy.as.appName");
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.sloppy.as.thepashekosh");
         SwitchPlatform(BuildTargetGroup.iOS, BuildTarget.iOS);
         SetSpecificiOS();
     }

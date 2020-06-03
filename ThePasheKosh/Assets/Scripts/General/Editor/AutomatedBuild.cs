@@ -18,7 +18,7 @@ public class AutomatedBuild : MonoBehaviour
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
 
         string path = "../APK/0-UniversalDebug/Android";
-        string apk = "/A-de-apkName-" + date +".Apk";
+        string apk = "/A-de-thepashekosh-" + date +".Apk";
 
         if (!Directory.Exists(path))
         {
@@ -38,7 +38,7 @@ public class AutomatedBuild : MonoBehaviour
     {
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
         string path = "../APK/0-UniversalDebug/iOS";
-        string folder = "/iOS-de-folderName" + date;
+        string folder = "/iOS-de-thepashekosh" + date;
         GameData.CurrentBuildMode = BuildMode.debug;
         if (!Directory.Exists(path))
         {
@@ -56,7 +56,7 @@ public class AutomatedBuild : MonoBehaviour
     {
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
         string real_path = "";
-        string apk = "/cb-apkName" + date + ".Apk";
+        string apk = "/cb-thepashekosh" + date + ".Apk";
         switch (GameData.CurrentBuildMode)
         {
             case BuildMode.debug:
@@ -98,7 +98,7 @@ public class AutomatedBuild : MonoBehaviour
     {
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
         string real_path = "";
-        string apk = "/gs-apkName" + date + ".Apk";
+        string apk = "/gs-thepashekosh" + date + ".Apk";
         switch (GameData.CurrentBuildMode)
         {
             case BuildMode.debug:
@@ -140,7 +140,7 @@ public class AutomatedBuild : MonoBehaviour
     {
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
         string real_path = "";
-        string apk = "/mk-apkName" + date + ".Apk";
+        string apk = "/mk-thepashekosh" + date + ".Apk";
         switch (GameData.CurrentBuildMode)
         {
             case BuildMode.debug:
@@ -182,7 +182,7 @@ public class AutomatedBuild : MonoBehaviour
     {
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
         string real_path = "";
-        string apk = "/ia-apkName" + date + ".Apk";
+        string apk = "/ia-thepashekosh" + date + ".Apk";
         switch (GameData.CurrentBuildMode)
         {
             case BuildMode.debug:
@@ -223,7 +223,7 @@ public class AutomatedBuild : MonoBehaviour
     {
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
         string real_path = "";
-        string folder = "/sa-folderName";
+        string folder = "/sa-thepashekosh";
         switch (GameData.CurrentBuildMode)
         {
             case BuildMode.debug:
@@ -265,7 +265,7 @@ public class AutomatedBuild : MonoBehaviour
     {
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
         string real_path = "";
-        string folder = "/as-folderName";
+        string folder = "/as-thepashekosh";
         switch (GameData.CurrentBuildMode)
         {
             case BuildMode.debug:
