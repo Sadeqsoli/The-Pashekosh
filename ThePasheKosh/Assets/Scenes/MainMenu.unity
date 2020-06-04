@@ -277,10 +277,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 770907922196313595, guid: a19aa85b0de1d8d45a062ea708ed6c0e,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 770907922679459331, guid: a19aa85b0de1d8d45a062ea708ed6c0e,
         type: 3}
       propertyPath: m_Name
       value: Studio_SS_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 770907922679459331, guid: a19aa85b0de1d8d45a062ea708ed6c0e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 770907922679459335, guid: a19aa85b0de1d8d45a062ea708ed6c0e,
         type: 3}
@@ -320,7 +330,7 @@ PrefabInstance:
     - target: {fileID: 770907922679459335, guid: a19aa85b0de1d8d45a062ea708ed6c0e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 770907922679459335, guid: a19aa85b0de1d8d45a062ea708ed6c0e,
         type: 3}
@@ -400,6 +410,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game_SS_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163454211057083419, guid: 39d6cf2c54d73b44c97a612631e794bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3163454211057083431, guid: 39d6cf2c54d73b44c97a612631e794bd,
         type: 3}
@@ -506,6 +521,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3163454212633662619, guid: 39d6cf2c54d73b44c97a612631e794bd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f530757d1fa82d845a6183ba68030714,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39d6cf2c54d73b44c97a612631e794bd, type: 3}
 --- !u!1001 &7843949470654868538
@@ -519,6 +540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843949470569788784, guid: 7d6863c39d7763c429dd8136229220cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7843949470569788788, guid: 7d6863c39d7763c429dd8136229220cb,
         type: 3}
@@ -558,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 7843949470569788788, guid: 7d6863c39d7763c429dd8136229220cb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7843949470569788788, guid: 7d6863c39d7763c429dd8136229220cb,
         type: 3}
@@ -634,6 +660,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843949471885821556, guid: 7d6863c39d7763c429dd8136229220cb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a065e57810941964884c4a892e30b2bc,
+        type: 3}
+    - target: {fileID: 7843949471885821556, guid: 7d6863c39d7763c429dd8136229220cb,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843949471885821556, guid: 7d6863c39d7763c429dd8136229220cb,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6863c39d7763c429dd8136229220cb, type: 3}
