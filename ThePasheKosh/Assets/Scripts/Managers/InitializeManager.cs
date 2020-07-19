@@ -6,7 +6,6 @@ public class InitializeManager : MonoBehaviour
 {
     #region Fields
     [SerializeField] bool isDatabaseInitialized = false;
-    [SerializeField] bool isToasterInitialized = false;
     [SerializeField] bool isWriterReaderInitialized = false;
     [SerializeField] bool isNetCenterInitialized = false;
 
@@ -30,10 +29,7 @@ public class InitializeManager : MonoBehaviour
         {
             DatabaseManager.Initialize();
         }
-        if (isToasterInitialized)
-        {
-            ToastCenter.InitializeToaster();
-        }
+
         if (isWriterReaderInitialized)
         {
             StreamUtility.InitWriterReader();

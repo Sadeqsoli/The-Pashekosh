@@ -25,7 +25,6 @@ public class MainMenuManager : MonoBehaviour
 
     #region Fields
     [Header("Scripts")]
-    ToastFactory toast;
     [SerializeField] UserRepo userRepo = null;
     #endregion
 
@@ -81,7 +80,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void Connectivity()
     {
-        toast = GameObject.FindObjectOfType<ToastFactory>();
         noConnectionPnl.SetActive(false);
         //SignUpCheck();
         percentageTXT.text = BatteryChecker.CurrentPercent().ToString();
@@ -128,7 +126,6 @@ public class MainMenuManager : MonoBehaviour
 
     void Update()
     {
-        HelperSceneManager.QuitByEscapeButton(toast);
     }//Updateeeee
 
     #endregion

@@ -38,7 +38,7 @@ public static class HelperSceneManager
     {
         SceneManager.LoadScene(buildIndex);
     }
-    public static void QuitByEscapeButton(ToastFactory toast)
+    public static void QuitByEscapeButton()
     {
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -50,10 +50,7 @@ public static class HelperSceneManager
                 if (TapCount == 1)
                 {
                     NewTime = Time.time + MaxDubbleTapTime;
-#if UNITY_ANDROID && !UNITY_EDITOR
-                    string msg = Fa.faConvert("برای خروج از برنامه دوبار کلیک کنید");
-                    toast.SendToastyToast(msg, true);
-#endif
+
                 }
                 else if (TapCount == 2 && Time.time <= NewTime)
                 {
