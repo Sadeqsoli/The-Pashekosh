@@ -277,6 +277,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9200659034449506945, guid: d87404fd4c5c3804e82937755cf65881,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.2301025
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200659034783806183, guid: d87404fd4c5c3804e82937755cf65881,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.1500244
+      objectReference: {fileID: 0}
     - target: {fileID: 9200659035893009753, guid: d87404fd4c5c3804e82937755cf65881,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -478,7 +488,7 @@ SpriteRenderer:
   m_Size: {x: 25.001019, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1463623120
