@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        if (EventManager.Instance.IsInitialized)
+        {
+            // Addig a event with a GameObject parameter. 
+            // Every time the player touch (or click) a collider this event will be invoked.
+            EventManager.Instance.AddGameObjectEvent("TouchedGameObject");
+            // Every time the player hover a collider this event will be invoked.
+            EventManager.Instance.AddGameObjectEvent("HoveredGameObject");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }
