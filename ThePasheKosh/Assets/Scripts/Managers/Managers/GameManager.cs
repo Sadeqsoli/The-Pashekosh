@@ -6,13 +6,13 @@ public class GameManager : Singleton<GameManager>
 {
     void Start()
     {
-        if (EventManager.Instance.IsInitialized)
+        if (EventManager.IsInitialized)
         {
             // Addig a event with a GameObject parameter. 
             // Every time the player touch (or click) a collider this event will be invoked.
-            EventManager.Instance.AddGameObjectEvent("TouchedGameObject");
-            // Every time the player hover a collider this event will be invoked.
-            EventManager.Instance.AddGameObjectEvent("HoveredGameObject");
+            EventManager.AddGameObjectEvent("TouchedCollider");
+            // Every time the player touch the screen and not touch a collider this event will be invoked.
+            EventManager.AddEventWithNoParamter("TouchedScreen");
 
         }
     }

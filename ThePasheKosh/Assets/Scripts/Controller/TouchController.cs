@@ -18,16 +18,20 @@ public class TouchController : MonoBehaviour
 
     public void TouchHandling()
     {
-        for (var i = 0; i < Input.touchCount; ++i)
+        if (Input.touchCount>0)
         {
-            if (Input.GetTouch(i).phase == TouchPhase.Ended)
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
+                RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
                 // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
                 if (hitInfo)
                 {
-                    EventManager.Instance.InvokeEvent("TouchedGameObject", hitInfo.collider.gameObject);
+                    EventManager.TriggerEvent("TouchedCollider", hitInfo.collider.gameObject);
                     // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                }
+                else
+                {
+                    EventManager.TriggerEvent("TouchedScreen");
                 }
             }
         }
@@ -43,18 +47,12 @@ public class TouchController : MonoBehaviour
             if (hitInfo)
             {
 
-                EventManager.Instance.InvokeEvent("TouchedGameObject", hitInfo.collider.gameObject);
+                EventManager.TriggerEvent("TouchedCollider", hitInfo.collider.gameObject);
                 // Here you can check hitInfo to see which collider has been hit, and act appropriately.
             }
-        }
-        else
-        {
-            pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
-            if (hitInfo)
+            else
             {
-                EventManager.Instance.InvokeEvent("HoveredGameObject", hitInfo.collider.gameObject);
-                // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                EventManager.TriggerEvent("TouchedScreen");
             }
         }
     }
