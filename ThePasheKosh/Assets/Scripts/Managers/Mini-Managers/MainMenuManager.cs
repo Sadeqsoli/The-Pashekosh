@@ -117,7 +117,7 @@ public class MainMenuManager : MonoBehaviour
         bgConnection.SetActive(false);
         process.SetActive(true);
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        HelperSceneManager.ReplayCurrentScene();
     }
 
 

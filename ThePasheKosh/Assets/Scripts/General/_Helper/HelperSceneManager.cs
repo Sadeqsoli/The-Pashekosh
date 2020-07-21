@@ -38,11 +38,15 @@ public static class HelperSceneManager
     {
         SceneManager.LoadScene(buildIndex);
     }
+    public static void ReplayCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public static void QuitByEscapeButton()
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            
+
             // Check if Back was pressed this frame
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -67,5 +71,5 @@ public static class HelperSceneManager
 
 //This is A Line of code for using back Button in android to get back in by build index.
 
- //AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
- //activity.Call<bool>("moveTaskToBack", true);
+//AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+//activity.Call<bool>("moveTaskToBack", true);
