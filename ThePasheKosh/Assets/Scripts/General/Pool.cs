@@ -33,6 +33,11 @@ public class Pool : MonoBehaviour
 
     void InitializePoolsOnStart()
     {
+        for (int i=0; i < _pools.Length; i++)
+        {
+            _pools[i].poolGameObject.name = _pools[i].nameOfPool;
+        }
+
         // ############# initialize ######################
         pools = _pools;
         _poolsContent = new Dictionary<string, List<GameObject>>();

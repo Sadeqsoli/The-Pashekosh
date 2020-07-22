@@ -2,17 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlySpawner : MonoBehaviour
+public class FlySpawner : Singleton<FlySpawner>
 {
-    // Start is called before the first frame update
-    void Start()
+    List<Coroutine> _allSpawnCoroutines;
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+        _allSpawnCoroutines = new List<Coroutine>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartFlySpawn(string nameOfObjectInPool, float timeBetweenSpawns, List<Transform> startPoints)
     {
-        
+        _allSpawnCoroutines.Add(StartCoroutine(SpawnCoroutine(nameOfObjectInPool, timeBetweenSpawns, startPoints)));
+    }
+    public void StopAllSpawn()
+    {
+        while(_allSpawnCoroutines.Count > 0)
+        {
+            StopCoroutine(_allSpawnCoroutines[_allSpawnCoroutines.Count - 1]);
+            _allSpawnCoroutines.RemoveAt(_allSpawnCoroutines.Count - 1);
+        }
+    }
+
+    IEnumerator SpawnCoroutine(string nameOfObjectInPool, float timeBetweenSpawns, List<Transform> startPoints)
+    {
+        int randomIndex;
+        while (true)
+        {
+            randomIndex = Random.Range(0, startPoints.Count);
+            GameObject gameObject = Pool.InstantiateGameObjectByName(nameOfObjectInPool, startPoints[randomIndex].position, Quaternion.identity);
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
     }
 }
