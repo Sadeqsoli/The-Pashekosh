@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +10,6 @@ public class AutomatedBuild : MonoBehaviour
     [MenuItem("Build/Debug/Android Debug")] 
     public static void BuildForAndroidDebugging()
     {
-
         GameData.CurrentBuildMode = BuildMode.debug;
         string date = System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
 
