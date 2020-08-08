@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class FlySpawner : Singleton<FlySpawner>
 {
+    string[] nameOfBadInsects;
+    string[] nameOfGoodInsects;
+
+    float goodInsectsPercentage;
+
     List<Coroutine> _allSpawnCoroutines;
+
+    public void SetParameters(string[] nameOfGoodInsects, string[] nameOfBadInsects)
+    {
+        this.nameOfGoodInsects = nameOfGoodInsects;
+        this.nameOfBadInsects = nameOfBadInsects;
+    }
 
     protected override void Awake()
     {

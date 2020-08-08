@@ -99,8 +99,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 601478379356929289}
   m_Bounds:
-    m_Center: {x: 5.48078, y: 2.7949996, z: 0}
-    m_Extent: {x: 0.60922, y: 1.9550004, z: 0}
+    m_Center: {x: 0.0007801652, y: -0.00000047683716, z: 0}
+    m_Extent: {x: 0.6092202, y: 1.9550008, z: 0}
   m_UseBatching: 1
 --- !u!1 &4131259406913837453
 GameObject:
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 5047386872438836595}
   - component: {fileID: 5188798791813200618}
   m_Layer: 0
-  m_Name: parvaneh
+  m_Name: Parvaneh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,8 +349,8 @@ MonoBehaviour:
   - {fileID: 8686686210380495824}
   - {fileID: 1796641326196242198}
   m_Bounds:
-    m_Center: {x: -0.014241844, y: 0.019234061, z: 0}
-    m_Extent: {x: 0.40924227, y: 1.3242335, z: 0}
+    m_Center: {x: -0.014383286, y: 0.019333005, z: 0}
+    m_Extent: {x: 0.4093837, y: 1.3243325, z: 0}
   m_UseBatching: 1
 --- !u!1 &5108088256766074695
 GameObject:
@@ -482,8 +482,8 @@ MonoBehaviour:
   - {fileID: 8404030246001040858}
   - {fileID: 6713152903540505579}
   m_Bounds:
-    m_Center: {x: 0.0043777227, y: 0.019008875, z: 0}
-    m_Extent: {x: 0.39437735, y: 1.3240083, z: 0}
+    m_Center: {x: 0.0044104457, y: 0.019096255, z: 0}
+    m_Extent: {x: 0.39441007, y: 1.3240957, z: 0}
   m_UseBatching: 1
 --- !u!1 &5430501861947448526
 GameObject:
@@ -648,8 +648,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1168981299981899913}
   m_Bounds:
-    m_Center: {x: 0.2492845, y: -0.62426853, z: 0}
-    m_Extent: {x: 3.074183, y: 3.7517138, z: 0}
+    m_Center: {x: 0.2569754, y: -0.6646888, z: 0}
+    m_Extent: {x: 3.1023307, y: 3.7233946, z: 0}
   m_UseBatching: 1
 --- !u!1 &8045449958594413180
 GameObject:
@@ -781,6 +781,6 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4926676472241307970}
   m_Bounds:
-    m_Center: {x: -0.2621014, y: -0.7993233, z: 0}
-    m_Extent: {x: 3.1821804, y: 3.6302683, z: 0}
+    m_Center: {x: -0.2697208, y: -0.85498667, z: 0}
+    m_Extent: {x: 3.2211313, y: 3.586966, z: 0}
   m_UseBatching: 1

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+
+    public string[] nameOfInsectsInPool;
     public enum GameState
     {
         START,
@@ -44,4 +46,5 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
     }
+
 }
