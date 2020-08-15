@@ -2010,8 +2010,9 @@ GameObject:
   - component: {fileID: 8725048070204964599}
   - component: {fileID: 6026992153282058778}
   - component: {fileID: 8028336480319307344}
+  - component: {fileID: -1915891961548436984}
   m_Layer: 0
-  m_Name: "\u0651Fly"
+  m_Name: "_Old_\u0651Fly"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2113,6 +2114,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-1915891961548436984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8065446480835348131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0956a88903343864abb2980dcf827fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBadInsect: 1
 --- !u!1 &8303674196791501526
 GameObject:
   m_ObjectHideFlags: 0

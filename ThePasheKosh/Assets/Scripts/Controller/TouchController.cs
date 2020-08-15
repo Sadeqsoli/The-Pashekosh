@@ -12,7 +12,6 @@ public class TouchController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        TouchHandling();
         MouseHandling();
     }
 

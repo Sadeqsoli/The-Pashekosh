@@ -63,6 +63,7 @@ public class Pool : MonoBehaviour
         {
             _newGameObject =
                 Instantiate(pool.poolGameObject) as GameObject;
+            _newGameObject.name = pool.nameOfPool;
             _newGameObject.transform.SetParent(parent);
             _newGameObject.SetActive(false);
             _poolsContent[pool.nameOfPool].Add(_newGameObject);
@@ -98,6 +99,7 @@ public class Pool : MonoBehaviour
                     {
                         var returnGameObject =
                             Instantiate(pools[i].poolGameObject, pos, quaternion);
+                        returnGameObject.name = nameOfObject;
                         returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
                         return returnGameObject;
                     }

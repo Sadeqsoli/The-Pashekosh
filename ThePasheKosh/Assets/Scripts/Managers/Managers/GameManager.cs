@@ -2,10 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct LevelParametersStruct
+{
+    public string[] goodInsectsNames;
+    public string[] badInsectsNames;
+    public float timeBetweenSpawns;
+    public float badInsectsPercentage;
+}
+
 public class GameManager : Singleton<GameManager>
 {
+    public LevelParameters[] levelParameters;
 
-    public string[] nameOfInsectsInPool;
+    int _currentLevel = 0;
+
     public enum GameState
     {
         START,
@@ -23,8 +34,9 @@ public class GameManager : Singleton<GameManager>
             EventManager.AddGameObjectEvent("TouchedCollider");
             // Every time the player touch the screen and not touch a collider this event will be invoked.
             EventManager.AddEventWithNoParamter("TouchedScreen");
-
         }
+
+        ProcessGameStates();
     }
 
     
@@ -36,7 +48,7 @@ public class GameManager : Singleton<GameManager>
         switch (CurrentState)
         {
             case GameState.START:
-
+                InsectManager.Instance.StartInsectSpawning(levelParameters[_currentLevel].levelParameters);
                 break;
             case GameState.RUNNING:
 
