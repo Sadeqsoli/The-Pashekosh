@@ -51,7 +51,6 @@ public class GameManager : Singleton<GameManager>
                 InsectManager.Instance.StartInsectSpawning(levelParameters[_currentLevel].levelParameters);
                 break;
             case GameState.RUNNING:
-
                 break;
             case GameState.FINISHED:
 

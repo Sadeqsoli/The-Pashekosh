@@ -30,7 +30,7 @@ public class Insect : MonoBehaviour
     void GoToEndPoints()
     {
         Vector2 targetDir = (_endPoint - (Vector2) transform.position).normalized;
-        float angle = targetDir.x * targetDir.y < 0? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
+        float angle = targetDir.x < 0? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
         
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
