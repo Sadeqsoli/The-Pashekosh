@@ -9,6 +9,8 @@ public struct LevelParametersStruct
     public string[] badInsectsNames;
     public float timeBetweenSpawns;
     public float badInsectsPercentage;
+    public float speedOfInsects;
+    public float randomDirectionPercentage;
 }
 
 public class GameManager : Singleton<GameManager>

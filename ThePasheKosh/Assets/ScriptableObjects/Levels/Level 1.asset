@@ -19,3 +19,5 @@ MonoBehaviour:
     - Pasheh
     timeBetweenSpawns: 5
     badInsectsPercentage: 1
+    speedOfInsects: 0.5
+    randomDirectionPercentage: 0.5

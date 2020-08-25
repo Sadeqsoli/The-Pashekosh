@@ -18,6 +18,8 @@ public class InsectManager : Singleton<InsectManager>
 
     float _badInsectsPercentage;
     float _timeBetweenSpawns;
+    float _speedOfInsects;
+    float _randomDirectionPercent;
 
     List<Coroutine> _allSpawnCoroutines;
     List<GameObject> _existedInsects;
@@ -37,6 +39,8 @@ public class InsectManager : Singleton<InsectManager>
         string[] nameOfBadInsects = levelParameters.badInsectsNames;
         float timeBetweenSpawns = levelParameters.timeBetweenSpawns;
         float badInsectsPercentage = levelParameters.badInsectsPercentage;
+        _speedOfInsects = levelParameters.speedOfInsects;
+        _randomDirectionPercent = levelParameters.randomDirectionPercentage;
         SetParameters(nameOfGoodInsects, nameOfBadInsects, timeBetweenSpawns, badInsectsPercentage);
         _allSpawnCoroutines.Add(StartCoroutine(SpawnCoroutine()));
     }
@@ -77,7 +81,7 @@ public class InsectManager : Singleton<InsectManager>
             }
             Insect insectComponent = newInsect.GetComponent<Insect>();
             if (insectComponent.isBadInsect) {
-                insectComponent.Initialize(cakePoint.position, 0.5f);
+                insectComponent.Initialize(cakePoint.position, _speedOfInsects, _randomDirectionPercent);
             }
             else
             {

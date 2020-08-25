@@ -13,21 +13,21 @@ public class Insect : MonoBehaviour
 
     bool _isInitialized = false;
 
-    int _counter;
+    float _randomDirectionPercent;
 
-    public void Initialize(Vector2 endPoint, float speedOfInsect)
+    public void Initialize(Vector2 endPoint, float speedOfInsect, float randomDirectionPercent)
     {
         _endPoint = endPoint;
         _speed = speedOfInsect;
         _isInitialized = true;
-        _counter = 0;
+        _randomDirectionPercent = randomDirectionPercent;
     }
 
     void Update()
     {
         if (_isInitialized)
         {
-            if (Random.value > 0.95f)
+            if (Random.value > 0.95)
             {
                 ChangeDirection();
             }
@@ -36,7 +36,8 @@ public class Insect : MonoBehaviour
         }
     }
 
-    void GoToEndPoints()
+    /*********
+     void GoToEndPoints()
     {
         Vector2 targetDir = (_endPoint - (Vector2) transform.position).normalized;
         float angle = targetDir.x < 0? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
@@ -45,7 +46,7 @@ public class Insect : MonoBehaviour
 
         Vector2 lastPos = transform.position;
         transform.position = Vector2.MoveTowards(transform.position, _endPoint, _speed * Time.deltaTime);
-    }
+    }**********/
 
     void GoDirect()
     {
@@ -55,7 +56,7 @@ public class Insect : MonoBehaviour
     {
         Vector2 targetDir = (_endPoint - (Vector2)transform.position).normalized;
         Vector2 randomDir = new Vector2(Random.Range(-1,1), Random.Range(-1, 1)).normalized;
-        Vector2 mean = ((targetDir + randomDir)/3).normalized;
+        Vector2 mean = (((1 - _randomDirectionPercent) * targetDir + (_randomDirectionPercent) * randomDir)).normalized;
         float angle = mean.x < 0 ? Vector2.Angle(mean, Vector2.up) : -Vector2.Angle(mean, Vector2.up);
         _direction = Quaternion.Euler(0, 0, angle);
     }
