@@ -77,7 +77,7 @@ public class InsectManager : Singleton<InsectManager>
             }
             Insect insectComponent = newInsect.GetComponent<Insect>();
             if (insectComponent.isBadInsect) {
-                insectComponent.Initialize(cakePoint.position, 1);
+                insectComponent.Initialize(cakePoint.position, 0.5f);
             }
             else
             {
