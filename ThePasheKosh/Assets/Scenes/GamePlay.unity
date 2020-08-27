@@ -744,15 +744,15 @@ MonoBehaviour:
   _pools:
   - nameOfPool: Pasheh
     InitialSizeOfPool: 10
-    poolGameObject: {fileID: 8911577529744804689, guid: 4240ad67099ad1442b062351db50815a,
+    poolGameObject: {fileID: 5867130788592910188, guid: 828df9409a98a224ba63724e26ae9710,
       type: 3}
   - nameOfPool: Parvaneh
     InitialSizeOfPool: 4
-    poolGameObject: {fileID: 4410082443661093062, guid: 9b0f42b82750a6b47969cda091153239,
+    poolGameObject: {fileID: 8798117404524958504, guid: 74e421f7d552a7848841141fe34dcb4d,
       type: 3}
   - nameOfPool: Sanjaqac
     InitialSizeOfPool: 4
-    poolGameObject: {fileID: 6391029150193879159, guid: 2710aca9f70b0c54db1722806087dc7e,
+    poolGameObject: {fileID: 5276940320517099172, guid: cf9a9f99e9e6749458db24918e1609f7,
       type: 3}
 --- !u!4 &711187860
 Transform:
@@ -1849,6 +1849,7 @@ MonoBehaviour:
   _ScoreTXT: {fileID: 1428286402}
   _PillTXT: {fileID: 1141265940}
   _LevelTXT: {fileID: 1383871521}
+  _TimeTXT: {fileID: 329329649}
 --- !u!1 &2103325082
 GameObject:
   m_ObjectHideFlags: 0

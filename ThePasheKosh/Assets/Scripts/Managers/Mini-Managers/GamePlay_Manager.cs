@@ -9,8 +9,8 @@ public class GamePlay_Manager : MonoBehaviour
     #endregion
 
     #region Fields
-    [SerializeField] RTLTextMeshPro _ScoreTXT, _PillTXT, _LevelTXT;
-     int score, pill, level;
+    [SerializeField] RTLTextMeshPro _ScoreTXT, _PillTXT, _LevelTXT, _TimeTXT;
+     int score, pill, level, time;
     #endregion
 
     #region Public Methods
@@ -23,6 +23,7 @@ public class GamePlay_Manager : MonoBehaviour
         _ScoreTXT.text = score.ToString();
         _PillTXT.text = pill.ToString();
         _LevelTXT.text = level.ToString();
+        _TimeTXT.text = time.ToString();
 
     }//Startttttt
 
