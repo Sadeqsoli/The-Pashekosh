@@ -5,6 +5,7 @@ using UnityEngine;
 public class Insect : MonoBehaviour
 {
     public bool isBadInsect;
+    public Animation killedAnimation;
 
     Vector2 _endPoint;
     Quaternion _direction;
@@ -15,12 +16,37 @@ public class Insect : MonoBehaviour
 
     float _randomDirectionPercent;
 
+    private void OnEnable()
+    {
+        _isInitialized = false;
+    }
+
+    void KillHandling(GameObject insect)
+    {
+        if (insect == this.gameObject)
+        {
+            if (isBadInsect)
+            {
+                EventManager.TriggerEvent("BadInsectKilled");
+            }
+            else
+            {
+                EventManager.TriggerEvent("GoodInsectKilled");
+            }
+            Pool.DestroyGameObject(this.name, this.gameObject);
+            EventManager.StopListening("TouchCollider", KillHandling);
+        }
+    }
+
+
     public void Initialize(Vector2 endPoint, float speedOfInsect, float randomDirectionPercent)
     {
         _endPoint = endPoint;
         _speed = speedOfInsect;
         _isInitialized = true;
         _randomDirectionPercent = randomDirectionPercent;
+
+        EventManager.StartListening("TouchCollider", KillHandling);
     }
 
     void Update()
@@ -67,6 +93,10 @@ public class Insect : MonoBehaviour
 
     private void OnDisable()
     {
+        /*
+        if (_isInitialized)
+            EventManager.StopListening("TouchCollider", KillHandling);
+            */
         _isInitialized = false;
     }
 }

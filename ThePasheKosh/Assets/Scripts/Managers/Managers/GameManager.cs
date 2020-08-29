@@ -29,16 +29,21 @@ public class GameManager : Singleton<GameManager>
     
     void Start()
     {
+
+        AddEvents();
+        ProcessGameStates();
+    }
+
+    void AddEvents()
+    {
         if (EventManager.IsInitialized)
         {
             // Addig a event with a GameObject parameter. 
             // Every time the player touch (or click) a collider this event will be invoked.
-            EventManager.AddGameObjectEvent("TouchedCollider");
+            EventManager.AddGameObjectEvent("TouchCollider");
             // Every time the player touch the screen and not touch a collider this event will be invoked.
-            EventManager.AddEventWithNoParamter("TouchedScreen");
+            EventManager.AddEventWithNoParamter("TouchScreen");
         }
-
-        ProcessGameStates();
     }
 
     

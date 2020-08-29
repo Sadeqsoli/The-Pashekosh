@@ -16,7 +16,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     #endregion
 
     #region public Methods
-    public static bool IsInitialized()
+    public static bool _IsInitialized()
     {
         return _instance != null;
     }

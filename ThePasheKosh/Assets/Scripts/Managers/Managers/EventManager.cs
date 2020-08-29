@@ -54,7 +54,7 @@ public class EventManager : Singleton<EventManager>
         UnityEvent thisEvent = null;
         if (Instance.noParameterEventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke();
+            thisEvent?.Invoke();
         }
     }
     #endregion
@@ -62,12 +62,12 @@ public class EventManager : Singleton<EventManager>
     #region  Events with one GameObject parameter
     public static void AddGameObjectEvent(string eventName)
     {
-        UnityEvent<GameObject> newEvent = null;
+        UnityEvent<GameObject> newEvent = new UnityEventGameObject();
         Instance.gameObjectEventDictionary.Add(eventName, newEvent);
     }
     public static void StartListening(string eventName, UnityAction<GameObject> listener)
     {
-        UnityEvent<GameObject> thisEvent = null;
+        UnityEvent<GameObject> thisEvent = new UnityEventGameObject();
         if (Instance.gameObjectEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.AddListener(listener);
@@ -83,7 +83,7 @@ public class EventManager : Singleton<EventManager>
     public static void StopListening(string eventName, UnityAction<GameObject> listener)
     {
         //if (eventManager == null) return;
-        UnityEvent<GameObject> thisEvent = null;
+        UnityEvent<GameObject> thisEvent = new UnityEventGameObject();
         if (Instance.gameObjectEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.RemoveListener(listener);
@@ -92,11 +92,13 @@ public class EventManager : Singleton<EventManager>
 
     public static void TriggerEvent(string eventName, GameObject gameObject)
     {
-        UnityEvent<GameObject> thisEvent = null;
+        UnityEvent<GameObject> thisEvent = new UnityEventGameObject();
         if (Instance.gameObjectEventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke(gameObject);
+            thisEvent?.Invoke(gameObject);
         }
     }
     #endregion
 }
+
+public class UnityEventGameObject : UnityEvent<GameObject> { }

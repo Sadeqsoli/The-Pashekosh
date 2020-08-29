@@ -87,6 +87,7 @@ public class InsectManager : Singleton<InsectManager>
             {
             }
             _existedInsects.Add(newInsect);
+
             yield return new WaitForSeconds(_timeBetweenSpawns);
         }
     }

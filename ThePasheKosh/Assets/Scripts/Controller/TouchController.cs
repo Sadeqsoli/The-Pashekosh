@@ -38,7 +38,7 @@ public class TouchController : MonoBehaviour
 
     public void MouseHandling()
     {
-        if (Input.GetKeyUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
@@ -46,12 +46,12 @@ public class TouchController : MonoBehaviour
             if (hitInfo)
             {
 
-                EventManager.TriggerEvent("TouchedCollider", hitInfo.collider.gameObject);
+                EventManager.TriggerEvent("TouchCollider", hitInfo.collider.gameObject);
                 // Here you can check hitInfo to see which collider has been hit, and act appropriately.
             }
             else
             {
-                EventManager.TriggerEvent("TouchedScreen");
+                EventManager.TriggerEvent("TouchScreen");
             }
         }
     }

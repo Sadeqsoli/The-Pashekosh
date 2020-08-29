@@ -738,21 +738,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 711187858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d23f42ed8ce294a8be39e189e87209, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c7fb7719981e75459ffec5753238107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pools:
   - nameOfPool: Pasheh
     InitialSizeOfPool: 10
-    poolGameObject: {fileID: 5867130788592910188, guid: 828df9409a98a224ba63724e26ae9710,
-      type: 3}
-  - nameOfPool: Parvaneh
-    InitialSizeOfPool: 4
-    poolGameObject: {fileID: 8798117404524958504, guid: 74e421f7d552a7848841141fe34dcb4d,
-      type: 3}
-  - nameOfPool: Sanjaqac
-    InitialSizeOfPool: 4
-    poolGameObject: {fileID: 5276940320517099172, guid: cf9a9f99e9e6749458db24918e1609f7,
+    poolGameObject: {fileID: 8911577529744804689, guid: 50ef90951d2ede04b9e71d1013159d4e,
       type: 3}
 --- !u!4 &711187860
 Transform:
@@ -1426,7 +1418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.80123335}
   m_AnchorMax: {x: 0.5, y: 0.80123335}
-  m_AnchoredPosition: {x: -0.12004089, y: 14.000092}
+  m_AnchoredPosition: {x: -0.12004089, y: 14.000122}
   m_SizeDelta: {x: 453, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1383871523
@@ -1846,10 +1838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76146bcb3c69da24792bc36a048e53f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ScoreTXT: {fileID: 1428286402}
-  _PillTXT: {fileID: 1141265940}
-  _LevelTXT: {fileID: 1383871521}
-  _TimeTXT: {fileID: 329329649}
 --- !u!1 &2103325082
 GameObject:
   m_ObjectHideFlags: 0
