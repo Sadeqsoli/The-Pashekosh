@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         RUNNING,
         FINISHED
     }
-    public GameState CurrentState { get; private set; } = GameState.START;
+    public GameState CurrentState { get; private set; } = GameState.RUNNING;
     
     void Start()
     {
@@ -75,7 +75,7 @@ public class GameManager : Singleton<GameManager>
                 
                 break;
             case GameState.RUNNING:
-                ShowRelatedCanvas(false, true, false);
+                //ShowRelatedCanvas(false, true, false);
                 InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
 
                 break;
