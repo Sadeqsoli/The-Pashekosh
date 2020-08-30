@@ -113,7 +113,7 @@ public class Pool : MonoBehaviour
         }
     }
 
-    public static void DestroyGameObject(string name, GameObject destroyedGameObject)
+    public static void DestroyGameObjectByName(string name, GameObject destroyedGameObject)
     {
         if (_poolsContent.ContainsKey(name))
         {

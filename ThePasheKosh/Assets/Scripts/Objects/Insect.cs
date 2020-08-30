@@ -31,16 +31,15 @@ public class Insect : MonoBehaviour
 
             EventManager.StopListening("TouchCollider", KillHandling);
 
-            Pool.DestroyGameObject(this.name, this.gameObject);
+            Pool.DestroyGameObjectByName(this.name, this.gameObject);
         }
     }
 
     public void removeInsect()
     {
         EventManager.StopListening("TouchCollider", KillHandling);
-        Pool.DestroyGameObject(this.name, this.gameObject);
+        Pool.DestroyGameObjectByName(this.name, this.gameObject);
     }
-
 
     public void Initialize(Vector2 endPoint, float speedOfInsect, float randomDirectionPercent)
     {
@@ -65,18 +64,6 @@ public class Insect : MonoBehaviour
         }
     }
 
-    /*********
-     void GoToEndPoints()
-    {
-        Vector2 targetDir = (_endPoint - (Vector2) transform.position).normalized;
-        float angle = targetDir.x < 0? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
-        
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        Vector2 lastPos = transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, _endPoint, _speed * Time.deltaTime);
-    }**********/
-
     void GoDirect()
     {
         transform.Translate(Vector2.up * _speed * Time.deltaTime);
@@ -96,10 +83,6 @@ public class Insect : MonoBehaviour
 
     private void OnDisable()
     {
-        /*
-        if (_isInitialized)
-            EventManager.StopListening("TouchCollider", KillHandling);
-            */
         _isInitialized = false;
     }
 }

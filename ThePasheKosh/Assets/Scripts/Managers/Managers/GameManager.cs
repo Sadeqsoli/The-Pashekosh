@@ -8,8 +8,10 @@ public struct LevelParametersStruct
     public string[] goodInsectsNames;
     public string[] badInsectsNames;
     public float timeBetweenSpawns;
+    [Range(0,1)]
     public float badInsectsPercentage;
     public float speedOfInsects;
+    [Range(0, 1)]
     public float randomDirectionPercentage;
 }
 
@@ -17,26 +19,16 @@ public class GameManager : Singleton<GameManager>
 {
     public LevelParameters[] levels;
 
-    public GameObject StartCanvas;
-    public GameObject RunningCanvas;
-    public GameObject FinishCanvas;
-
+    [Space][Space]
 
     int _currentLevel = 0;
 
-    public enum GameState
-    {
-        START,
-        RUNNING,
-        FINISHED
-    }
-    public GameState CurrentState { get; private set; } = GameState.RUNNING;
-    
     void Start()
     {
         AddEvents();
         AddListeners();
-        ProcessGameStates();
+
+        InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
     }
 
     void AddEvents()
@@ -62,29 +54,6 @@ public class GameManager : Singleton<GameManager>
         EventManager.StartListening("InsectKilled", ProcessKillings);
     }
 
-    
-    /// <summary>
-    /// Process UI for each game state. 
-    /// </summary>
-    public void ProcessGameStates()
-    {
-        switch (CurrentState)
-        {
-            case GameState.START:
-                ShowRelatedCanvas(true, false, false);
-                
-                break;
-            case GameState.RUNNING:
-                //ShowRelatedCanvas(false, true, false);
-                InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
-
-                break;
-            case GameState.FINISHED:
-                ShowRelatedCanvas(false, false, true);
-                break;
-        }
-    }
-
     void GoToNextLevel()
     {
         InsectManager.Instance.RemoveInsects();
@@ -94,9 +63,6 @@ public class GameManager : Singleton<GameManager>
 
     void FinishTheGame()
     {
-        InsectManager.Instance.RemoveInsects();
-        CurrentState = GameState.FINISHED;
-        ProcessGameStates();
     }
 
     void ProcessKillings(GameObject insect)
@@ -106,20 +72,4 @@ public class GameManager : Singleton<GameManager>
         if (insectComponent.isBadInsect) ResultsController.Instance.AddToFalseSelections();
         else ResultsController.Instance.AddToTrueSelections();
     }
-
-    public void ShowRelatedCanvas(bool startState, bool runningState, bool finishedState)
-    {
-        StartCanvas.SetActive(startState);
-        RunningCanvas.SetActive(runningState);
-        FinishCanvas.SetActive(finishedState);
-    }
-
-    public void StartTheGame()
-    {
-        CurrentState = GameState.RUNNING;
-        ProcessGameStates();
-    }
-
-    
-
 }

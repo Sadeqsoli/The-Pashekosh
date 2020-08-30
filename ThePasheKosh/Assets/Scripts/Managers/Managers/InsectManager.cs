@@ -35,24 +35,16 @@ public class InsectManager : Singleton<InsectManager>
 
     public void StartInsectSpawning(LevelParametersStruct levelParameters)
     {
-        string[] nameOfGoodInsects = levelParameters.goodInsectsNames;
-        string[] nameOfBadInsects = levelParameters.badInsectsNames;
-        float timeBetweenSpawns = levelParameters.timeBetweenSpawns;
-        float badInsectsPercentage = levelParameters.badInsectsPercentage;
+        _nameOfGoodInsects = levelParameters.goodInsectsNames;
+        _nameOfBadInsects = levelParameters.badInsectsNames;
+        _timeBetweenSpawns = levelParameters.timeBetweenSpawns;
+        _badInsectsPercentage = levelParameters.badInsectsPercentage;
+
         _speedOfInsects = levelParameters.speedOfInsects;
         _randomDirectionPercent = levelParameters.randomDirectionPercentage;
-        SetParameters(nameOfGoodInsects, nameOfBadInsects, timeBetweenSpawns, badInsectsPercentage);
+
         _allSpawnCoroutines.Add(StartCoroutine(SpawnCoroutine()));
     }
-
-    void SetParameters(string[] nameOfGoodInsects, string[] nameOfBadInsects, float timeBetweenSpawns, float badInsectsPercentage)
-    {
-        _nameOfGoodInsects = nameOfGoodInsects;
-        _nameOfBadInsects = nameOfBadInsects;
-        _timeBetweenSpawns = timeBetweenSpawns;
-        _badInsectsPercentage = badInsectsPercentage;
-    }
-
 
     IEnumerator SpawnCoroutine()
     {
@@ -79,13 +71,16 @@ public class InsectManager : Singleton<InsectManager>
 
                 newInsect = Pool.InstantiateGameObjectByName(insectName, pos.position, Quaternion.identity);
             }
+
             Insect insectComponent = newInsect.GetComponent<Insect>();
             if (insectComponent.isBadInsect) {
                 insectComponent.Initialize(cakePoint.position, _speedOfInsects, _randomDirectionPercent);
             }
             else
             {
+
             }
+
             _existedInsects.Add(newInsect);
 
             yield return new WaitForSeconds(_timeBetweenSpawns);
