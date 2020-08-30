@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 5390732663009930773}
   - component: {fileID: -1677254277811268517}
   m_Layer: 0
-  m_Name: Sanjaqak
+  m_Name: _Old_Sanjaqak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,6 +573,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBadInsect: 0
+  killedAnimation: {fileID: 0}
+  addedPoints: -3
+  impactRate: 0
 --- !u!64 &-1677254277811268517
 MeshCollider:
   m_ObjectHideFlags: 0

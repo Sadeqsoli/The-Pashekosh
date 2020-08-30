@@ -6,6 +6,8 @@ public class Insect : MonoBehaviour
 {
     public bool isBadInsect;
     public Animation killedAnimation;
+    public int addedPoints;
+    public int impactRate;
 
     Vector2 _endPoint;
     Quaternion _direction;
@@ -25,17 +27,18 @@ public class Insect : MonoBehaviour
     {
         if (insect == this.gameObject)
         {
-            if (isBadInsect)
-            {
-                EventManager.TriggerEvent("BadInsectKilled");
-            }
-            else
-            {
-                EventManager.TriggerEvent("GoodInsectKilled");
-            }
-            Pool.DestroyGameObject(this.name, this.gameObject);
+            EventManager.TriggerEvent("InsectKilled", this.gameObject);
+
             EventManager.StopListening("TouchCollider", KillHandling);
+
+            Pool.DestroyGameObject(this.name, this.gameObject);
         }
+    }
+
+    public void removeInsect()
+    {
+        EventManager.StopListening("TouchCollider", KillHandling);
+        Pool.DestroyGameObject(this.name, this.gameObject);
     }
 
 

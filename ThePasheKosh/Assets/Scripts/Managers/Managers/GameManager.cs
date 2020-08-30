@@ -15,7 +15,12 @@ public struct LevelParametersStruct
 
 public class GameManager : Singleton<GameManager>
 {
-    public LevelParameters[] levelParameters;
+    public LevelParameters[] levels;
+
+    public GameObject StartCanvas;
+    public GameObject RunningCanvas;
+    public GameObject FinishCanvas;
+
 
     int _currentLevel = 0;
 
@@ -29,8 +34,8 @@ public class GameManager : Singleton<GameManager>
     
     void Start()
     {
-
         AddEvents();
+        AddListeners();
         ProcessGameStates();
     }
 
@@ -43,7 +48,18 @@ public class GameManager : Singleton<GameManager>
             EventManager.AddGameObjectEvent("TouchCollider");
             // Every time the player touch the screen and not touch a collider this event will be invoked.
             EventManager.AddEventWithNoParamter("TouchScreen");
+            // Whenever an insect is killed, this event will be invoked with the insect game object as a parameter
+            EventManager.AddGameObjectEvent("InsectKilled");
         }
+        else
+        {
+            Debug.LogError("The EventManager hasn't been initilized yet.");
+        }
+    }
+
+    void AddListeners()
+    {
+        EventManager.StartListening("InsectKilled", ProcessKillings);
     }
 
     
@@ -55,14 +71,55 @@ public class GameManager : Singleton<GameManager>
         switch (CurrentState)
         {
             case GameState.START:
-                InsectManager.Instance.StartInsectSpawning(levelParameters[_currentLevel].levelParameters);
+                ShowRelatedCanvas(true, false, false);
+                
                 break;
             case GameState.RUNNING:
+                ShowRelatedCanvas(false, true, false);
+                InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
+
                 break;
             case GameState.FINISHED:
-
+                ShowRelatedCanvas(false, false, true);
                 break;
         }
     }
+
+    void GoToNextLevel()
+    {
+        InsectManager.Instance.RemoveInsects();
+        _currentLevel++;
+        InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
+    }
+
+    void FinishTheGame()
+    {
+        InsectManager.Instance.RemoveInsects();
+        CurrentState = GameState.FINISHED;
+        ProcessGameStates();
+    }
+
+    void ProcessKillings(GameObject insect)
+    {
+        Insect insectComponent = insect.GetComponent<Insect>();
+        ResultsController.Instance.AddToScore(insectComponent.addedPoints);
+        if (insectComponent.isBadInsect) ResultsController.Instance.AddToFalseSelections();
+        else ResultsController.Instance.AddToTrueSelections();
+    }
+
+    public void ShowRelatedCanvas(bool startState, bool runningState, bool finishedState)
+    {
+        StartCanvas.SetActive(startState);
+        RunningCanvas.SetActive(runningState);
+        FinishCanvas.SetActive(finishedState);
+    }
+
+    public void StartTheGame()
+    {
+        CurrentState = GameState.RUNNING;
+        ProcessGameStates();
+    }
+
+    
 
 }

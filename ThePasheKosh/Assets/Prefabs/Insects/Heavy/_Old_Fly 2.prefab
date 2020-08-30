@@ -1310,6 +1310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBadInsect: 1
   killedAnimation: {fileID: 0}
+  addedPoints: 10
+  impactRate: 2
 --- !u!70 &1139536216994419868
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -746,6 +746,10 @@ MonoBehaviour:
     InitialSizeOfPool: 10
     poolGameObject: {fileID: 8911577529744804689, guid: 50ef90951d2ede04b9e71d1013159d4e,
       type: 3}
+  - nameOfPool: Parvaneh
+    InitialSizeOfPool: 10
+    poolGameObject: {fileID: 4410082443661093062, guid: da8d8c50bb5dcab40b07a9c454c36c7b,
+      type: 3}
 --- !u!4 &711187860
 Transform:
   m_ObjectHideFlags: 0
@@ -1881,9 +1885,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f44c0aae73fe034b85d8f9c369b82ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelParameters:
-  - {fileID: 11400000, guid: db8ac2e210f093a4abf4830bd4cae895, type: 2}
-  - {fileID: 11400000, guid: 7c3583c7f6735bb41964eb83ff4cef21, type: 2}
+  levels: []
+  StartCanvas: {fileID: 0}
+  RunningCanvas: {fileID: 0}
+  FinishCanvas: {fileID: 0}
 --- !u!224 &9200659034322945648
 RectTransform:
   m_ObjectHideFlags: 0

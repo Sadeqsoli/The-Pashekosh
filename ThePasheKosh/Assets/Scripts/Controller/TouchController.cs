@@ -45,7 +45,6 @@ public class TouchController : MonoBehaviour
             // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
             if (hitInfo)
             {
-
                 EventManager.TriggerEvent("TouchCollider", hitInfo.collider.gameObject);
                 // Here you can check hitInfo to see which collider has been hit, and act appropriately.
             }

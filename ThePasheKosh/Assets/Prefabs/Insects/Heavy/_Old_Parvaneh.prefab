@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 4193336457770207821}
   - component: {fileID: 1893492884850893366}
   m_Layer: 0
-  m_Name: Parvaneh
+  m_Name: _Old_Parvaneh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,6 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBadInsect: 0
+  killedAnimation: {fileID: 0}
+  addedPoints: -5
+  impactRate: 0
 --- !u!64 &1893492884850893366
 MeshCollider:
   m_ObjectHideFlags: 0

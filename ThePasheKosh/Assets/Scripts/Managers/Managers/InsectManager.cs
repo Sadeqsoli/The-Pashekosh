@@ -92,12 +92,22 @@ public class InsectManager : Singleton<InsectManager>
         }
     }
 
-    public void StopAllSpawn()
+    public void StopAllSpawn(bool removeInsects)
     {
         while (_allSpawnCoroutines.Count > 0)
         {
             StopCoroutine(_allSpawnCoroutines[_allSpawnCoroutines.Count - 1]);
             _allSpawnCoroutines.RemoveAt(_allSpawnCoroutines.Count - 1);
+            if (removeInsects) RemoveInsects();
+        }
+    }
+
+    public void RemoveInsects()
+    {
+        while (_existedInsects.Count > 0)
+        {
+            Insect insectComponent = _existedInsects[0].GetComponent<Insect>();
+            insectComponent.removeInsect();
         }
     }
 
