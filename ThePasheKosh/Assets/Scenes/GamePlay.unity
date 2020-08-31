@@ -356,9 +356,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 22.4
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a23d661acbd13943a31242871a2d23b, type: 2}
-  m_sharedMaterial: {fileID: -5418357767462591047, guid: 9a23d661acbd13943a31242871a2d23b,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -472,7 +471,7 @@ GameObject:
   - component: {fileID: 387679981}
   - component: {fileID: 387679980}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [segoeui RTL SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [VAZIR-MEDIUM-FD-WOL SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -544,7 +543,7 @@ GameObject:
   - component: {fileID: 454315125}
   - component: {fileID: 454315124}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [segoeui RTL SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [VAZIR-MEDIUM-FD-WOL SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,7 +809,7 @@ GameObject:
   - component: {fileID: 742496449}
   - component: {fileID: 742496448}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [segoeui RTL SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [VAZIR-MEDIUM-FD-WOL SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1110,9 +1109,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 22
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a23d661acbd13943a31242871a2d23b, type: 2}
-  m_sharedMaterial: {fileID: -5418357767462591047, guid: 9a23d661acbd13943a31242871a2d23b,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1312,9 +1310,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a23d661acbd13943a31242871a2d23b, type: 2}
-  m_sharedMaterial: {fileID: -5418357767462591047, guid: 9a23d661acbd13943a31242871a2d23b,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1345,7 +1342,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1494,9 +1491,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 500
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9a23d661acbd13943a31242871a2d23b, type: 2}
-  m_sharedMaterial: {fileID: -5418357767462591047, guid: 9a23d661acbd13943a31242871a2d23b,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1743,7 +1739,7 @@ GameObject:
   - component: {fileID: 1686011394}
   - component: {fileID: 1686011393}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [segoeui RTL SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [VAZIR-MEDIUM-FD-WOL SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1819,7 +1815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2095977112
 Transform:
   m_ObjectHideFlags: 0
@@ -1846,10 +1842,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76146bcb3c69da24792bc36a048e53f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ScoreTXT: {fileID: 1428286402}
-  _PillTXT: {fileID: 1141265940}
-  _LevelTXT: {fileID: 1383871521}
-  _TimeTXT: {fileID: 329329649}
+  _ScoreTXT: {fileID: 0}
+  _PillTXT: {fileID: 0}
+  _LevelTXT: {fileID: 0}
+  _TimeTXT: {fileID: 0}
 --- !u!1 &2103325082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,6 +1892,9 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: db8ac2e210f093a4abf4830bd4cae895, type: 2}
   - {fileID: 11400000, guid: 7c3583c7f6735bb41964eb83ff4cef21, type: 2}
+  StartCanvas: {fileID: 0}
+  RunningCanvas: {fileID: 0}
+  FinishCanvas: {fileID: 0}
 --- !u!224 &9200659034322945648
 RectTransform:
   m_ObjectHideFlags: 0
