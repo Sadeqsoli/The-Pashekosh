@@ -17,7 +17,8 @@ MonoBehaviour:
     - Parvaneh
     badInsectsNames:
     - Pasheh
+    passLevelKillNum: 5
     timeBetweenSpawns: 5
     badInsectsPercentage: 1
-    speedOfInsects: 2
-    randomDirectionPercentage: 0.5
+    speedOfInsects: 1
+    randomDirectionPercentage: 0

@@ -5,11 +5,11 @@ using UnityEngine;
 public class ResultsController : Singleton<ResultsController>
 {
     public int Score { get; private set; }
-    public int LevelFalseAnswersCounter { get; private set; } = 0;
-    public int LevelTrueAnswersCounter { get; private set; } = 0;
-    public int GameTrueAnswerCounter { get; private set; } = 0;
-    public int GameFalseAnswerCounter { get; private set; } = 0;
-    public int AllAnswers { get; private set; } = 0;
+    public int LevelFalseKillCounter { get; private set; } = 0;
+    public int LevelTrueKillCounter { get; private set; } = 0;
+    public int GameTrueKillCounter { get; private set; } = 0;
+    public int GameFalseKillCounter { get; private set; } = 0;
+    public int AllKills { get; private set; } = 0;
 
     void Start()
     {
@@ -22,25 +22,19 @@ public class ResultsController : Singleton<ResultsController>
     public void AddToScore(int amount)
     {
         Score += amount;
+        Score = Score >= 0 ? Score : 0;
     }
-    public void AddToTrueSelections()
+    public void TrueKill()
     {
-        GameTrueAnswerCounter++;
-        LevelTrueAnswersCounter++;
-        AllAnswers++;
+        GameTrueKillCounter++;
+        LevelTrueKillCounter++;
+        AllKills++;
     }
-    public void AddToFalseSelections()
+    public void FalseKill()
     {
-        GameFalseAnswerCounter++;
-        LevelFalseAnswersCounter++;
-        AllAnswers++;
-    }
-    /// <summary>
-    ///  Subtract from the score
-    /// </summary>
-    public void SubtractFromScore(int amount)
-    {
-        Score -= Score - amount >= 0 ? amount : Score;
+        GameFalseKillCounter++;
+        LevelFalseKillCounter++;
+        AllKills++;
     }
 
     /// <summary>
@@ -49,14 +43,14 @@ public class ResultsController : Singleton<ResultsController>
     public void ResetScore()
     {
         Score = 0;
-        GameFalseAnswerCounter = 0;
-        GameTrueAnswerCounter = 0;
+        GameFalseKillCounter = 0;
+        GameTrueKillCounter = 0;
+        AllKills = 0;
     }
-    public void ResetWrongAndRightSelectionCounters()
+    public void ResetLevelCounters()
     {
-        LevelTrueAnswersCounter = 0;
-        LevelFalseAnswersCounter = 0;
-        AllAnswers = 0;
+        LevelTrueKillCounter = 0;
+        LevelFalseKillCounter = 0;
     }
 
     /// <summary>
@@ -83,8 +77,8 @@ public class ResultsController : Singleton<ResultsController>
     /// <returns>Percent between 0 to 1</returns>
     public float GetTruePercent()
     {
-        if (AllAnswers > 0)
-            return (float)GameTrueAnswerCounter / (float)(GameTrueAnswerCounter + GameFalseAnswerCounter);
+        if (AllKills > 0)
+            return (float)GameTrueKillCounter / (float)(GameTrueKillCounter + GameFalseKillCounter);
         else
             return 0;
     }

@@ -3,6 +3,9 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+
+public class UnityEventGameObject : UnityEvent<GameObject> { }
+
 public class EventManager : Singleton<EventManager>
 {
     public static bool IsInitialized { get; private set; } = false;
@@ -21,12 +24,12 @@ public class EventManager : Singleton<EventManager>
     #region noParameter Events
     public static void AddEventWithNoParamter(string eventName)
     {
-        UnityEvent newEvent = null;
+        UnityEvent newEvent = new UnityEvent();
         Instance.noParameterEventDictionary.Add(eventName, newEvent);
     }
     public static void StartListening(string eventName, UnityAction listener)
     {
-        UnityEvent thisEvent = null;
+        UnityEvent thisEvent;
         if (Instance.noParameterEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.AddListener(listener);
@@ -41,8 +44,7 @@ public class EventManager : Singleton<EventManager>
 
     public static void StopListening(string eventName, UnityAction listener)
     {
-        //if (eventManager == null) return;
-        UnityEvent thisEvent = null;
+        UnityEvent thisEvent;
         if (Instance.noParameterEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.RemoveListener(listener);
@@ -51,7 +53,7 @@ public class EventManager : Singleton<EventManager>
 
     public static void TriggerEvent(string eventName)
     {
-        UnityEvent thisEvent = null;
+        UnityEvent thisEvent;
         if (Instance.noParameterEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent?.Invoke();
@@ -67,14 +69,14 @@ public class EventManager : Singleton<EventManager>
     }
     public static void StartListening(string eventName, UnityAction<GameObject> listener)
     {
-        UnityEvent<GameObject> thisEvent = new UnityEventGameObject();
+        UnityEvent<GameObject> thisEvent;
         if (Instance.gameObjectEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.AddListener(listener);
         }
         else
         {
-            thisEvent = null;
+            thisEvent = new UnityEventGameObject();
             thisEvent.AddListener(listener);
             Instance.gameObjectEventDictionary.Add(eventName, thisEvent);
         }
@@ -82,8 +84,7 @@ public class EventManager : Singleton<EventManager>
 
     public static void StopListening(string eventName, UnityAction<GameObject> listener)
     {
-        //if (eventManager == null) return;
-        UnityEvent<GameObject> thisEvent = new UnityEventGameObject();
+        UnityEvent<GameObject> thisEvent;
         if (Instance.gameObjectEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.RemoveListener(listener);
@@ -92,7 +93,7 @@ public class EventManager : Singleton<EventManager>
 
     public static void TriggerEvent(string eventName, GameObject gameObject)
     {
-        UnityEvent<GameObject> thisEvent = new UnityEventGameObject();
+        UnityEvent<GameObject> thisEvent;
         if (Instance.gameObjectEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent?.Invoke(gameObject);
@@ -101,4 +102,3 @@ public class EventManager : Singleton<EventManager>
     #endregion
 }
 
-public class UnityEventGameObject : UnityEvent<GameObject> { }
