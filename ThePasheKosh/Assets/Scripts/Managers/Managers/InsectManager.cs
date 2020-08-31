@@ -35,6 +35,8 @@ public class InsectManager : Singleton<InsectManager>
 
     public void StartInsectSpawning(LevelParametersStruct levelParameters)
     {
+        EventManager.StartListening("InsectKilled", RemoveInsect);
+
         _nameOfGoodInsects = levelParameters.goodInsectsNames;
         _nameOfBadInsects = levelParameters.badInsectsNames;
         _timeBetweenSpawns = levelParameters.timeBetweenSpawns;
@@ -43,7 +45,8 @@ public class InsectManager : Singleton<InsectManager>
         _speedOfInsects = levelParameters.speedOfInsects;
         _randomDirectionPercent = levelParameters.randomDirectionPercentage;
 
-        _allSpawnCoroutines.Add(StartCoroutine(SpawnCoroutine()));
+        Coroutine newCoroutine = StartCoroutine(SpawnCoroutine());
+        _allSpawnCoroutines.Add(newCoroutine);
     }
 
     IEnumerator SpawnCoroutine()
@@ -87,23 +90,36 @@ public class InsectManager : Singleton<InsectManager>
         }
     }
 
+    void RemoveInsect(GameObject insect)
+    {
+        _existedInsects.Remove(insect);
+    }
+
     public void StopAllSpawn(bool removeInsects)
     {
         while (_allSpawnCoroutines.Count > 0)
         {
             StopCoroutine(_allSpawnCoroutines[_allSpawnCoroutines.Count - 1]);
             _allSpawnCoroutines.RemoveAt(_allSpawnCoroutines.Count - 1);
-            if (removeInsects) RemoveInsects();
         }
+        if (removeInsects) RemoveInsects();
     }
 
     public void RemoveInsects()
     {
-        while (_existedInsects.Count > 0)
+        StartCoroutine(RemoveInsectsCoroutine());
+    }
+
+    IEnumerator RemoveInsectsCoroutine()
+    {
+        while(_existedInsects.Count > 0)
         {
-            Insect insectComponent = _existedInsects[0].GetComponent<Insect>();
+            Insect insectComponent = _existedInsects[_existedInsects.Count - 1].GetComponent<Insect>();
             insectComponent.removeInsect();
+            _existedInsects.RemoveAt(_existedInsects.Count - 1);
+            yield return new WaitForEndOfFrame();
         }
     }
+    
 
 }

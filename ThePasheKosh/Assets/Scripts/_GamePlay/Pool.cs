@@ -85,10 +85,11 @@ public class Pool : MonoBehaviour
             if (poolCurrentSize > 0)
             {
                 var returnGameObject = _poolsContent[nameOfObject][poolCurrentSize - 1];
+                _poolsContent[nameOfObject].Remove(returnGameObject);
+
                 returnGameObject.SetActive(true);
                 returnGameObject.transform.position = pos;
                 returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
-                _poolsContent[nameOfObject].RemoveAt(poolCurrentSize - 1);
                 return returnGameObject;
             }
             else

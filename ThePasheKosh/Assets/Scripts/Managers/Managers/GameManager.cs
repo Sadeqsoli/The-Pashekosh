@@ -1,19 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public struct LevelParametersStruct
-{
-    public string[] goodInsectsNames;
-    public string[] badInsectsNames;
-    public float timeBetweenSpawns;
-    [Range(0,1)]
-    public float badInsectsPercentage;
-    public float speedOfInsects;
-    [Range(0, 1)]
-    public float randomDirectionPercentage;
-}
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -40,6 +28,9 @@ public class GameManager : Singleton<GameManager>
             EventManager.AddGameObjectEvent("TouchCollider");
             // Every time the player touch the screen and not touch a collider this event will be invoked.
             EventManager.AddEventWithNoParamter("TouchScreen");
+
+            //Whenever the player is game over this event will be invoked
+            EventManager.AddEventWithNoParamter("GameOver");
             // Whenever an insect is killed, this event will be invoked with the insect game object as a parameter
             EventManager.AddGameObjectEvent("InsectKilled");
         }
@@ -52,24 +43,43 @@ public class GameManager : Singleton<GameManager>
     void AddListeners()
     {
         EventManager.StartListening("InsectKilled", ProcessKillings);
+        EventManager.StartListening("GameOver", GameOver);
     }
 
     void GoToNextLevel()
     {
-        InsectManager.Instance.RemoveInsects();
+        ResultsController.Instance.ResetLevelCounters();
+
+        InsectManager.Instance.StopAllSpawn(true);
         _currentLevel++;
+        Timers.Instance.StartTimer(2, LoadLevel);
+    }
+
+    void LoadLevel()
+    {
         InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
     }
 
-    void FinishTheGame()
-    {
-    }
 
     void ProcessKillings(GameObject insect)
     {
         Insect insectComponent = insect.GetComponent<Insect>();
         ResultsController.Instance.AddToScore(insectComponent.addedPoints);
-        if (insectComponent.isBadInsect) ResultsController.Instance.AddToFalseSelections();
-        else ResultsController.Instance.AddToTrueSelections();
+        if (insectComponent.isBadInsect) ResultsController.Instance.TrueKill();
+        else ResultsController.Instance.FalseKill();
+
+        if (ResultsController.Instance.LevelTrueKillCounter >= levels[_currentLevel].levelParameters.passLevelKillNum)
+        {
+            GoToNextLevel();
+        }
     }
+
+
+    void GameOver()
+    {
+        PlayerPrefs.SetFloat("Last Score", ResultsController.Instance.Score);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
 }
