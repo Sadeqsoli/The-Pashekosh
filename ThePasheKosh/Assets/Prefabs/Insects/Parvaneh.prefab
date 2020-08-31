@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 2878747953782543503}
   - component: {fileID: 271041916972238835}
   m_Layer: 0
-  m_Name: parvaneh
+  m_Name: Parvaneh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
