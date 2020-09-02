@@ -10,33 +10,17 @@ using TMPro;
 public class MainMenuManager : MonoBehaviour
 {
     #region Properties
-    [Header("Game Objects")]
-    public GameObject noConnectionPnl;
-    public GameObject bgConnection;
-    public GameObject process;
-    public GameObject signupPnl;
-    
 
-    [Header("GUI")]
-    public Text playername;
-    public TextMeshProUGUI percentageTXT;
 
     #endregion
 
     #region Fields
-    [Header("Scripts")]
-    [SerializeField] UserRepo userRepo = null;
+    [Header("GUI")]
+    Text playername;
+
     #endregion
 
     #region Public Methods
-    public void SceneController(bool isGoingNext)
-    {
-        HelperSceneManager.GoToNextOrPrevScene(isGoingNext);
-    }
-    public void GoTOAnotherScene(int buildIndex)
-    {
-        HelperSceneManager.GoToAnotherScene(buildIndex);
-    }
     public void RestValues()
     {
         PlayerPrefs.DeleteAll();
@@ -60,29 +44,32 @@ public class MainMenuManager : MonoBehaviour
 
     
     
-    private void SetUsername()
+    void SetUsername()
     {
-        playername.text = userRepo.GetUser();
+        playername.text = UserRepo.GetUser();
     }
    
-    private void SignUpCheck()
+    void SignUpCheck()
     {
-        if (!(PlayerPrefs.HasKey(userRepo.RepoUser)))
+        if (!(PlayerPrefs.HasKey(UserRepo.RepoUser)))
         {
-            signupPnl.SetActive(true);
         }
-        if (PlayerPrefs.HasKey(userRepo.RepoUser))
+        if (PlayerPrefs.HasKey(UserRepo.RepoUser))
         {
-            signupPnl.SetActive(false);
             SetUsername();
         }
     }
 
-    private void Connectivity()
+
+
+
+
+
+
+
+    void Connectivity()
     {
-        noConnectionPnl.SetActive(false);
         //SignUpCheck();
-        percentageTXT.text = BatteryChecker.CurrentPercent().ToString();
         StartCoroutine(CheckConnectivity((isConnected) =>
         {
             if (isConnected)
@@ -92,13 +79,12 @@ public class MainMenuManager : MonoBehaviour
             }
             else
             {
-                noConnectionPnl.SetActive(true);
                 Debug.Log("Not Connected");
             }
 
         }));
     }
-    private IEnumerator CheckConnectivity(Action<bool> action)
+    IEnumerator CheckConnectivity(Action<bool> action)
     {
 
         UnityWebRequest www = UnityWebRequest.Get("http://google.com");
@@ -112,10 +98,8 @@ public class MainMenuManager : MonoBehaviour
             action(true);
         }
     }
-    private IEnumerator Process()
+    IEnumerator Process()
     {
-        bgConnection.SetActive(false);
-        process.SetActive(true);
         yield return new WaitForSeconds(3f);
         HelperSceneManager.ReplayCurrentScene();
     }

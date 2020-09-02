@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UserRepo : MonoBehaviour
+public static class UserRepo 
 {
     #region Properties
-    public string RepoUser { get { return repoUser; } }
+    public static string RepoUser { get { return repoUser; } }
 
     #endregion
 
@@ -13,61 +13,39 @@ public class UserRepo : MonoBehaviour
     const string repoUser = "userRepo";
     const string repoPhone = "phoneRepo";
     const string repoEmail = "emailRepo";
-    const string repoAuth = "Authrepo";
-    const string repoRefreshAuth = "RefreshAuthrpo";
-
-    string username;
-    string phone;
-    string email;
-    string authToken;
-    string refreshAuthToken;
     #endregion
 
     #region Public Methods
     
 
-    public void PushUsername(string newUser)
+    public static void PushUsername(string newUser)
     {
         Save(repoUser, newUser);
     }
-    public void PushPhone(string newPhone)
+    public static void PushPhone(string newPhone)
     {
         Save(repoPhone, newPhone);
     }
-    public void PushEmail(string newEmail)
+    public static void PushEmail(string newEmail)
     {
         Save(repoEmail, newEmail);
     }
-    public void PushAuth(string newAuth)
-    {
-        Save(repoAuth, newAuth);
-    }
-    public void PushRefreshAuth(string newRefreshAuth)
-    {;
-        Save(repoRefreshAuth, newRefreshAuth);
-    }
+
    
 
-    public string GetUser()
+    public static string GetUser()
     {
         return Retrive(repoUser);
     }
-    public string GetPhone()
+    public static string GetPhone()
     {
         return Retrive(repoPhone);
     }
-    public string GetEmail()
+    public static string GetEmail()
     {
         return Retrive(repoEmail);
     }
-    public string GetAuth()
-    {
-        return Retrive(repoAuth);
-    }
-    public string GetRefreshAuth()
-    {
-        return Retrive(repoRefreshAuth);
-    }
+
   
     #endregion
 
@@ -75,36 +53,17 @@ public class UserRepo : MonoBehaviour
 
 
     #region Private Methods
-    void Start()
-    {
-        username = Retrive(repoUser);
-        phone = Retrive(repoPhone);
-        email = Retrive(repoEmail);
-        authToken = Retrive(repoAuth);
-        refreshAuthToken = Retrive(repoRefreshAuth);
-    }//Starttttt
 
-
-
-
-
-    private string Retrive(string key)
+    static string Retrive(string key)
     {
         return PlayerPrefs.GetString(key);
     }
-    private void Save(string key, string val)
+    static void Save(string key, string val)
     {
         PlayerPrefs.SetString(key, val);
     }
 
 
-
-
-
-    void Update()
-    {
-
-    }//Updateeeee
 
     #endregion
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public static class PlayerPrefs2
 {
+
+
+    //For Tutorials in game for beginners.
     public static void SetBool(string key, bool state)
     {
         PlayerPrefs.SetInt(key, state ? 1 : 0);
