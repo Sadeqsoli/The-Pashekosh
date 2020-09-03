@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public string[] cakeNames;
+
     public LevelParameters[] levels;
 
     [Space][Space]
@@ -33,6 +35,9 @@ public class GameManager : Singleton<GameManager>
             EventManager.AddEventWithNoParamter("GameOver");
             // Whenever an insect is killed, this event will be invoked with the insect game object as a parameter
             EventManager.AddGameObjectEvent("InsectKilled");
+
+            // Whenever a piece of cake is completely destroyed, this event will be invoked
+            EventManager.AddGameObjectEvent("CakePieceDestroyed");
         }
         else
         {
