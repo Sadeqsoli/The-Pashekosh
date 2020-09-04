@@ -1,7 +1,12 @@
-﻿
+﻿using System.Collections.Generic;
+using UnityEngine;
+
 [System.Serializable]
 public struct CakeStruct
 {
     int piecesNumber;
-    CakePiece[] cakePieces;
+    Sprite[] cakePieces;
 }
+
+[System.Serializable]
+class CakeWithNameDict : Dictionary<string, CakeStruct> { }
