@@ -13,6 +13,7 @@ public class Insect : MonoBehaviour
     Quaternion _direction;
     
     float _speed;
+    float _rotationSpeed;
 
     bool _isInitialized = false;
 
@@ -41,10 +42,11 @@ public class Insect : MonoBehaviour
         Pool.DestroyGameObjectByName(this.name, this.gameObject);
     }
 
-    public void Initialize(Vector2 endPoint, float speedOfInsect, float randomDirectionPercent)
+    public void Initialize(Vector2 endPoint, float speedOfInsect, float rotationSpeed, float randomDirectionPercent)
     {
         _endPoint = endPoint;
         _speed = speedOfInsect;
+        _rotationSpeed = rotationSpeed;
         _isInitialized = true;
         _randomDirectionPercent = randomDirectionPercent;
 
@@ -71,14 +73,14 @@ public class Insect : MonoBehaviour
     void ChangeDirection()
     {
         Vector2 targetDir = (_endPoint - (Vector2)transform.position).normalized;
-        Vector2 randomDir = new Vector2(Random.Range(-1,1), Random.Range(-1, 1)).normalized;
-        Vector2 mean = (((1 - _randomDirectionPercent) * targetDir + (_randomDirectionPercent) * randomDir)).normalized;
+        Vector2 randomDir = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
+        Vector2 mean = (((1 - _randomDirectionPercent) * targetDir + (_randomDirectionPercent) * randomDir));
         float angle = mean.x < 0 ? Vector2.Angle(mean, Vector2.up) : -Vector2.Angle(mean, Vector2.up);
         _direction = Quaternion.Euler(0, 0, angle);
     }
     void Rotate()
     {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _direction, 20 * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, _direction, _rotationSpeed * Time.deltaTime);
     }
 
     private void OnDisable()

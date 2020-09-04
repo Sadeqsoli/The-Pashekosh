@@ -10,6 +10,7 @@ public struct LevelParametersStruct
     [Range(0, 1)]
     public float badInsectsPercentage;
     public float speedOfInsects;
+    public float rotationSpeedOfInsects;
     [Range(0, 1)]
     public float randomDirectionPercentage;
 }

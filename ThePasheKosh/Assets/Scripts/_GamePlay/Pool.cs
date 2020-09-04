@@ -77,7 +77,7 @@ public class Pool : MonoBehaviour
     #region public Methods
 
     public static GameObject InstantiateGameObjectByName
-        (string nameOfObject, Vector3 pos, Quaternion quaternion)
+        (string nameOfObject, Vector3 pos, Quaternion rotation)
     {
         if (_poolsContent.ContainsKey(nameOfObject))
         {
@@ -89,6 +89,7 @@ public class Pool : MonoBehaviour
 
                 returnGameObject.SetActive(true);
                 returnGameObject.transform.position = pos;
+                returnGameObject.transform.rotation = rotation;
                 returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
                 return returnGameObject;
             }
@@ -99,7 +100,7 @@ public class Pool : MonoBehaviour
                     if (pools[i].nameOfPool == nameOfObject)
                     {
                         var returnGameObject =
-                            Instantiate(pools[i].poolGameObject, pos, quaternion);
+                            Instantiate(pools[i].poolGameObject, pos, rotation);
                         returnGameObject.name = nameOfObject;
                         returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
                         return returnGameObject;

@@ -19,6 +19,7 @@ public class InsectManager : Singleton<InsectManager>
     float _badInsectsPercentage;
     float _timeBetweenSpawns;
     float _speedOfInsects;
+    float _rotationSpeedOfInsects;
     float _randomDirectionPercent;
 
     List<Coroutine> _allSpawnCoroutines;
@@ -43,6 +44,7 @@ public class InsectManager : Singleton<InsectManager>
         _badInsectsPercentage = levelParameters.badInsectsPercentage;
 
         _speedOfInsects = levelParameters.speedOfInsects;
+        _rotationSpeedOfInsects = levelParameters.rotationSpeedOfInsects;
         _randomDirectionPercent = levelParameters.randomDirectionPercentage;
 
         Coroutine newCoroutine = StartCoroutine(SpawnCoroutine());
@@ -62,7 +64,8 @@ public class InsectManager : Singleton<InsectManager>
                 int randomPosIndex = Random.Range(0, badInsectsSpawnPoints.Length);
                 Transform pos = badInsectsSpawnPoints[randomPosIndex];
 
-                newInsect = Pool.InstantiateGameObjectByName(insectName, pos.position, Quaternion.identity);
+                Quaternion rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                newInsect = Pool.InstantiateGameObjectByName(insectName, pos.position, rot);
             }
             else
             {
@@ -72,12 +75,13 @@ public class InsectManager : Singleton<InsectManager>
                 int randomPosIndex = Random.Range(0, badInsectsSpawnPoints.Length);
                 Transform pos = badInsectsSpawnPoints[randomPosIndex];
 
-                newInsect = Pool.InstantiateGameObjectByName(insectName, pos.position, Quaternion.identity);
+                Quaternion rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                newInsect = Pool.InstantiateGameObjectByName(insectName, pos.position, rot);
             }
 
             Insect insectComponent = newInsect.GetComponent<Insect>();
             if (insectComponent.isBadInsect) {
-                insectComponent.Initialize(cakePoint.position, _speedOfInsects, _randomDirectionPercent);
+                insectComponent.Initialize(cakePoint.position, _speedOfInsects, _rotationSpeedOfInsects, _randomDirectionPercent);
             }
             else
             {

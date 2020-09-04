@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public string[] cakeNames;
-
     public LevelParameters[] levels;
 
-    [Space][Space]
+    [Space]
+    [Space]
+
+    public CakeStruct[] cakes;
+
+
 
     int _currentLevel = 0;
 

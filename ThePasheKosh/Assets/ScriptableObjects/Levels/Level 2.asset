@@ -21,4 +21,5 @@ MonoBehaviour:
     timeBetweenSpawns: 5
     badInsectsPercentage: 0.837
     speedOfInsects: 1.5
-    randomDirectionPercentage: 0.16
+    rotationSpeedOfInsects: 40
+    randomDirectionPercentage: 0.28
