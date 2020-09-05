@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 5838830190141249440}
   - component: {fileID: 5102793244958914583}
   - component: {fileID: 4929800298390535034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: parvaneh2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

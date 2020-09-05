@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class Insect : MonoBehaviour
 {
+    #region variables
+    public enum InsectState { Fly, Walk, Stop}
+
     public bool isBadInsect;
     public Animation killedAnimation;
     public int addedPoints;
     public int impactRate;
 
     Vector2 _endPoint;
+
     Quaternion _direction;
+
+
+    Animator animatorComponent;
+
+    Collider2D cakeCollider;
+    Collider2D colliderComponent;
     
     float _speed;
     float _rotationSpeed;
@@ -19,23 +29,13 @@ public class Insect : MonoBehaviour
 
     float _randomDirectionPercent;
 
-    private void OnEnable()
-    {
-        _isInitialized = false;
-    }
+    #endregion
 
-    void KillHandling(GameObject insect)
-    {
-        if (insect == this.gameObject)
-        {
-            EventManager.TriggerEvent("InsectKilled", this.gameObject);
+    #region Properties
+    public InsectState CurrentState { get; private set; }
+    #endregion
 
-            EventManager.StopListening("TouchCollider", KillHandling);
-
-            Pool.DestroyGameObjectByName(this.name, this.gameObject);
-        }
-    }
-
+    #region Methods
     public void removeInsect()
     {
         EventManager.StopListening("TouchCollider", KillHandling);
@@ -50,14 +50,72 @@ public class Insect : MonoBehaviour
         _isInitialized = true;
         _randomDirectionPercent = randomDirectionPercent;
 
+        CurrentState = InsectState.Fly;
+        GoToFlyState();
+
+        animatorComponent = GetComponent<Animator>();
+        colliderComponent = GetComponent<Collider2D>();
+
         EventManager.StartListening("TouchCollider", KillHandling);
     }
 
     void Update()
     {
+        switch (CurrentState)
+        {
+            case InsectState.Fly:
+                Move(0.1f);
+                break;
+            case InsectState.Walk:
+                Move(0.3f);
+                break;
+            case InsectState.Stop:
+
+                break;
+        }
+
+        if (cakeCollider != null && !cakeCollider.IsTouching(colliderComponent))
+        {
+            cakeCollider = null;
+            if (CurrentState == InsectState.Walk) GoToFlyState();
+        }
+    }
+
+    #region ChangeState
+
+    void GoToWalkState()
+    {
+        if (animatorComponent != null)
+        {
+            animatorComponent.SetBool("Fly", false);
+        }
+        _speed /= 10;
+        _rotationSpeed *= 2f;
+        CurrentState = InsectState.Walk;
+    }
+    
+    void GoToFlyState()
+    {
+        if (animatorComponent != null)
+        {
+            animatorComponent.SetBool("Fly", true);
+        }
+        if (CurrentState == InsectState.Walk)
+        {
+            _speed *= 10;
+            _rotationSpeed /= 2f;
+        }
+        CurrentState = InsectState.Fly;
+    }
+    #endregion
+
+    #region Moving Methods
+
+    void Move(float ChangeDirectionPercentage)
+    {
         if (_isInitialized)
         {
-            if (Random.value > 0.95)
+            if (Random.value < ChangeDirectionPercentage)
             {
                 ChangeDirection();
             }
@@ -65,7 +123,6 @@ public class Insect : MonoBehaviour
             GoDirect();
         }
     }
-
     void GoDirect()
     {
         transform.Translate(Vector2.up * _speed * Time.deltaTime);
@@ -82,9 +139,41 @@ public class Insect : MonoBehaviour
     {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, _direction, _rotationSpeed * Time.deltaTime);
     }
+    #endregion
 
-    private void OnDisable()
+    void KillHandling(GameObject insect)
+    {
+        if (insect == this.gameObject)
+        {
+            EventManager.TriggerEvent("InsectKilled", this.gameObject);
+
+            EventManager.StopListening("TouchCollider", KillHandling);
+
+            Pool.DestroyGameObjectByName(this.name, this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == 8)
+        {
+            if(Random.value > 0.3)
+            {
+                GoToWalkState();
+                cakeCollider = other;
+            }
+        }
+    }
+
+    private void OnEnable()
     {
         _isInitialized = false;
     }
+    private void OnDisable()
+    {
+        _isInitialized = false;
+        CurrentState = InsectState.Stop;
+    }
+
+    #endregion
 }

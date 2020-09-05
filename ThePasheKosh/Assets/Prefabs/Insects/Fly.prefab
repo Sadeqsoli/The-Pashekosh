@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1044869080058680863}
   - component: {fileID: 3259668911334339381}
   - component: {fileID: 1953982659342744428}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fly
   m_TagString: Untagged
   m_Icon: {fileID: 0}

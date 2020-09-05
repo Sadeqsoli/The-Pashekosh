@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct SpawnTargetPointsStruct
+{
+    public Transform spawnPoint;
+    public Transform[] targetPoints;
+}
+
 public class InsectManager : Singleton<InsectManager>
 {
     #region Public Variables
-    public Transform[] badInsectsSpawnPoints;
-    public Transform[] goodInsectsSpawnPoints;
-
-    public Transform cakePoint;
+    public SpawnTargetPointsStruct[] badInsectsPoints;
+    public SpawnTargetPointsStruct[] goodInsectsPoints;
 
     #endregion
 
@@ -56,42 +61,55 @@ public class InsectManager : Singleton<InsectManager>
         while (true)
         {
             GameObject newInsect;
+            Transform spawnPoint;
+            Transform targetPoint;
             if (Random.value < _badInsectsPercentage)
             {
-                int randomInsectIndex = Random.Range(0, _nameOfBadInsects.Length);
-                string insectName = _nameOfBadInsects[randomInsectIndex];
+                string insectName = GetRandomItem<string>(_nameOfBadInsects);
 
-                int randomPosIndex = Random.Range(0, badInsectsSpawnPoints.Length);
-                Transform pos = badInsectsSpawnPoints[randomPosIndex];
-
-                Quaternion rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
-                newInsect = Pool.InstantiateGameObjectByName(insectName, pos.position, rot);
+                GetSpawnTargetPoints(badInsectsPoints, out spawnPoint, out targetPoint);
+                
+                Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                newInsect = Pool.InstantiateGameObjectByName(insectName, spawnPoint.position, randomRot);
             }
             else
             {
-                int randomInsectIndex = Random.Range(0, _nameOfGoodInsects.Length);
-                string insectName = _nameOfGoodInsects[randomInsectIndex];
+                string insectName = GetRandomItem<string>(_nameOfGoodInsects);
 
-                int randomPosIndex = Random.Range(0, badInsectsSpawnPoints.Length);
-                Transform pos = badInsectsSpawnPoints[randomPosIndex];
+                GetSpawnTargetPoints(goodInsectsPoints, out spawnPoint, out targetPoint);
 
-                Quaternion rot = Quaternion.Euler(0, 0, Random.Range(0, 360));
-                newInsect = Pool.InstantiateGameObjectByName(insectName, pos.position, rot);
+                Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                newInsect = Pool.InstantiateGameObjectByName(insectName, spawnPoint.position, randomRot);
             }
 
             Insect insectComponent = newInsect.GetComponent<Insect>();
             if (insectComponent.isBadInsect) {
-                insectComponent.Initialize(cakePoint.position, _speedOfInsects, _rotationSpeedOfInsects, _randomDirectionPercent);
+                insectComponent.Initialize(targetPoint.position, _speedOfInsects, _rotationSpeedOfInsects, _randomDirectionPercent);
             }
             else
             {
-
+                insectComponent.Initialize(targetPoint.position, _speedOfInsects/1.2f, 30, 0.5f);
             }
 
             _existedInsects.Add(newInsect);
 
             yield return new WaitForSeconds(_timeBetweenSpawns);
         }
+    }
+
+    void GetSpawnTargetPoints(SpawnTargetPointsStruct[] STPS, out Transform spawnPoint, out Transform targetPoint)
+    {
+        int randomPosIndex = Random.Range(0, STPS.Length);
+        int randomTargetPosIndex = Random.Range(0, STPS[randomPosIndex].targetPoints.Length);
+        spawnPoint = STPS[randomPosIndex].spawnPoint;
+        targetPoint = STPS[randomPosIndex].targetPoints[randomTargetPosIndex];
+    }
+
+    T GetRandomItem<T>(T[] input)
+    {
+        int randomIndex = Random.Range(0, input.Length);
+        T output = input[randomIndex];
+        return output;
     }
 
     void RemoveInsect(GameObject insect)

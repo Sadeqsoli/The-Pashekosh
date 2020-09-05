@@ -193,7 +193,8 @@ GameObject:
   - component: {fileID: 36368931}
   - component: {fileID: 36368933}
   - component: {fileID: 36368932}
-  m_Layer: 0
+  - component: {fileID: 36368934}
+  m_Layer: 8
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,6 +303,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &36368934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36368930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &58590461
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58590461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.213, y: -0.155, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.84521013, y: 0.84521013, z: 0.84521013}
   m_Children: []
   m_Father: {fileID: 0}
@@ -460,7 +473,8 @@ GameObject:
   - component: {fileID: 246446968}
   - component: {fileID: 246446970}
   - component: {fileID: 246446969}
-  m_Layer: 0
+  - component: {fileID: 246446971}
+  m_Layer: 8
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,6 +586,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &246446971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246446967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &329329647
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +843,8 @@ GameObject:
   - component: {fileID: 391699291}
   - component: {fileID: 391699293}
   - component: {fileID: 391699292}
-  m_Layer: 0
+  - component: {fileID: 391699294}
+  m_Layer: 8
   m_Name: Piece 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,6 +952,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &391699294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391699290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &454315122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,17 +1413,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620f900795fc8bb49a25e6a9ea8a22ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badInsectsSpawnPoints:
-  - {fileID: 1557145718}
-  - {fileID: 921521350}
-  - {fileID: 1160989656}
-  - {fileID: 1620561112}
-  goodInsectsSpawnPoints:
-  - {fileID: 821379640}
-  - {fileID: 1662205725}
-  - {fileID: 1060969618}
-  - {fileID: 23116754}
-  cakePoint: {fileID: 1170554880}
+  badInsectsPoints:
+  - spawnPoint: {fileID: 1557145718}
+    targetPoints:
+    - {fileID: 1170554880}
+  - spawnPoint: {fileID: 921521350}
+    targetPoints:
+    - {fileID: 1170554880}
+  - spawnPoint: {fileID: 1160989656}
+    targetPoints:
+    - {fileID: 1170554880}
+  - spawnPoint: {fileID: 1620561112}
+    targetPoints:
+    - {fileID: 1170554880}
+  goodInsectsPoints:
+  - spawnPoint: {fileID: 821379640}
+    targetPoints:
+    - {fileID: 1060969618}
+  - spawnPoint: {fileID: 1662205725}
+    targetPoints:
+    - {fileID: 23116754}
+  - spawnPoint: {fileID: 1060969618}
+    targetPoints:
+    - {fileID: 821379640}
+  - spawnPoint: {fileID: 23116754}
+    targetPoints:
+    - {fileID: 1662205725}
 --- !u!4 &878389866
 Transform:
   m_ObjectHideFlags: 0
@@ -1508,7 +1562,8 @@ GameObject:
   - component: {fileID: 1105851516}
   - component: {fileID: 1105851518}
   - component: {fileID: 1105851517}
-  m_Layer: 0
+  - component: {fileID: 1105851519}
+  m_Layer: 8
   m_Name: Piece 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1620,6 +1675,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1105851519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105851515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1141265938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2258,7 +2325,8 @@ GameObject:
   - component: {fileID: 1515133628}
   - component: {fileID: 1515133630}
   - component: {fileID: 1515133629}
-  m_Layer: 0
+  - component: {fileID: 1515133631}
+  m_Layer: 8
   m_Name: Piece 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2381,6 +2449,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1515133631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515133627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1557145717
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,15 +2611,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f966e86464101a4a83b77213473a3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOfOnePiece: {x: 0, y: -1}
+  positionOfOnePiece: {fileID: 1925368194}
   positionsOfTwoPieces:
-  - {x: 0, y: -0.35}
-  - {x: 0, y: -1.7}
+  - {fileID: 1515133627}
+  - {fileID: 1660294146}
   poistionsOfFourPieces:
-  - {x: -0.7, y: -1.7}
-  - {x: -0.7, y: -0.35}
-  - {x: 0.7, y: -0.35}
-  - {x: 0.7, y: -1.7}
+  - {fileID: 36368930}
+  - {fileID: 246446967}
+  - {fileID: 391699290}
+  - {fileID: 1105851515}
 --- !u!1 &1660294146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2551,7 +2631,8 @@ GameObject:
   - component: {fileID: 1660294147}
   - component: {fileID: 1660294149}
   - component: {fileID: 1660294148}
-  m_Layer: 0
+  - component: {fileID: 1660294150}
+  m_Layer: 8
   m_Name: Piece 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2672,6 +2753,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1660294150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660294146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1662205724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,7 +2878,8 @@ GameObject:
   - component: {fileID: 1925368195}
   - component: {fileID: 1925368197}
   - component: {fileID: 1925368196}
-  m_Layer: 0
+  - component: {fileID: 1925368198}
+  m_Layer: 8
   m_Name: Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2872,6 +2966,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1925368198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925368194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2095977111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2962,7 +3068,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f44c0aae73fe034b85d8f9c369b82ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cakeNames: []
   levels:
   - {fileID: 11400000, guid: db8ac2e210f093a4abf4830bd4cae895, type: 2}
   - {fileID: 11400000, guid: 7c3583c7f6735bb41964eb83ff4cef21, type: 2}

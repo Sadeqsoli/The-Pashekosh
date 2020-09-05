@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum PieceNumber { One, Two, Four}
 public class GameManager : Singleton<GameManager>
 {
     public LevelParameters[] levels;
@@ -11,8 +12,6 @@ public class GameManager : Singleton<GameManager>
     [Space]
 
     public CakeStruct[] cakes;
-
-
 
     int _currentLevel = 0;
 
