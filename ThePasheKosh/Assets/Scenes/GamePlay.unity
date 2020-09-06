@@ -1194,15 +1194,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pools:
-  - nameOfPool: Pasheh
+  - nameOfPool: Fly
     InitialSizeOfPool: 10
     poolGameObject: {fileID: 1220859965313226876, guid: d78a7deb64beeab4cbd6f5aa99e7b9b3,
       type: 3}
-  - nameOfPool: Parvaneh
+  - nameOfPool: Butterfly
     InitialSizeOfPool: 10
     poolGameObject: {fileID: 2583302775917931088, guid: 22c69b376bd32954e95f9fc9da8d9072,
       type: 3}
-  - nameOfPool: Sanjaqak
+  - nameOfPool: Dragonfly
     InitialSizeOfPool: 10
     poolGameObject: {fileID: 5036417951242221786, guid: 2324e9548024c074b85158f64ce993cc,
       type: 3}

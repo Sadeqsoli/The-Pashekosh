@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelParameters:
     goodInsectsNames:
-    - Parvaneh
+    - Dragonfly
+    - Butterfly
     badInsectsNames:
-    - Pasheh
+    - Fly
     passLevelKillNum: 10
-    timeBetweenSpawns: 5
+    timeBetweenSpawns: 2.5
     badInsectsPercentage: 0.837
     speedOfInsects: 1.5
     rotationSpeedOfInsects: 40
