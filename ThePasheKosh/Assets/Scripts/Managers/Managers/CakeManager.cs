@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CakeManager : Singleton<CakeManager>
 {
-    public GameObject positionOfOnePiece;
-    public GameObject[] positionsOfTwoPieces;
-    public GameObject[] positionsOfFourPieces;
+    public GameObject gameObjectOfOnePiece;
+    public GameObject[] gameObjectOfTwoPieces;
+    public GameObject[] gameObjectOfFourPieces;
 
     List<GameObject> existedPieces;
 
@@ -15,22 +15,24 @@ public class CakeManager : Singleton<CakeManager>
     {
         existedPieces = new List<GameObject>();
 
+        
+
         switch (pieceNum) 
         {
             case PieceNumber.One:
-                showCake(positionOfOnePiece, cake.wholeCake, cake.maxHealth);
+                showCake(gameObjectOfOnePiece, cake.wholeCake, cake.maxHealth);
                 break;
 
             case PieceNumber.Two:
                 for(int i = 0; i < 2; i++)
                 {
-                    showCake(positionsOfTwoPieces[i], cake.cake2Pieces[i], cake.maxHealth / 1.5f);
+                    showCake(gameObjectOfTwoPieces[i], cake.cake2Pieces[i], cake.maxHealth / 1.5f);
                 }
                 break;
             case PieceNumber.Four:
                 for (int i = 0; i < 4; i++)
                 {
-                    showCake(positionsOfFourPieces[i], cake.cake4Pieces[i], cake.maxHealth / 3f);
+                    showCake(gameObjectOfFourPieces[i], cake.cake4Pieces[i], cake.maxHealth / 3f);
                 }
                 break;
         }
@@ -50,22 +52,23 @@ public class CakeManager : Singleton<CakeManager>
         }
     }
 
-    void showCake(GameObject position, Sprite cakeSprite, float maxHealth)
+    void showCake(GameObject cakePieceGameObject, Sprite cakeSprite, float maxHealth)
     {
-        position.SetActive(true);
-        position.GetComponent<SpriteRenderer>().sprite = cakeSprite;
-        position.GetComponent<CakePiece>().InitializeCake(maxHealth);
+        cakePieceGameObject.SetActive(true);
 
-        existedPieces.Add(position);
+        cakePieceGameObject.GetComponent<SpriteRenderer>().sprite = cakeSprite;
+        cakePieceGameObject.GetComponent<CakePiece>().InitializeCake(maxHealth);
+
+        existedPieces.Add(cakePieceGameObject);
     }
 
     protected override void Awake()
     {
         base.Awake();
 
-        positionOfOnePiece.SetActive(false);
-        for (int i = 0; i < positionsOfTwoPieces.Length; i++) positionsOfTwoPieces[i].SetActive(false);
-        for (int i = 0; i < positionsOfFourPieces.Length; i++) positionsOfFourPieces[i].SetActive(false);
+        gameObjectOfOnePiece.SetActive(false);
+        for (int i = 0; i < gameObjectOfTwoPieces.Length; i++) gameObjectOfTwoPieces[i].SetActive(false);
+        for (int i = 0; i < gameObjectOfFourPieces.Length; i++) gameObjectOfFourPieces[i].SetActive(false);
     }
 
 }

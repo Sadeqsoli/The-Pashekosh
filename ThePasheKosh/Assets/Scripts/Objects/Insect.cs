@@ -13,6 +13,7 @@ public class Insect : MonoBehaviour
     public int impactRate;
 
     Vector2 _endPoint;
+    Vector2 _spawnPoint;
 
     Quaternion _direction;
 
@@ -33,6 +34,8 @@ public class Insect : MonoBehaviour
 
     #region Properties
     public InsectState CurrentState { get; private set; }
+
+    public bool IsOnCake { get; private set; }
     #endregion
 
     #region Methods
@@ -44,6 +47,7 @@ public class Insect : MonoBehaviour
 
     public void Initialize(Vector2 endPoint, float speedOfInsect, float rotationSpeed, float randomDirectionPercent)
     {
+        _spawnPoint = transform.position;
         _endPoint = endPoint;
         _speed = speedOfInsect;
         _rotationSpeed = rotationSpeed;
@@ -57,6 +61,11 @@ public class Insect : MonoBehaviour
         colliderComponent = GetComponent<Collider2D>();
 
         EventManager.StartListening("TouchCollider", KillHandling);
+    }
+
+    public void SetCakeCollider(Collider2D cakeCollider)
+    {
+        this.cakeCollider = cakeCollider;
     }
 
     void Update()
@@ -83,22 +92,23 @@ public class Insect : MonoBehaviour
 
     #region ChangeState
 
-    void GoToWalkState()
+    public void GoToWalkState()
     {
         if (animatorComponent != null)
         {
-            animatorComponent.SetBool("Fly", false);
+            animatorComponent.SetBool("Walk", true);
         }
         _speed /= 10;
         _rotationSpeed *= 2f;
         CurrentState = InsectState.Walk;
     }
     
-    void GoToFlyState()
+    public void GoToFlyState()
     {
+        
         if (animatorComponent != null)
         {
-            animatorComponent.SetBool("Fly", true);
+            animatorComponent.SetBool("Walk", false);
         }
         if (CurrentState == InsectState.Walk)
         {
@@ -155,14 +165,6 @@ public class Insect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer == 8)
-        {
-            if(Random.value > 0.3)
-            {
-                GoToWalkState();
-                cakeCollider = other;
-            }
-        }
     }
 
     private void OnEnable()

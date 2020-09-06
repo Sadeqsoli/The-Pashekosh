@@ -16,12 +16,13 @@ public class CakePiece : MonoBehaviour
 
     Collider2D cakeCollider;
 
-    float damage;
+    public float damage;
     float maxHealth;
 
     bool isCoroutineRunning = false;
     bool isInitialized;
 
+    [field: SerializeField]
     public float Health { get; private set; }
 
     float Damage{
@@ -46,18 +47,21 @@ public class CakePiece : MonoBehaviour
     
     public void InitializeCake(float maxHealth)
     {
+
+        damage = 0;
+
+        this.maxHealth = maxHealth;
+
+        Health = maxHealth;
+
+        isInitialized = true;
+
         badInsectsWithColliders = new List<InsectWithCollider>();
 
         cakeCollider = GetComponent<Collider2D>();
 
         updateHealthCoroutine = StartCoroutine(UpdateHealthCoroutine());
 
-        damage = 0;
-        this.maxHealth = maxHealth;
-
-        Health = maxHealth;
-
-        isInitialized = true;
     }
 
     public void RemoveCake()
@@ -112,15 +116,22 @@ public class CakePiece : MonoBehaviour
     {
         if (collision.gameObject.layer == 10) {
             Insect insectComponent = collision.gameObject.GetComponent<Insect>();
-            InsectWithCollider newInsectWithCollider;
-            newInsectWithCollider.collider = collision;
-            newInsectWithCollider.insect = insectComponent;
 
-            if (badInsectsWithColliders.Contains(newInsectWithCollider))
+            if (insectComponent.CurrentState != Insect.InsectState.Walk && Random.value > 0.3f)
             {
-                badInsectsWithColliders.Add(newInsectWithCollider);
-                AddDamage(insectComponent.impactRate);
-            } 
+                insectComponent.GoToWalkState();
+                insectComponent.SetCakeCollider(GetComponent<Collider2D>());
+
+                InsectWithCollider newInsectWithCollider;
+                newInsectWithCollider.collider = collision;
+                newInsectWithCollider.insect = insectComponent;
+
+                if (!badInsectsWithColliders.Contains(newInsectWithCollider))
+                {
+                    badInsectsWithColliders.Add(newInsectWithCollider);
+                    AddDamage(insectComponent.impactRate);
+                }
+            }
         }
     }
 

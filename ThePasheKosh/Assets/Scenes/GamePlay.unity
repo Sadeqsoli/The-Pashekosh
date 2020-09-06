@@ -315,6 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  <Health>k__BackingField: 0
 --- !u!1 &58590461
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  <Health>k__BackingField: 0
 --- !u!1 &329329647
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  <Health>k__BackingField: 0
 --- !u!1 &454315122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  <Health>k__BackingField: 0
 --- !u!1 &1141265938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,6 +2469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  <Health>k__BackingField: 0
 --- !u!1 &1557145717
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,11 +2621,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f966e86464101a4a83b77213473a3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOfOnePiece: {fileID: 1925368194}
-  positionsOfTwoPieces:
+  gameObjectOfOnePiece: {fileID: 1925368194}
+  gameObjectOfTwoPieces:
   - {fileID: 1515133627}
   - {fileID: 1660294146}
-  poistionsOfFourPieces:
+  gameObjectOfFourPieces:
   - {fileID: 36368930}
   - {fileID: 246446967}
   - {fileID: 391699290}
@@ -2765,6 +2775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  <Health>k__BackingField: 0
 --- !u!1 &1662205724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,7 +2922,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.008187175, y: 0}
@@ -2960,7 +2972,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.62, y: 2.76}
+  m_Size: {x: 3.09, y: 3.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -2978,6 +2990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cb0af62c6c174a91460b494f5c365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  <Health>k__BackingField: 0
 --- !u!1 &2095977111
 GameObject:
   m_ObjectHideFlags: 0

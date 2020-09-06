@@ -88,7 +88,7 @@ public class InsectManager : Singleton<InsectManager>
             }
             else
             {
-                insectComponent.Initialize(targetPoint.position, _speedOfInsects/1.2f, 30, 0.5f);
+                insectComponent.Initialize(targetPoint.position, _speedOfInsects/1.2f, 30, 0.2f);
             }
 
             _existedInsects.Add(newInsect);

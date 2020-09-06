@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
         AddEvents();
         AddListeners();
 
+        CakeManager.Instance.PutTheCakes(cakes[0], PieceNumber.Four);
         InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
     }
 
@@ -57,9 +58,9 @@ public class GameManager : Singleton<GameManager>
     {
         ResultsController.Instance.ResetLevelCounters();
 
-        InsectManager.Instance.StopAllSpawn(true);
+        InsectManager.Instance.StopAllSpawn(false);
         _currentLevel++;
-        Timers.Instance.StartTimer(2, LoadLevel);
+        Timers.Instance.StartTimer(1, LoadLevel);
     }
 
     void LoadLevel()
