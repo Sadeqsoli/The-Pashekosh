@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ResultsController : Singleton<ResultsController>
 {
-    public int Score { get; private set; }
+    public float Score { get; private set; }
+
     public int LevelFalseKillCounter { get; private set; } = 0;
     public int LevelTrueKillCounter { get; private set; } = 0;
     public int GameTrueKillCounter { get; private set; } = 0;
@@ -19,7 +20,7 @@ public class ResultsController : Singleton<ResultsController>
     ///<summary>
     /// Adding to the score, level, right and wrong selections
     /// </summary>
-    public void AddToScore(int amount)
+    public void AddToScore(float amount)
     {
         Score += amount;
         Score = Score >= 0 ? Score : 0;

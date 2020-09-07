@@ -23,4 +23,4 @@ MonoBehaviour:
     badInsectsPercentage: 0.66
     speedOfInsects: 1.7
     rotationSpeedOfInsects: 45
-    randomDirectionPercentage: 0.37
+    randomDirectionPercentage: 0.426

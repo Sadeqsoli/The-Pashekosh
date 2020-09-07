@@ -1271,7 +1271,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1304847074}
   m_TextComponent: {fileID: 5193786121901499904}
   m_materialReferenceIndex: 1
@@ -2565,6 +2565,7 @@ GameObject:
   - component: {fileID: 5193786121133548499}
   - component: {fileID: 5193786121133548498}
   - component: {fileID: 5193786121133548501}
+  - component: {fileID: 5193786121133548502}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -2589,6 +2590,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5193786121133548502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5193786121133548500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3b3ec7d00c8dd47975ef4b26d2af80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5193786121240366828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2976,7 +2989,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5193786121901499904}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5193786121133548502}
+        m_MethodName: GoToGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &5193786121720879288
 CanvasRenderer:
   m_ObjectHideFlags: 0

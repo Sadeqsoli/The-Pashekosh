@@ -9,13 +9,14 @@ public class CakeManager : Singleton<CakeManager>
     public GameObject[] gameObjectOfTwoPieces;
     public GameObject[] gameObjectOfFourPieces;
 
-    List<GameObject> existedPieces;
+    List<CakePiece> existedPieces;
+
+    float totalHealth;
 
     public void PutTheCakes(CakeStruct cake, PieceNumber pieceNum)
     {
-        existedPieces = new List<GameObject>();
+        existedPieces = new List<CakePiece>();
 
-        
 
         switch (pieceNum) 
         {
@@ -40,11 +41,32 @@ public class CakeManager : Singleton<CakeManager>
         EventManager.StartListening("CakePieceDestroyed", CakeDestroyedHandling);
     }
 
-    void CakeDestroyedHandling(GameObject cakePiece)
+    IEnumerator HealthUpdateCo()
     {
-        existedPieces.Remove(cakePiece);
+        while (true)
+        {
+            yield return new WaitForSeconds(0.3f);
+            UpdateHealth();
+        }
+    }
 
-        cakePiece.SetActive(false);
+    public void UpdateHealth()
+    {
+        totalHealth = 0;
+        for(int i = 0; i < existedPieces.Count; i++)
+        {
+            totalHealth += existedPieces[i].Health;
+        }
+
+        GameManager.Instance.UpdateHealth(totalHealth);
+    }
+
+    void CakeDestroyedHandling(GameObject cakePieceGO)
+    {
+        CakePiece cakePieceComp = cakePieceGO.GetComponent<CakePiece>();
+        existedPieces.Remove(cakePieceComp);
+
+        cakePieceGO.SetActive(false);
 
         if(existedPieces.Count == 0)
         {
@@ -57,9 +79,10 @@ public class CakeManager : Singleton<CakeManager>
         cakePieceGameObject.SetActive(true);
 
         cakePieceGameObject.GetComponent<SpriteRenderer>().sprite = cakeSprite;
-        cakePieceGameObject.GetComponent<CakePiece>().InitializeCake(maxHealth);
+        CakePiece cakePieceComp = cakePieceGameObject.GetComponent<CakePiece>();
+        cakePieceComp.InitializeCake(maxHealth);
 
-        existedPieces.Add(cakePieceGameObject);
+        existedPieces.Add(cakePieceComp);
     }
 
     protected override void Awake()
@@ -71,4 +94,8 @@ public class CakeManager : Singleton<CakeManager>
         for (int i = 0; i < gameObjectOfFourPieces.Length; i++) gameObjectOfFourPieces[i].SetActive(false);
     }
 
+    private void Start()
+    {
+        StartCoroutine(HealthUpdateCo());
+    }
 }

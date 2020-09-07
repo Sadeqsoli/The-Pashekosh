@@ -9,6 +9,8 @@ public class Timers : Singleton<Timers>
     private Dictionary<string, float> _coroutineTimePassed;
     private List<string> _timersNameList;
 
+    Coroutine repeatedActionTimer;
+
     private int maximumTimerCounterNumber = 200;
     public int TimerCounterStartNumber { get; private set; }
 
@@ -41,9 +43,32 @@ public class Timers : Singleton<Timers>
             if (eachSecondEvent != null) EventManager.TriggerEvent(eachSecondEvent);
             counter--;
         }
+        if(finishedEvent != null)
         EventManager.TriggerEvent(finishedEvent);
     }
 
+    public void StartRepeatedAction(float timeBetween, UnityAction<float> Action)
+    {
+        repeatedActionTimer = StartCoroutine(StartGameTimer(timeBetween, Action));
+    }
+    
+    public void StopRepeatedAction()
+    {
+        if (repeatedActionTimer != null)
+            StopCoroutine(repeatedActionTimer);
+
+        repeatedActionTimer = null;
+    }
+
+    IEnumerator StartGameTimer(float timeBetween, UnityAction<float> Action)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(timeBetween);
+            if (Action != null) Action.Invoke(timeBetween);
+        }
+
+    }
 
     /// <summary>
     /// Start a timer then invoke an event

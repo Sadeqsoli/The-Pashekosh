@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70ea0e6233daa014a8c879dad4eb9cd8, type: 3}
-  m_Name: Level 2
+  m_Name: Level 6
   m_EditorClassIdentifier: 
   levelParameters:
     goodInsectsNames:
@@ -18,9 +18,9 @@ MonoBehaviour:
     - Butterfly
     badInsectsNames:
     - Fly
-    passLevelKillNum: 10
-    timeBetweenSpawns: 1.8
-    badInsectsPercentage: 0.837
-    speedOfInsects: 1.5
-    rotationSpeedOfInsects: 40
-    randomDirectionPercentage: 0.355
+    passLevelKillNum: 15
+    timeBetweenSpawns: 0.8
+    badInsectsPercentage: 0.85
+    speedOfInsects: 2.8
+    rotationSpeedOfInsects: 45
+    randomDirectionPercentage: 0.345

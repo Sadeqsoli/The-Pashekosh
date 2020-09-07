@@ -117,7 +117,7 @@ public class CakePiece : MonoBehaviour
         if (collision.gameObject.layer == 10) {
             Insect insectComponent = collision.gameObject.GetComponent<Insect>();
 
-            if (insectComponent.CurrentState != Insect.InsectState.Walk && Random.value > 0.3f)
+            if (insectComponent.CurrentState != Insect.InsectState.OnCake && Random.value > 0.3f)
             {
                 insectComponent.GoToWalkState();
                 insectComponent.SetCakeCollider(GetComponent<Collider2D>());

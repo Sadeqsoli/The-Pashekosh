@@ -17,9 +17,9 @@ MonoBehaviour:
     - Butterfly
     badInsectsNames:
     - Fly
-    passLevelKillNum: 5
-    timeBetweenSpawns: 3
+    passLevelKillNum: 7
+    timeBetweenSpawns: 2.3
     badInsectsPercentage: 1
     speedOfInsects: 1
     rotationSpeedOfInsects: 30
-    randomDirectionPercentage: 0
+    randomDirectionPercentage: 0.239

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Insect : MonoBehaviour
 {
     #region variables
-    public enum InsectState { Fly, Walk, Stop}
+    public enum InsectState { TowardsCake, OnCake, Stop}
 
     public bool isBadInsect;
     public Animation killedAnimation;
@@ -39,7 +39,7 @@ public class Insect : MonoBehaviour
     #endregion
 
     #region Methods
-    public void removeInsect()
+    public void RemoveInsect()
     {
         EventManager.StopListening("TouchCollider", KillHandling);
         Pool.DestroyGameObjectByName(this.name, this.gameObject);
@@ -54,7 +54,7 @@ public class Insect : MonoBehaviour
         _isInitialized = true;
         _randomDirectionPercent = randomDirectionPercent;
 
-        CurrentState = InsectState.Fly;
+        CurrentState = InsectState.TowardsCake;
         GoToFlyState();
 
         animatorComponent = GetComponent<Animator>();
@@ -72,22 +72,27 @@ public class Insect : MonoBehaviour
     {
         switch (CurrentState)
         {
-            case InsectState.Fly:
+            case InsectState.TowardsCake:
                 Move(0.1f);
                 break;
-            case InsectState.Walk:
+            case InsectState.OnCake:
                 Move(0.3f);
                 break;
             case InsectState.Stop:
-
                 break;
         }
 
         if (cakeCollider != null && !cakeCollider.IsTouching(colliderComponent))
         {
             cakeCollider = null;
-            if (CurrentState == InsectState.Walk) GoToFlyState();
+            if (CurrentState == InsectState.OnCake) GoToFlyState();
         }
+
+        if (!isBadInsect)
+        {
+            CheckReachingEndPoint();
+        }
+
     }
 
     #region ChangeState
@@ -96,11 +101,11 @@ public class Insect : MonoBehaviour
     {
         if (animatorComponent != null)
         {
-            animatorComponent.SetBool("Walk", true);
+            animatorComponent.SetBool("OnCake", true);
         }
         _speed /= 10;
         _rotationSpeed *= 2f;
-        CurrentState = InsectState.Walk;
+        CurrentState = InsectState.OnCake;
     }
     
     public void GoToFlyState()
@@ -108,14 +113,14 @@ public class Insect : MonoBehaviour
         
         if (animatorComponent != null)
         {
-            animatorComponent.SetBool("Walk", false);
+            animatorComponent.SetBool("OnCake", false);
         }
-        if (CurrentState == InsectState.Walk)
+        if (CurrentState == InsectState.OnCake)
         {
             _speed *= 10;
             _rotationSpeed /= 2f;
         }
-        CurrentState = InsectState.Fly;
+        CurrentState = InsectState.TowardsCake;
     }
     #endregion
 
@@ -148,6 +153,15 @@ public class Insect : MonoBehaviour
     void Rotate()
     {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, _direction, _rotationSpeed * Time.deltaTime);
+    }
+
+    void CheckReachingEndPoint()
+    {
+        Vector2 pos = transform.position;
+        if (Mathf.Abs(pos.x - _endPoint.x) < 0.2f && Mathf.Abs(pos.y - _endPoint.y) < 0.2f)
+        {
+            RemoveInsect();
+        }
     }
     #endregion
 

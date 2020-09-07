@@ -137,7 +137,7 @@ public class InsectManager : Singleton<InsectManager>
         while(_existedInsects.Count > 0)
         {
             Insect insectComponent = _existedInsects[_existedInsects.Count - 1].GetComponent<Insect>();
-            insectComponent.removeInsect();
+            insectComponent.RemoveInsect();
             _existedInsects.RemoveAt(_existedInsects.Count - 1);
             yield return new WaitForEndOfFrame();
         }
