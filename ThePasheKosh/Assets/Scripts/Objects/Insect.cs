@@ -20,6 +20,7 @@ public class Insect : MonoBehaviour
 
     Animator animatorComponent;
 
+    Collider2D[] targetsCollider;
     Collider2D cakeCollider;
     Collider2D colliderComponent;
     
@@ -45,7 +46,7 @@ public class Insect : MonoBehaviour
         Pool.DestroyGameObjectByName(this.name, this.gameObject);
     }
 
-    public void Initialize(Vector2 endPoint, float speedOfInsect, float rotationSpeed, float randomDirectionPercent)
+    public void Initialize(Vector2 endPoint, Collider2D[] targetsCollider, float speedOfInsect, float rotationSpeed, float randomDirectionPercent)
     {
         _spawnPoint = transform.position;
         _endPoint = endPoint;
@@ -53,6 +54,8 @@ public class Insect : MonoBehaviour
         _rotationSpeed = rotationSpeed;
         _isInitialized = true;
         _randomDirectionPercent = randomDirectionPercent;
+
+        this.targetsCollider = targetsCollider;
 
         CurrentState = InsectState.TowardsCake;
         GoToFlyState();
@@ -179,6 +182,18 @@ public class Insect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!isBadInsect && targetsCollider != null)
+        {
+            for (int i = 0; i < targetsCollider.Length; i++)
+            {
+                if (other == targetsCollider[i])
+                {
+
+                    InsectManager.Instance.RemoveInsect(this.gameObject);
+                    RemoveInsect();
+                }
+            }
+        }
     }
 
     private void OnEnable()

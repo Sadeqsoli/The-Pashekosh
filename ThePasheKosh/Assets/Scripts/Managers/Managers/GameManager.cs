@@ -117,7 +117,7 @@ public class GameManager : Singleton<GameManager>
         Insect insectComponent = insect.GetComponent<Insect>();
         ResultsController.Instance.AddToScore(insectComponent.addedPoints);
         if (insectComponent.isBadInsect) ResultsController.Instance.TrueKill();
-        else ResultsController.Instance.FalseKill();
+        else GameOver();
 
         gameUIManager.UpdateKillNumber(ResultsController.Instance.LevelTrueKillCounter);
         gameUIManager.UpdateScore(ResultsController.Instance.Score);

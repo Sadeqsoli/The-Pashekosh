@@ -19,7 +19,7 @@ MonoBehaviour:
     - Fly
     passLevelKillNum: 7
     timeBetweenSpawns: 2.3
-    badInsectsPercentage: 1
+    badInsectsPercentage: 0.17
     speedOfInsects: 1
     rotationSpeedOfInsects: 30
     randomDirectionPercentage: 0.239
