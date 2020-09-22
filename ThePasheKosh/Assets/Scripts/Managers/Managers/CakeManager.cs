@@ -12,6 +12,7 @@ public class CakeManager : Singleton<CakeManager>
     List<CakePiece> existedPieces;
 
     float totalHealth;
+    float maxHealth = 140f;
 
     public void PutTheCakes(CakeStruct cake, PieceNumber pieceNum)
     {
@@ -39,26 +40,35 @@ public class CakeManager : Singleton<CakeManager>
         }
 
         EventManager.StartListening("CakePieceDestroyed", CakeDestroyedHandling);
+
+        StartCoroutine(HealthUpdateCo());
     }
 
     IEnumerator HealthUpdateCo()
     {
+        maxHealth = GetHealth();
         while (true)
         {
-            yield return new WaitForSeconds(0.3f);
             UpdateHealth();
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
     public void UpdateHealth()
     {
-        totalHealth = 0;
-        for(int i = 0; i < existedPieces.Count; i++)
+        totalHealth = GetHealth();
+        GameManager.Instance.UpdateHealth(totalHealth, maxHealth);
+    }
+
+    public float GetHealth()
+    {
+        float health = 0;
+        for (int i = 0; i < existedPieces.Count; i++)
         {
-            totalHealth += existedPieces[i].Health;
+            health += existedPieces[i].Health;
         }
 
-        GameManager.Instance.UpdateHealth(totalHealth);
+        return health;
     }
 
     void CakeDestroyedHandling(GameObject cakePieceGO)
@@ -96,6 +106,5 @@ public class CakeManager : Singleton<CakeManager>
 
     private void Start()
     {
-        StartCoroutine(HealthUpdateCo());
     }
 }

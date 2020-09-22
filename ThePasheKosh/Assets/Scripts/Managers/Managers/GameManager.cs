@@ -32,9 +32,10 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
-    public void UpdateHealth(float health)
+    public void UpdateHealth(float health, float maxHealth)
     {
         gameUIManager.UpdateHealth(health);
+        HealthFill.ShowHealth(health, maxHealth);
     }
 
     void Start()

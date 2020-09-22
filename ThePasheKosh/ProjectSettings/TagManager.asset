@@ -47,6 +47,15 @@ TagManager:
   - name: Forground
     uniqueID: 277973225
     locked: 0
+  - name: Cake
+    uniqueID: 1075117073
+    locked: 0
+  - name: GoodInsect
+    uniqueID: 3164724471
+    locked: 0
+  - name: BadInsect
+    uniqueID: 1999928735
+    locked: 0
   - name: UI
-    uniqueID: 2080751895
+    uniqueID: 3571974949
     locked: 0
