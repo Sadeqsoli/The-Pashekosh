@@ -49,7 +49,8 @@ public class GameManager : Singleton<GameManager>
         AddListeners();
 
         CakeManager.Instance.PutTheCakes(cakes[_cakeIndex], PieceNumber.Four);
-        InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
+
+        LoadLevel();
 
         _timer = 0;
         Timers.Instance.StartRepeatedAction(1f, AddToTimer);
@@ -95,17 +96,21 @@ public class GameManager : Singleton<GameManager>
 
     void GoToNextLevel()
     {
-        ResultsController.Instance.ResetLevelCounters();
-
         InsectManager.Instance.StopAllSpawn(false);
-        _currentLevel++;
+
+        if(_currentLevel < levels.Length - 1)
+            _currentLevel++;
+
         Timers.Instance.StartTimer(1, LoadLevel);
 
         gameUIManager.UpdateLevel(_currentLevel + 1);
+
     }
 
     void LoadLevel()
     {
+        Timers.Instance.StartTimer(levels[_currentLevel].levelParameters.passLevelTime, GoToNextLevel);
+
         InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
     }
 
@@ -115,17 +120,17 @@ public class GameManager : Singleton<GameManager>
     void ProcessKillings(GameObject insect)
     {
         Insect insectComponent = insect.GetComponent<Insect>();
-        ResultsController.Instance.AddToScore(insectComponent.addedPoints);
-        if (insectComponent.isBadInsect) ResultsController.Instance.TrueKill();
+        if (insectComponent.isBadInsect)
+        {
+            BadInsect badInsectComponent = insect.GetComponent<BadInsect>();
+            ResultsController.Instance.AddToScore(badInsectComponent.addedPoints);
+            ResultsController.Instance.TrueKill();
+        }
         else GameOver();
 
         gameUIManager.UpdateKillNumber(ResultsController.Instance.LevelTrueKillCounter);
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
 
-        if (ResultsController.Instance.LevelTrueKillCounter >= levels[_currentLevel].levelParameters.passLevelKillNum)
-        {
-            GoToNextLevel();
-        }
     }
 
 
@@ -153,10 +158,11 @@ public class GameManager : Singleton<GameManager>
         if (gameUIManager != null)
             gameUIManager.UpdateTimer(_timer);
 
-        ResultsController.Instance.AddToScore(seconds);
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
     }
 
     #endregion
+
+    
 
 }

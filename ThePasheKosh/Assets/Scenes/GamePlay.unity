@@ -3969,7 +3969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1170554880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CakePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6914,15 +6914,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: db8ac2e210f093a4abf4830bd4cae895, type: 2}
-  - {fileID: 11400000, guid: 7c3583c7f6735bb41964eb83ff4cef21, type: 2}
-  - {fileID: 11400000, guid: 8d0d7bbf3da07194281c6df7b653d162, type: 2}
-  - {fileID: 11400000, guid: 6cd8670caa4e3ed419f09d9378509c03, type: 2}
-  - {fileID: 11400000, guid: 27d5d91b05ec1ec43b7e689c76685fc7, type: 2}
-  - {fileID: 11400000, guid: 449d869e76d48ad489a7f66784b113e2, type: 2}
-  - {fileID: 11400000, guid: 9cb4d4b1c4732b7409e1be7904725cd7, type: 2}
-  - {fileID: 11400000, guid: 878c65f0f8ea74e4c9600a0c91ef5398, type: 2}
-  - {fileID: 11400000, guid: e47926a254ce34944a1f2530b5f19317, type: 2}
-  - {fileID: 11400000, guid: a671e733370f5134bbda5d6d5d6fd164, type: 2}
   cakes:
   - nameOfCake: Cake3
     wholeCake: {fileID: 21300000, guid: 3109ea0b97e92914cbd33fe806fa6646, type: 3}

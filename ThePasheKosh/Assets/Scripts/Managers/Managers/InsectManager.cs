@@ -12,15 +12,6 @@ public class InsectManager : Singleton<InsectManager>
     #endregion
 
     #region Private Variables
-    string[] _nameOfBadInsects;
-    string[] _nameOfGoodInsects;
-
-    float _badInsectsPercentage;
-    float _timeBetweenSpawns;
-    float _speedOfInsects;
-    float _rotationSpeedOfInsects;
-    float _randomDirectionPercent;
-
     List<Coroutine> _allSpawnCoroutines;
     List<GameObject> _existedInsects;
 
@@ -38,6 +29,7 @@ public class InsectManager : Singleton<InsectManager>
     {
         StartCoroutine(RemoveInsectsCoroutine());
     }
+
     public void RemoveInsect(GameObject insect)
     {
         _existedInsects.Remove(insect);
@@ -48,60 +40,72 @@ public class InsectManager : Singleton<InsectManager>
     {
         EventManager.StartListening("InsectKilled", RemoveInsect);
 
-        _nameOfGoodInsects = levelParameters.goodInsectsNames;
-        _nameOfBadInsects = levelParameters.badInsectsNames;
-        _timeBetweenSpawns = levelParameters.timeBetweenSpawns;
-        _badInsectsPercentage = levelParameters.badInsectsPercentage;
+        // Bad Insect Coroutine
+        Coroutine badCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.badInsectParameters, true));
+        _allSpawnCoroutines.Add(badCoroutine);
 
-        _speedOfInsects = levelParameters.speedOfInsects;
-        _rotationSpeedOfInsects = levelParameters.rotationSpeedOfInsects;
-        _randomDirectionPercent = levelParameters.randomDirectionPercentage;
+        Coroutine goodCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.goodInsectPrarmeters, false));
+        _allSpawnCoroutines.Add(badCoroutine);
+        // GoodInsectCoroutine
 
-        Coroutine newCoroutine = StartCoroutine(SpawnCoroutine());
-        _allSpawnCoroutines.Add(newCoroutine);
+
     }
 
-    IEnumerator SpawnCoroutine()
+    IEnumerator SpawnCoroutine(InsectParameters insectParams, bool isBadInsect)
     {
+        yield return new WaitForSeconds(Random.Range(0, insectParams.timeBetweenSpawn.max));
         while (true)
         {
             GameObject newInsect;
-            Transform spawnPoint;
-            Transform targetPoint;
 
-            Collider2D[] targetColliders;
-            Insect insectComponent;
+            string insectName = GetRandomItem<string>(insectParams.insectsName);
 
-            if (Random.value < _badInsectsPercentage)
+            SpawnPoint newSpawnPoint = GetRandomItem<SpawnPoint>(spawnPoints);
+            Vector2 spawnPos = newSpawnPoint.gameObject.transform.position;
+
+            float randomSpeed = Random.Range(insectParams.insectSpeed.min, insectParams.insectSpeed.max);
+            float randomRotSpeed = Random.Range(insectParams.insectRotSpeed.min, insectParams.insectRotSpeed.max);
+
+            if (isBadInsect)
             {
-                string insectName = GetRandomItem<string>(_nameOfBadInsects);
+                Vector2 targetDir = ((Vector2)cakePoint.position - (Vector2)spawnPos).normalized;
+                float angle = targetDir.x < 0 ? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
+                Quaternion rot = Quaternion.Euler(0, 0, angle);
+                newInsect = Pool.InstantiateGameObjectByName(insectName, spawnPos, rot);
 
-                SpawnPoint newSpawnPoint = GetRandomItem<SpawnPoint>(spawnPoints);
-                Vector2 SpawnPos = newSpawnPoint.gameObject.transform.position;
-
-                Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0, 360));
-                newInsect = Pool.InstantiateGameObjectByName(insectName, SpawnPos, randomRot);
-
-                insectComponent = newInsect.GetComponent<Insect>();
-                insectComponent.Initialize(cakePoint.position, null, _speedOfInsects, _rotationSpeedOfInsects, _randomDirectionPercent);
+                BadInsect badInsectComponent = newInsect.GetComponent<BadInsect>();
+                badInsectComponent.Initialize(cakePoint.position, randomSpeed / 10f, 
+                    randomRotSpeed, insectParams.randomnessOfDirection);
             }
             else
             {
-                string insectName = GetRandomItem<string>(_nameOfGoodInsects);
+                Collider2D[] targetColliders = newSpawnPoint.targetCollider;
 
-                GetSpawnTargetPoints(spawnPoints, out spawnPoint, out targetPoint, out targetColliders);
+                Vector2 targetPos = targetColliders[0].gameObject.transform.position;
+                Vector2 targetDir = (targetPos - (Vector2)spawnPos).normalized;
+                float angle = targetDir.x < 0 ? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
+                Quaternion rot = Quaternion.Euler(0, 0, angle);
 
-                Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0, 360));
-                newInsect = Pool.InstantiateGameObjectByName(insectName, spawnPoint.position, randomRot);
+                newInsect = Pool.InstantiateGameObjectByName(insectName, spawnPos, rot);
 
-                insectComponent = newInsect.GetComponent<Insect>();
-                insectComponent.Initialize(targetPoint.position, targetColliders, _speedOfInsects / 1.2f, 30, 0.1f);
+                GoodInsect goodInsectComponent = newInsect.GetComponent<GoodInsect>();
+                goodInsectComponent.Initialize(targetColliders, randomSpeed / 10f,
+                    randomRotSpeed, insectParams.randomnessOfDirection);
             }
 
             _existedInsects.Add(newInsect);
 
-            yield return new WaitForSeconds(_timeBetweenSpawns);
+            float randomTime = Random.Range(insectParams.timeBetweenSpawn.min, insectParams.timeBetweenSpawn.max);
+            yield return new WaitForSeconds(randomTime);
         }
+    }
+
+    float AngleOf(Vector2 p1, Vector2 p2)
+    {
+        float deltaY = (p1.y - p2.y);
+        float deltaX = (p2.x - p1.x);
+        float result = ((float)System.Math.Atan2(deltaY, deltaX)) * 180f / (2f * (float) System.Math.PI);
+        return result;
     }
 
     void GetSpawnTargetPoints(SpawnPoint[] spawnPointArray,
@@ -142,6 +146,5 @@ public class InsectManager : Singleton<InsectManager>
             yield return new WaitForEndOfFrame();
         }
     }
-    
 
 }

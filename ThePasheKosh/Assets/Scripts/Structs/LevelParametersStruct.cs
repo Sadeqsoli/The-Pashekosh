@@ -1,16 +1,33 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
+public struct MinMaxRandom
+{
+    public float min;
+    public float max;
+}
+
+[System.Serializable]
+public struct InsectParameters
+{
+    public string[] insectsName;
+    [Space]
+    public MinMaxRandom timeBetweenSpawn;
+    public MinMaxRandom insectSpeed;
+    public MinMaxRandom insectRotSpeed;
+    [Space]
+    [Range(0, 0.45f)]
+    public float randomnessOfDirection;
+}
+
+[System.Serializable]
 public struct LevelParametersStruct
 {
-    public string[] goodInsectsNames;
-    public string[] badInsectsNames;
-    public int passLevelKillNum;
-    public float timeBetweenSpawns;
-    [Range(0, 1)]
-    public float badInsectsPercentage;
-    public float speedOfInsects;
-    public float rotationSpeedOfInsects;
-    [Range(0, 0.45f)]
-    public float randomDirectionPercentage;
+    public InsectParameters badInsectParameters;
+
+    [Space]
+    public InsectParameters goodInsectPrarmeters;
+
+    [Header("General")]
+    public int passLevelTime;
 }

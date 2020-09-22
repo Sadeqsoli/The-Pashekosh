@@ -5,7 +5,7 @@ using UnityEngine;
 
 public struct InsectWithCollider
 {
-    public Insect insect;
+    public BadInsect insect;
     public Collider2D collider;
 }
 public class CakePiece : MonoBehaviour
@@ -115,9 +115,9 @@ public class CakePiece : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 10) {
-            Insect insectComponent = collision.gameObject.GetComponent<Insect>();
+            BadInsect insectComponent = collision.gameObject.GetComponent<BadInsect>();
 
-            if (insectComponent.CurrentState != Insect.InsectState.OnCake && Random.value > 0.3f)
+            if (insectComponent.CurrentState != BadInsectState.OnCake && Random.value > 0.3f)
             {
                 insectComponent.GoToWalkState();
                 insectComponent.SetCakeCollider(GetComponent<Collider2D>());
