@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region Private Variables
-
+    [Space] [SerializeField] SpriteRenderer spriteRenderer;
     int _cakeIndex = 0;
     int _currentLevel = 0;
 
@@ -40,6 +40,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        CameraScaler.CameraFit(spriteRenderer);
         if (!PlayerPrefs2.GetBool("MoreThanOneTime"))
         {
             PlayerPrefs2.SetBool("MoreThanOneTime", true);
