@@ -17,7 +17,12 @@ public class GameOverMenu : MonoBehaviour
     [Space]
     public RTLTextMeshPro timeText;
 
-
+    void Delete()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        Debug.Log("Deleted");
+    }
 
     public void GoToRunningState()
     {
@@ -26,15 +31,16 @@ public class GameOverMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float score = PlayerPrefs.GetFloat("Score");
-        float highScore = PlayerPrefs.GetFloat("HighScore");
-        float time = PlayerPrefs.GetFloat("Time");
-        int level = PlayerPrefs.GetInt("Level");
+        //Delete();
+        float score = ScoreRepo.GetLastScore();
+        float highScore = ScoreRepo.GetHighScore();
+        float time = TimeRepo.GetLastTime();
+        int level = LevelRepo.GetLevel();
 
-        scoreText.text = score.ToString();
-        highScoreText.text = highScore.ToString();
-        timeText.text = time.ToString();
-        levelText.text = level.ToString();
+        scoreText.text = "Score: "  + ((int)score).ToString();
+        highScoreText.text = "Best Score: " + highScore.ToString();
+        timeText.text = "Best Time " + time.ToString();
+        levelText.text = "Level " + level.ToString();
     }
 }
 

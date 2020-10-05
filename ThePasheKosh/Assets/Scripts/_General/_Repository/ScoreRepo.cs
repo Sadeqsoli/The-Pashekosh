@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public static class ScoreRepo 
+public static class ScoreRepo
 {
     #region Properties
     public static string allScoreKeyName { get { return allScoreRepo; } }
@@ -10,24 +10,24 @@ public static class ScoreRepo
     const string lastScoreRepo = "LastScoreRepo";
     const string highScoreRepo = "HighScoreRepo";
     const string allScoreRepo = "AllScoreRepo";
-    static int scores;
     #endregion
 
     #region Public Methods
 
-    public static void PushScore(int newScore)
+    public static void PushScore(float newScore)
     {
         if (newScore > 0)
         {
             //Sum the New score To The All Score Repository.
-            scores = scores + newScore;
+            float scores = GetAllScore();
+            scores += newScore;
             Save(allScoreRepo, scores);
 
             //Setting the new score as Last Score.
             Save(lastScoreRepo, newScore);
 
             //Check if new Score is bigger than the last high score and Set it as the new High Score.
-            int highScore = GetHighScore();
+            float highScore = GetHighScore();
             if (newScore > highScore)
             {
                 Save(highScoreRepo, newScore);
@@ -36,15 +36,15 @@ public static class ScoreRepo
     }
 
 
-    public static int GetAllScore()
+    public static float GetAllScore()
     {
         return Retrive(allScoreRepo);
     }
-    public static int GetLastScore()
+    public static float GetLastScore()
     {
         return Retrive(lastScoreRepo);
     }
-    public static int GetHighScore()
+    public static float GetHighScore()
     {
         return Retrive(highScoreRepo);
     }
@@ -56,6 +56,7 @@ public static class ScoreRepo
     #region Private Methods
     static bool HasScore(int Count)
     {
+        float scores = GetAllScore();
         if (scores >= Count)
         {
             return true;
@@ -63,13 +64,15 @@ public static class ScoreRepo
         return false;
     }
 
-    static int Retrive(string key)
+
+
+    static float Retrive(string key)
     {
         return PlayerPrefs.GetInt(key);
     }
-    static void Save(string key, int val)
+    static void Save(string key, float val)
     {
-        PlayerPrefs.SetInt(key, val);
+        PlayerPrefs.SetFloat(key, val);
     }
 
 
@@ -77,4 +80,3 @@ public static class ScoreRepo
 
     #endregion
 }//EndClasssss/SadeQ
-  

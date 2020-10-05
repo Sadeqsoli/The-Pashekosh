@@ -6,6 +6,7 @@ public static class TimeRepo
     #endregion
 
     #region Fields
+    const string allTimeRepo = "AllTimeRepo";
     const string lastTimeRepo = "LastTimeRepo";
     const string highTimeRepo = "HighTimeRepo";
     #endregion
@@ -16,6 +17,10 @@ public static class TimeRepo
     {
         if (newTime > 0)
         {
+            float allTime = GetAllTime();
+            allTime += newTime;
+            Save(allTimeRepo, allTime);
+
             //Setting the new score as Last Score.
             Save(lastTimeRepo, newTime);
 
@@ -28,6 +33,10 @@ public static class TimeRepo
         }
     }
 
+    public static float GetAllTime()
+    {
+        return Retrive(allTimeRepo);
+    }
     public static float GetLastTime()
     {
         return Retrive(lastTimeRepo);

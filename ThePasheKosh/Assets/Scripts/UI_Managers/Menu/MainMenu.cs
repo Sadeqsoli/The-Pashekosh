@@ -10,4 +10,20 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    void Start()
+    {
+        
+    }
+    void SignUpCheck()
+    {
+        if (!(PlayerPrefs.HasKey(UserRepo.RepoUser)))
+        {
+
+        }
+        else if (PlayerPrefs.HasKey(UserRepo.RepoUser))
+        {
+
+        }
+    }
 }

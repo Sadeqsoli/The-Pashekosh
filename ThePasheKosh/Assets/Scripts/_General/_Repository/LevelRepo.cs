@@ -13,15 +13,15 @@ public static class LevelRepo
 
     #region Public Methods
 
-    public static void PushLevel(int input)
+    public static void PushLevel(int newRecord)
     {
-        if (input > 0)
+        if (newRecord > 0)
         {
             int lastBestLevel = GetLevel();
-            if(lastBestLevel < input)
+            if(lastBestLevel < newRecord)
             {
                 //The best level that player reached.
-                Save(levelRepo, input);
+                Save(levelRepo, newRecord);
             }
         }
     }

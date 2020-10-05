@@ -40,11 +40,12 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        //To Fit Camera Side to Side With The Screen
         CameraScaler.CameraFit(spriteRenderer);
         if (!PlayerPrefs2.GetBool("MoreThanOneTime"))
         {
             PlayerPrefs2.SetBool("MoreThanOneTime", true);
-            PlayerPrefs.SetFloat("HighScore", 0);
+            //PlayerPrefs.SetFloat("HighScore", 0);
         }
 
         AddEvents();
@@ -139,14 +140,10 @@ public class GameManager : Singleton<GameManager>
     void GameOver()
     {
         float score = ResultsController.Instance.Score;
-        PlayerPrefs.SetFloat("Score", score);
-        PlayerPrefs.SetFloat("Time", _timer);
-        PlayerPrefs.SetInt("Level", _currentLevel + 1);
-        if (score > PlayerPrefs.GetFloat("HighScore"))
-        {
-            PlayerPrefs.SetFloat("HighScore", score);
-        }
-        PlayerPrefs.SetFloat("Last Score", ResultsController.Instance.Score);
+        ScoreRepo.PushScore(score);
+        TimeRepo.PushTime(_timer);
+        LevelRepo.PushLevel(_currentLevel + 1);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     #endregion
