@@ -41,7 +41,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         //To Fit Camera Side to Side With The Screen
-        CameraScaler.CameraFit(spriteRenderer);
+        //CameraScaler.CameraFit(spriteRenderer);
         if (!PlayerPrefs2.GetBool("MoreThanOneTime"))
         {
             PlayerPrefs2.SetBool("MoreThanOneTime", true);
