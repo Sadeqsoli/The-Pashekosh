@@ -1,0 +1,524 @@
+fileFormatVersion: 2
+guid: 398bcd914fd551340a79143ea8ffcd20
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: W2L
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 275
+      y: 1228
+      width: 175
+      height: 270
+    spriteID: b50aa1efeb8757a4887467bbd088fc9b
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 240, y: 1085}
+  - name: W2 R
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1687
+      width: 243
+      height: 332
+    spriteID: ea937373286e9f3458e3e003aff9eca0
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -297, y: 1607}
+  - name: body fluid
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 275
+      y: 894
+      width: 147
+      height: 326
+    spriteID: f79311a853bf7014db6ad7ba05877ede
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 100, y: 762}
+  - name: Body
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 275
+      y: 4
+      width: 176
+      height: 453
+    spriteID: acb67a1be84e15149bdef830704f3295
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 104, y: -23}
+  - name: Head
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 263
+      height: 566
+    spriteID: e48f0174004aff94c8c851112bd35adb
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -150, y: -55}
+  - name: F RT
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 275
+      y: 1780
+      width: 82
+      height: 81
+    spriteID: 3b5080215e32b974cbe4b7b1553aaf20
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -32, y: 1348}
+  - name: F RM
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 659
+      y: 64
+      width: 211
+      height: 47
+    spriteID: 5c2b65afe876df34083a09b504e2b199
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 369, y: -273}
+  - name: F RB
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 275
+      y: 1506
+      width: 175
+      height: 200
+    spriteID: da988a14794c907479f7eea17c5efd23
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -27, y: 1381}
+  - name: F LT
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 275
+      y: 1714
+      width: 171
+      height: 58
+    spriteID: 668b4cd67bd8a2c4eba16162e890f0e6
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 240, y: 1283}
+  - name: F LM
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 659
+      y: 4
+      width: 239
+      height: 52
+    spriteID: d9ae98f079fae49499f2513281050655
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 659, y: -331}
+  - name: F LB
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 459
+      y: 4
+      width: 192
+      height: 223
+    spriteID: f3b5659e9321910449ee689147d00dec
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 437, y: -95}
+  - name: body fluid_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 275
+      y: 465
+      width: 153
+      height: 421
+    spriteID: 081dc5e5bc65ffc4cb4c29090932767e
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 96, y: 420}
+  - name: blood
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1161
+      width: 183
+      height: 518
+    spriteID: db0cd7a8b7c76f54fae485b02b03a1a8
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -162, y: 1116}
+  - name: body fluid_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 578
+      width: 253
+      height: 575
+    spriteID: efa066cbcdc63b64385c11ffc06a4635
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -122, y: 578}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 1024
+  importedTextureHeight: 2048
+  documentSize: {x: 544, y: 625}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 1024
+  textureActualHeight: 2048
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: W2L
+    spriteName: W2L
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b50aa1efeb8757a4887467bbd088fc9b
+    layerID: 18
+    mosaicPosition: {x: 275, y: 1228}
+  - name: W2 R
+    spriteName: W2 R
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ea937373286e9f3458e3e003aff9eca0
+    layerID: 17
+    mosaicPosition: {x: 4, y: 1687}
+  - name: body fluid
+    spriteName: body fluid
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f79311a853bf7014db6ad7ba05877ede
+    layerID: 16
+    mosaicPosition: {x: 275, y: 894}
+  - name: Body
+    spriteName: Body
+    isGroup: 0
+    parentIndex: -1
+    spriteID: acb67a1be84e15149bdef830704f3295
+    layerID: 15
+    mosaicPosition: {x: 275, y: 4}
+  - name: Head
+    spriteName: Head
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e48f0174004aff94c8c851112bd35adb
+    layerID: 14
+    mosaicPosition: {x: 4, y: 4}
+  - name: F RT
+    spriteName: F RT
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3b5080215e32b974cbe4b7b1553aaf20
+    layerID: 13
+    mosaicPosition: {x: 275, y: 1780}
+  - name: F RM
+    spriteName: F RM
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 5c2b65afe876df34083a09b504e2b199
+    layerID: 12
+    mosaicPosition: {x: 659, y: 64}
+  - name: F RB
+    spriteName: F RB
+    isGroup: 0
+    parentIndex: -1
+    spriteID: da988a14794c907479f7eea17c5efd23
+    layerID: 11
+    mosaicPosition: {x: 275, y: 1506}
+  - name: F LT
+    spriteName: F LT
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 668b4cd67bd8a2c4eba16162e890f0e6
+    layerID: 10
+    mosaicPosition: {x: 275, y: 1714}
+  - name: F LM
+    spriteName: F LM
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d9ae98f079fae49499f2513281050655
+    layerID: 9
+    mosaicPosition: {x: 659, y: 4}
+  - name: F LB
+    spriteName: F LB
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f3b5659e9321910449ee689147d00dec
+    layerID: 8
+    mosaicPosition: {x: 459, y: 4}
+  - name: body fluid
+    spriteName: body fluid_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 081dc5e5bc65ffc4cb4c29090932767e
+    layerID: 7
+    mosaicPosition: {x: 275, y: 465}
+  - name: blood
+    spriteName: blood
+    isGroup: 0
+    parentIndex: -1
+    spriteID: db0cd7a8b7c76f54fae485b02b03a1a8
+    layerID: 6
+    mosaicPosition: {x: 4, y: 1161}
+  - name: body fluid
+    spriteName: body fluid_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: efa066cbcdc63b64385c11ffc06a4635
+    layerID: 5
+    mosaicPosition: {x: 4, y: 578}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+  generateGOHierarchy: 0
+  textureAssetName: Bee_Dead Texture
+  prefabAssetName: Bee_Dead Prefab
+  spriteLibAssetName: Bee_Dead Sprite Lib
+  secondarySpriteTextures: []

@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 2a418b49662a9234d880c51d1054b935
+ScriptedImporter:
+  internalIDToNameTable:
+  - first:
+      213: -767842634614617014
+    second: Ant_0
+  - first:
+      213: -5720907883160835152
+    second: Ant_1
+  - first:
+      213: 8088607974869636516
+    second: Ant_2
+  - first:
+      213: 6536075636304528495
+    second: Ant_3
+  - first:
+      213: -8331379284657119059
+    second: Ant_4
+  - first:
+      213: -1165220586626746790
+    second: Ant_5
+  - first:
+      213: 4917645702352748329
+    second: Ant_6
+  - first:
+      213: 531572933391403351
+    second: Ant_7
+  - first:
+      213: 8231435086554245007
+    second: Ant_8
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: Ant_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 635
+      height: 790
+    spriteID: ad3a94bdf8c8d2f4bbbdd40d720219ce
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Head
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 240
+      y: 4
+      width: 330
+      height: 253
+    spriteID: 13fdfbe449bf45446b4255cfac100882
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 86, y: -533}
+  - name: Body
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 240
+      y: 265
+      width: 156
+      height: 394
+    spriteID: e3233d9066b2d5b49aed3f3589be76d5
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -1, y: 112}
+  - name: F RM
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 404
+      y: 265
+      width: 310
+      height: 117
+    spriteID: 8be458d2340ba7d499fd04997288d9b6
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 79, y: -32}
+  - name: F RB
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 403
+      width: 189
+      height: 350
+    spriteID: e4e864a61f45f8a4cb3743adacf96743
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -324, y: 362}
+  - name: F LT
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 578
+      y: 4
+      width: 159
+      height: 245
+    spriteID: 256b7c4838e5d70469c32adcad8d7074
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 434, y: -462}
+  - name: F LM
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 404
+      y: 390
+      width: 309
+      height: 115
+    spriteID: ffcda1bb976b1fc4ab637d43f7303b08
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 404, y: 92}
+  - name: F LB
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 228
+      height: 391
+    spriteID: 1b92a55483bb41942a86e37fba5ff9cd
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -82, y: 4}
+  - name: F RT
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 761
+      width: 164
+      height: 245
+    spriteID: b3e810c9ec29c7241ae02669c585d329
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -334, y: 296}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 0
+  importHiddenLayers: 0
+  importedTextureWidth: 1024
+  importedTextureHeight: 1024
+  documentSize: {x: 635, y: 790}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 1024
+  textureActualHeight: 1024
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Head
+    spriteName: Head
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 13fdfbe449bf45446b4255cfac100882
+    layerID: 5
+    mosaicPosition: {x: 240, y: 4}
+  - name: Body
+    spriteName: Body
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e3233d9066b2d5b49aed3f3589be76d5
+    layerID: 6
+    mosaicPosition: {x: 240, y: 265}
+  - name: F RM
+    spriteName: F RM
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8be458d2340ba7d499fd04997288d9b6
+    layerID: 11
+    mosaicPosition: {x: 404, y: 265}
+  - name: F RB
+    spriteName: F RB
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e4e864a61f45f8a4cb3743adacf96743
+    layerID: 10
+    mosaicPosition: {x: 4, y: 403}
+  - name: F LT
+    spriteName: F LT
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 256b7c4838e5d70469c32adcad8d7074
+    layerID: 9
+    mosaicPosition: {x: 578, y: 4}
+  - name: F LM
+    spriteName: F LM
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ffcda1bb976b1fc4ab637d43f7303b08
+    layerID: 8
+    mosaicPosition: {x: 404, y: 390}
+  - name: F LB
+    spriteName: F LB
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1b92a55483bb41942a86e37fba5ff9cd
+    layerID: 7
+    mosaicPosition: {x: 4, y: 4}
+  - name: F RT
+    spriteName: F RT
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b3e810c9ec29c7241ae02669c585d329
+    layerID: 4
+    mosaicPosition: {x: 4, y: 761}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+  generateGOHierarchy: 0
+  textureAssetName: Ant Texture
+  prefabAssetName: Ant Prefab
+  spriteLibAssetName: Ant Sprite Lib
+  secondarySpriteTextures: []
