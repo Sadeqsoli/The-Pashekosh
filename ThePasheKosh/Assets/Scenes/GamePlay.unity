@@ -4160,7 +4160,7 @@ GameObject:
   - component: {fileID: 1141265941}
   - component: {fileID: 1141265940}
   m_Layer: 5
-  m_Name: Health
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8386,7 +8386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 329329649}
-  scoreText: {fileID: 1428286402}
+  scoreText: {fileID: 1141265940}
   killNumberText: {fileID: 1974388778}
   levelText: {fileID: 1383871521}
   healthText: {fileID: 1141265940}
