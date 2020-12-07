@@ -71,7 +71,7 @@ public class InsectManager : Singleton<InsectManager>
                 Vector2 targetDir = ((Vector2)cakePoint.position - (Vector2)spawnPos).normalized;
                 float angle = targetDir.x < 0 ? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
                 Quaternion rot = Quaternion.Euler(0, 0, angle);
-                newInsect = Pool.InstantiateGameObjectByName(insectName, spawnPos, rot);
+                newInsect = InsectPool.InstantiateGameObjectByName(insectName, spawnPos, rot);
 
                 BadInsect badInsectComponent = newInsect.GetComponent<BadInsect>();
                 badInsectComponent.Initialize(cakePoint.position, randomSpeed / 10f, 
@@ -86,7 +86,7 @@ public class InsectManager : Singleton<InsectManager>
                 float angle = targetDir.x < 0 ? Vector2.Angle(targetDir, Vector2.up) : -Vector2.Angle(targetDir, Vector2.up);
                 Quaternion rot = Quaternion.Euler(0, 0, angle);
 
-                newInsect = Pool.InstantiateGameObjectByName(insectName, spawnPos, rot);
+                newInsect = InsectPool.InstantiateGameObjectByName(insectName, spawnPos, rot);
 
                 GoodInsect goodInsectComponent = newInsect.GetComponent<GoodInsect>();
                 goodInsectComponent.Initialize(targetColliders, randomSpeed / 10f,

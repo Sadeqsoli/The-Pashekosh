@@ -1,27 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-#region Creating Pool Struct
+#region Creating InsectPool Struct
 [System.Serializable]
 struct PoolStruc
 {
     public string nameOfPool;
-    public int InitialSizeOfPool;
+    public int initialSizeOfPool;
     public GameObject poolGameObject;
 }
 #endregion
 
-public class Pool : MonoBehaviour
+public class InsectPool : MonoBehaviour
 {
     #region private Fields
-    [SerializeField] PoolStruc[] _pools;
+    [FormerlySerializedAs("_pools")] [SerializeField] PoolStruc[] pools;
 
-    static PoolStruc[] pools;
-    static Dictionary<string, List<GameObject>> _poolsContent;
-    static Dictionary<string, GameObject> _parents;
-    GameObject _newGameObject;
-    GameObject _parent;
+    private static PoolStruc[] _pools;
+    private static Dictionary<string, List<GameObject>> _poolsContent;
+    private static Dictionary<string, GameObject> _parents;
+    
+    private GameObject newGameObject;
+    private GameObject parent;
     #endregion
 
     #region private Methods
@@ -33,40 +35,39 @@ public class Pool : MonoBehaviour
 
     void InitializePoolsOnStart()
     {
-        for (int i=0; i < _pools.Length; i++)
+        for (int i=0; i < pools.Length; i++)
         {
-            _pools[i].poolGameObject.name = _pools[i].nameOfPool;
+            pools[i].poolGameObject.name = pools[i].nameOfPool;
         }
 
         // ############# initialize ######################
-        pools = _pools;
+        _pools = pools;
         _poolsContent = new Dictionary<string, List<GameObject>>();
         _parents = new Dictionary<string, GameObject>();
         // ################################################
 
-        for (int i = 0; i < pools.Length; i++)
+        for (int i = 0; i < _pools.Length; i++)
         {
-            string nameOfPool = pools[i].nameOfPool;
-            _parent = new GameObject(pools[i].nameOfPool);
-            _parent.transform.SetParent(this.transform);
-            _parents.Add(nameOfPool, _parent);
+            string nameOfPool = _pools[i].nameOfPool;
+            parent = new GameObject(_pools[i].nameOfPool);
+            parent.transform.SetParent(this.transform);
+            _parents.Add(nameOfPool, parent);
             _poolsContent.Add(nameOfPool, new List<GameObject>());
             StartCoroutine(InstantiatePoolsContent
-                (pools[i], _parent.transform));
+                (_pools[i], parent.transform));
         }
     }
 
-    IEnumerator InstantiatePoolsContent(PoolStruc pool, Transform parent)
+    IEnumerator InstantiatePoolsContent(PoolStruc pool, Transform poolParent)
     {
 
-        for (int j = 0; j < pool.InitialSizeOfPool; j++)
+        for (int j = 0; j < pool.initialSizeOfPool; j++)
         {
-            _newGameObject =
-                Instantiate(pool.poolGameObject) as GameObject;
-            _newGameObject.name = pool.nameOfPool;
-            _newGameObject.transform.SetParent(parent);
-            _newGameObject.SetActive(false);
-            _poolsContent[pool.nameOfPool].Add(_newGameObject);
+            newGameObject =
+                Instantiate(pool.poolGameObject, poolParent, true);
+            newGameObject.name = pool.nameOfPool;
+            newGameObject.SetActive(false);
+            _poolsContent[pool.nameOfPool].Add(newGameObject);
 
             yield return new WaitForEndOfFrame();
         }
@@ -95,12 +96,12 @@ public class Pool : MonoBehaviour
             }
             else
             {
-                for(int i = 0; i < pools.Length; i++)
+                for(int i = 0; i < _pools.Length; i++)
                 {
-                    if (pools[i].nameOfPool == nameOfObject)
+                    if (_pools[i].nameOfPool == nameOfObject)
                     {
                         var returnGameObject =
-                            Instantiate(pools[i].poolGameObject, pos, rotation);
+                            Instantiate(_pools[i].poolGameObject, pos, rotation);
                         returnGameObject.name = nameOfObject;
                         returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
                         return returnGameObject;

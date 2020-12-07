@@ -41,7 +41,7 @@ public class Insect : MonoBehaviour
     public void RemoveInsect()
     {
         EventManager.StopListening("TouchCollider", KillHandling);
-        Pool.DestroyGameObjectByName(this.name, this.gameObject);
+        InsectPool.DestroyGameObjectByName(this.name, this.gameObject);
     }
 
     public virtual void Initialize(Vector2 endPoint, Collider2D[] targetsCollider, float speedOfInsect, float rotationSpeed, float randomDirectionPercent)
@@ -124,7 +124,7 @@ public class Insect : MonoBehaviour
 
             EventManager.StopListening("TouchCollider", KillHandling);
 
-            Pool.DestroyGameObjectByName(this.name, this.gameObject);
+            InsectPool.DestroyGameObjectByName(this.name, this.gameObject);
         }
     }
 
