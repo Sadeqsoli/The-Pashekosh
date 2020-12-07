@@ -100,8 +100,8 @@ MonoBehaviour:
   - {fileID: 6592716627341117695}
   - {fileID: 9056651224162083867}
   m_Bounds:
-    m_Center: {x: 0.0019411594, y: -0.0589747, z: -0.045459032}
-    m_Extent: {x: 0.1869414, y: 0.07102518, z: 0.061389104}
+    m_Center: {x: -0.00000010430813, y: 0.000000059604645, z: 0}
+    m_Extent: {x: 0.18500014, y: 0.12999994, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &589911566724722552
@@ -204,8 +204,8 @@ MonoBehaviour:
   - {fileID: 5364881291662261116}
   - {fileID: 5006403552863458236}
   m_Bounds:
-    m_Center: {x: -0.011037156, y: -0.13918835, z: 0.0035526473}
-    m_Extent: {x: 0.17262307, y: 0.108960174, z: 0.030716967}
+    m_Center: {x: 0.000000029802322, y: 0.00070501864, z: 0}
+    m_Extent: {x: 0.16000003, y: 0.16929507, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1094982252656842795
@@ -489,8 +489,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2226224356476100708}
   m_Bounds:
-    m_Center: {x: -0.020796742, y: -0.010706753, z: 0}
-    m_Extent: {x: 0.048071403, y: 0.06494889, z: 0}
+    m_Center: {x: -0.007412795, y: -0.0029582381, z: 0}
+    m_Extent: {x: 0.039720442, y: 0.06362559, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4472909270325765991
@@ -705,8 +705,8 @@ MonoBehaviour:
   - {fileID: 7378828838353839015}
   - {fileID: 6974578202517921623}
   m_Bounds:
-    m_Center: {x: 0.023514807, y: -0.16375378, z: 0.08101263}
-    m_Extent: {x: 0.18148524, y: 0.12162349, z: 0.09090909}
+    m_Center: {x: 0.00000008940697, y: -0.0016299337, z: 0}
+    m_Extent: {x: 0.20499995, y: 0.12836006, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5310894613518841562
@@ -1032,8 +1032,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 395497285443844203}
   m_Bounds:
-    m_Center: {x: 0.017750915, y: -0.0037345737, z: 0}
-    m_Extent: {x: 0.049352366, y: 0.06447022, z: 0}
+    m_Center: {x: -0.00000023841858, y: -0.0017901585, z: 0}
+    m_Extent: {x: 0.030000007, y: 0.06321, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &6985034048213565400
@@ -1331,8 +1331,8 @@ MonoBehaviour:
   - {fileID: 3618555660498634110}
   - {fileID: 4274850670403288280}
   m_Bounds:
-    m_Center: {x: -0.018796414, y: -0.20386219, z: -0.1360714}
-    m_Extent: {x: 0.20120358, y: 0.124399304, z: 0.14441262}
+    m_Center: {x: 0, y: 0.0004300624, z: 0}
+    m_Extent: {x: 0.22, y: 0.16957001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &8177981482097197739
@@ -1345,8 +1345,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3168121743475195556}
   - component: {fileID: 3333301468589767086}
+  - component: {fileID: 7206705426511946027}
   m_Layer: 0
-  m_Name: House Fly Blue
+  m_Name: BlueHousefly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1404,6 +1405,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &7206705426511946027
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177981482097197739}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.03190756}
+  m_Size: {x: 0.5, y: 1.1020863}
+  m_Direction: 0
 --- !u!1 &8775872869093877734
 GameObject:
   m_ObjectHideFlags: 0

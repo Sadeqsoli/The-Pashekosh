@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 407288375730825782}
   - component: {fileID: 4873840885338406948}
+  - component: {fileID: 3754779281844157475}
   m_Layer: 0
-  m_Name: LadyBug
+  m_Name: Ladybug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +73,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &3754779281844157475
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960775371572723650}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0023483634, y: 0.11633253}
+  m_Size: {x: 0.75865257, y: 1.1669145}
+  m_Direction: 0
 --- !u!1 &1314506836567137404
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,8 +218,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 7286619870924616083}
   m_Bounds:
-    m_Center: {x: -0.010986209, y: -0.13516445, z: -0.12988621}
-    m_Extent: {x: 0.11523247, y: 0.046441793, z: 0.13732874}
+    m_Center: {x: 0.00000011920929, y: 0, z: 0}
+    m_Extent: {x: 0.13, y: 0.125, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1446839690754423304
@@ -334,8 +351,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5062581295537582838}
   m_Bounds:
-    m_Center: {x: 0.023030527, y: -0.060454108, z: -0.13314492}
-    m_Extent: {x: 0.10458702, y: 0.08401216, z: 0.124641895}
+    m_Center: {x: 0, y: -0.00000023841858, z: 0}
+    m_Extent: {x: 0.12500004, y: 0.12500004, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1957181959064538802
@@ -437,8 +454,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8841364718410451928}
   m_Bounds:
-    m_Center: {x: 0.027048402, y: 0.041823998, z: -0.08123051}
-    m_Extent: {x: 0.08959811, y: 0.14256892, z: 0.1551885}
+    m_Center: {x: 0, y: -0.00000023841858, z: 0}
+    m_Extent: {x: 0.12500001, y: 0.17000002, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &2463219369391995474
@@ -836,8 +853,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1486214829644080428}
   m_Bounds:
-    m_Center: {x: -0.047017276, y: 0.2864122, z: 0.4924609}
-    m_Extent: {x: 0.29133213, y: 0.32773435, z: 0.5676527}
+    m_Center: {x: -0.0004851222, y: -0.0014650226, z: 0}
+    m_Extent: {x: 0.30951506, y: 0.64353514, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4653250160400018573
@@ -939,8 +956,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 9084618995444515761}
   m_Bounds:
-    m_Center: {x: -0.017584562, y: 0.023964979, z: -0.06981612}
-    m_Extent: {x: 0.14686668, y: 0.09656239, z: 0.084793545}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.18, y: 0.06, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4753772038361912720
@@ -1042,8 +1059,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 321479585730431701}
   m_Bounds:
-    m_Center: {x: 0.03803186, y: -0.05370882, z: -0.062193036}
-    m_Extent: {x: 0.16669554, y: 0.09357837, z: 0.09624168}
+    m_Center: {x: 0.000074997544, y: -0.0017199665, z: 0}
+    m_Extent: {x: 0.189925, y: 0.07828003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4900221764605910625
@@ -1399,8 +1416,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8345964980141158235}
   m_Bounds:
-    m_Center: {x: 0.057542175, y: 0.29193678, z: 0.48853603}
-    m_Extent: {x: 0.3071946, y: 0.33564728, z: 0.58135825}
+    m_Center: {x: 0.0020050108, y: 0, z: 0}
+    m_Extent: {x: 0.33799502, y: 0.64500004, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7462343155580651010
@@ -1532,8 +1549,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8208047608267416642}
   m_Bounds:
-    m_Center: {x: -0.059933662, y: 0.11091192, z: 0.112591125}
-    m_Extent: {x: 0.112312794, y: 0.097039975, z: 0.19453141}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.12, y: 0.19, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &8037877516813479966

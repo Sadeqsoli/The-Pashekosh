@@ -581,6 +581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4746416238661023807}
   - component: {fileID: 9217782723469950788}
+  - component: {fileID: 2694909210505042533}
   m_Layer: 0
   m_Name: Bee
   m_TagString: Untagged
@@ -640,6 +641,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &2694909210505042533
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3396671441023393589}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0051453114, y: -0.072404444}
+  m_Size: {x: 0.4073844, y: 1.2359434}
+  m_Direction: 0
 --- !u!1 &3978778531144873317
 GameObject:
   m_ObjectHideFlags: 0

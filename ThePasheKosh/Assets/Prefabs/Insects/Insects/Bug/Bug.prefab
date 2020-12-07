@@ -1507,6 +1507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6495926173251122219}
   - component: {fileID: 8513543094175482227}
+  - component: {fileID: 7151488843017097092}
   m_Layer: 0
   m_Name: Bug
   m_TagString: Untagged
@@ -1572,6 +1573,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &7151488843017097092
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916369396275032093}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.009029865, y: 0.020279944}
+  m_Size: {x: 0.6354461, y: 1.2572738}
+  m_Direction: 0
 --- !u!1 &8181181123699880961
 GameObject:
   m_ObjectHideFlags: 0

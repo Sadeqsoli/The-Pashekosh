@@ -554,6 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2537565409961894953}
   - component: {fileID: 2140779552048432032}
+  - component: {fileID: 561650651805670466}
   m_Layer: 0
   m_Name: Masquote
   m_TagString: Untagged
@@ -611,6 +612,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &561650651805670466
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2239758378684167025}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.029799402}
+  m_Size: {x: 0.5, y: 0.77903616}
+  m_Direction: 0
 --- !u!1 &2583696651542147736
 GameObject:
   m_ObjectHideFlags: 0

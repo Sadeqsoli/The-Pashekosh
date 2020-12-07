@@ -286,8 +286,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3032857380570326907}
   - component: {fileID: 1121213077081268087}
+  - component: {fileID: 9106987112244302958}
   m_Layer: 0
-  m_Name: House Fly
+  m_Name: RedHousefly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,6 +346,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &9106987112244302958
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407035078178061059}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0012614727, y: -0.012801528}
+  m_Size: {x: 0.76699066, y: 1.678489}
+  m_Direction: 0
 --- !u!1 &3413821790234570766
 GameObject:
   m_ObjectHideFlags: 0

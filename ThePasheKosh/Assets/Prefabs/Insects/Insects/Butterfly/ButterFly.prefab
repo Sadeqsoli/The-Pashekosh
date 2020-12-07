@@ -99,8 +99,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 202057121336807309}
   m_Bounds:
-    m_Center: {x: 0.2904732, y: 0.00000011920929, z: -0.40286958}
-    m_Extent: {x: 0.15781698, y: 0.7899999, z: 0.47771704}
+    m_Center: {x: -0.0007200241, y: 0, z: 0}
+    m_Extent: {x: 0.50311, y: 0.79, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1283708947740945346
@@ -202,8 +202,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3294904338174892122}
   m_Bounds:
-    m_Center: {x: -0.33986774, y: 0, z: -0.4674164}
-    m_Extent: {x: 0.21267071, y: 0.535, z: 0.6437609}
+    m_Center: {x: -0.0020197034, y: 0, z: 0}
+    m_Extent: {x: 0.67798007, y: 0.535, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1552906253346437682
@@ -305,8 +305,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 202057121336807309}
   m_Bounds:
-    m_Center: {x: 0.3593309, y: -0.0016947985, z: -0.49713832}
-    m_Extent: {x: 0.18036757, y: 0.5633051, z: 0.54597837}
+    m_Center: {x: 0, y: -0.0016950965, z: 0}
+    m_Extent: {x: 0.575, y: 0.563305, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1843864650421981441
@@ -520,8 +520,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3294904338174892122}
   m_Bounds:
-    m_Center: {x: -0.2843287, y: 0.00000023841858, z: -0.39337224}
-    m_Extent: {x: 0.15370458, y: 0.78, z: 0.46526867}
+    m_Center: {x: 0, y: 0.00000023841858, z: 0}
+    m_Extent: {x: 0.49, y: 0.78, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &6686319841610701582
@@ -646,8 +646,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5575040694620601688}
   - component: {fileID: 8300110166217014336}
+  - component: {fileID: 2868683895768484574}
   m_Layer: 0
-  m_Name: ButterFly
+  m_Name: Butterfly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -694,3 +695,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &2868683895768484574
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8376220555398576034}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.037000656, y: 0.43265843}
+      - {x: -0.1123777, y: 0.40151837}
+      - {x: -0.5466676, y: 0.6374129}
+      - {x: -0.5451243, y: -0.5356698}
+      - {x: -0.12014794, y: -0.23317552}
+      - {x: -0.106778085, y: -0.3835107}
+      - {x: 0.04511082, y: -0.3896773}
+      - {x: 0.044950724, y: -0.20405555}
+      - {x: 0.47455978, y: -0.54507565}
+      - {x: 0.40763903, y: 0.6730275}
+      - {x: 0.05687666, y: 0.389185}
