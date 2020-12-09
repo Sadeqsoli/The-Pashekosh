@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4873840885338406948}
   - component: {fileID: 3754779281844157475}
   m_Layer: 0
-  m_Name: Ladybug
+  m_Name: LadyBug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

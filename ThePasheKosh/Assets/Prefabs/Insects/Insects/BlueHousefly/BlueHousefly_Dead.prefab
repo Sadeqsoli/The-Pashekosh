@@ -1170,7 +1170,7 @@ GameObject:
   - component: {fileID: 2144984781903132693}
   - component: {fileID: 8187044359040711435}
   m_Layer: 0
-  m_Name: House Fly Blue Dead
+  m_Name: BlueHousefly_Dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 1190974515148830386}
   - component: {fileID: 3858627732906807178}
   m_Layer: 0
-  m_Name: Dragon Fly_Dead
+  m_Name: Dragonfly_Dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
