@@ -1,21 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using TMPro;
-using RTLTMPro;
+
 
 public class GameOverMenu : MonoBehaviour
 {
     [Space]
-    public RTLTextMeshPro scoreText;
+    public TextMeshProUGUI scoreText;
     [Space]
-    public RTLTextMeshPro highScoreText;
-    [Space]
-    public RTLTextMeshPro levelText;
-    [Space]
-    public RTLTextMeshPro timeText;
+    public TextMeshProUGUI levelText;
 
     void Delete()
     {
@@ -26,7 +18,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void GoToRunningState()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        HelperSceneManager.GoToAnotherScene(0);
     }
     // Start is called before the first frame update
     void Start()
@@ -38,8 +30,8 @@ public class GameOverMenu : MonoBehaviour
         int level = LevelRepo.GetLevel();
 
         scoreText.text = "Score: "  + ((int)score).ToString();
-        highScoreText.text = "Best Score: " + highScore.ToString();
-        timeText.text = "Best Time " + time.ToString();
+        //highScoreText.text = "Best Score: " + highScore.ToString();
+        //timeText.text = "Best Time " + time.ToString();
         levelText.text = "Level " + level.ToString();
     }
 }
