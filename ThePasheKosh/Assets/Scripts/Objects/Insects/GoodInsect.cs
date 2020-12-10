@@ -16,12 +16,12 @@ public class GoodInsect : Insect
         GameObject targetGO = targetsCollider[randomIdx].gameObject;
 
         Initialize(targetGO.transform.position, targetsCollider, speedOfInsect, rotationSpeed, randomDirectionPercent);
-        isBadInsect = false;
+        IsBadInsect = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isBadInsect && targetsCollider != null)
+        if (!IsBadInsect && targetsCollider != null)
         {
             for (int i = 0; i < targetsCollider.Length; i++)
             {

@@ -36,6 +36,7 @@ public class EventManager : Singleton<EventManager>
         }
         else
         {
+            Debug.Log("The event " + eventName + " is added by the " + listener + " listener.");
             thisEvent = new UnityEvent();
             thisEvent.AddListener(listener);
             Instance.noParameterEventDictionary.Add(eventName, thisEvent);
@@ -76,6 +77,7 @@ public class EventManager : Singleton<EventManager>
         }
         else
         {
+            Debug.Log("The event " + eventName + " is added by the " + listener + " listener.");
             thisEvent = new UnityEventGameObject();
             thisEvent.AddListener(listener);
             Instance.gameObjectEventDictionary.Add(eventName, thisEvent);

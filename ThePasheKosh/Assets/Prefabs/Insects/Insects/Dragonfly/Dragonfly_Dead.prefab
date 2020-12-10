@@ -100,7 +100,7 @@ MonoBehaviour:
   - {fileID: 8081207385339771471}
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.15500003, y: 0.18500005, z: 0}
+    m_Extent: {x: 0.15500009, y: 0.185, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &680100572090102533
@@ -202,8 +202,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 9188609200399531605}
   m_Bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.47, y: 0.165, z: 0}
+    m_Center: {x: -0.0000006854534, y: 0.0000036358833, z: 0}
+    m_Extent: {x: 0.46999985, y: 0.16500238, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1052789897033225229
@@ -745,8 +745,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5906169700783402377}
   m_Bounds:
-    m_Center: {x: 0.00000023841858, y: 0.00032781065, z: 0}
-    m_Extent: {x: 0.17, y: 0.1896722, z: 0}
+    m_Center: {x: 0.000000029802322, y: 0.00032764673, z: 0}
+    m_Extent: {x: 0.1700001, y: 0.18967232, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4305811264284256432
@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 1190974515148830386}
   - component: {fileID: 3858627732906807178}
   m_Layer: 0
-  m_Name: Dragon Fly_Dead
+  m_Name: Dragonfly_Dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

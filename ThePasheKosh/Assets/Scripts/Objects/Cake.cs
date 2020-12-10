@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public struct InsectWithCollider
@@ -8,28 +11,30 @@ public struct InsectWithCollider
     public BadInsect insect;
     public Collider2D collider;
 }
-public class CakePiece : MonoBehaviour
+public class Cake : MonoBehaviour
 {
-    Coroutine updateHealthCoroutine;
+    public float maxHealth = 100f;
+    
+    private Coroutine updateHealthCoroutine;
 
-    List<InsectWithCollider> badInsectsWithColliders;
+    private List<InsectWithCollider> badInsectsWithColliders;
 
-    Collider2D cakeCollider;
+    private Collider2D cakeCollider;
 
-    public float damage;
-    float maxHealth;
+    private SpriteRenderer spriteRenderer;
 
-    bool isCoroutineRunning = false;
-    bool isInitialized;
+    private float damage;
+
+    private bool isCoroutineRunning;
+    private bool isInitialized;
+
+    private List<Sprite> cakeSprites;
 
     [field: SerializeField]
     public float Health { get; private set; }
 
-    float Damage{
-        get 
-        {
-            return damage;
-        }
+    private float Damage{
+        get => damage;
         set
         {
             if (value < 20)
@@ -40,17 +45,16 @@ public class CakePiece : MonoBehaviour
         }
     }
 
-    public void AddDamage(float quantity)
+    private void AddDamage(float quantity)
     {
         Damage += quantity;
     }
     
-    public void InitializeCake(float maxHealth)
+    public void InitializeCake(List<Sprite> currentCakeSprites)
     {
+        cakeSprites = currentCakeSprites;
 
         damage = 0;
-
-        this.maxHealth = maxHealth;
 
         Health = maxHealth;
 
@@ -62,6 +66,7 @@ public class CakePiece : MonoBehaviour
 
         updateHealthCoroutine = StartCoroutine(UpdateHealthCoroutine());
 
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public void RemoveCake()
@@ -86,19 +91,34 @@ public class CakePiece : MonoBehaviour
                     AddDamage(-badInsectsWithColliders[i].insect.impactRate);
                     badInsectsWithColliders.RemoveAt(i);
                     i--;
+
+                    UpdateSprite();
                 }
             }
         }
     }
 
-    void AddHealth(float quantity)
+    private void UpdateSprite()
+    {
+        var losingHealth = maxHealth - Health;
+        var part = maxHealth / cakeSprites.Count;
+
+        var currentSprite = cakeSprites[(int) (losingHealth / part)];
+
+        if (spriteRenderer.sprite != currentSprite)
+        {
+            spriteRenderer.sprite = currentSprite;
+        }
+    }
+
+    private void AddHealth(float quantity)
     {
         Health += quantity;
         if (Health <= 0) Health = 0;
         else if (Health >= maxHealth) Health = maxHealth;
     }
 
-    IEnumerator UpdateHealthCoroutine()
+    private IEnumerator UpdateHealthCoroutine()
     {
         isCoroutineRunning = true;
         while (Health > 0)
@@ -108,11 +128,11 @@ public class CakePiece : MonoBehaviour
         }
         isCoroutineRunning = false;
 
-        EventManager.TriggerEvent("CakePieceDestroyed", this.gameObject);
+        EventManager.TriggerEvent(Events.CakePieceDestroyed, this.gameObject);
         RemoveCake();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 10) {
             BadInsect insectComponent = collision.gameObject.GetComponent<BadInsect>();
@@ -135,7 +155,7 @@ public class CakePiece : MonoBehaviour
         }
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         damage = 0;
         isInitialized = false;

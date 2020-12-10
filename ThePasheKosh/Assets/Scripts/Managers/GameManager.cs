@@ -2,9 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public enum PieceNumber { One, Two, Four}
+
+[System.Serializable]
+public struct CakeInfo
+{
+    public string cakeName;
+    public GameObject cakePrefab;
+    public List<Sprite> cakeSprites;
+}
+
+
 public class GameManager : Singleton<GameManager>
 {
     #region Public Variables
@@ -14,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     [Space]
     [Space]
 
-    public CakeStruct[] cakes;
+    public List<CakeInfo> cakes;
 
     [Space]
     [Space]
@@ -51,14 +61,14 @@ public class GameManager : Singleton<GameManager>
         AddEvents();
         AddListeners();
 
-        CakeManager.Instance.PutTheCakes(cakes[_cakeIndex], PieceNumber.Four);
+        CakeManager.Instance.PutTheCakes(cakes[_cakeIndex]);
 
         LoadLevel();
 
         _timer = 0;
         Timers.Instance.StartRepeatedAction(1f, AddToTimer);
 
-        gameUIManager.Initialize(0, 0, cakes[_cakeIndex].maxHealth * 4 / 3, 0, 1);
+        gameUIManager.Initialize(0, 100);
     }
 
     #region Events Handling
@@ -68,17 +78,17 @@ public class GameManager : Singleton<GameManager>
         {
             // Addig a event with a GameObject parameter. 
             // Every time the player touch (or click) a collider this event will be invoked.
-            EventManager.AddGameObjectEvent("TouchCollider");
+            EventManager.AddGameObjectEvent(Events.TouchCollider);
             // Every time the player touch the screen and not touch a collider this event will be invoked.
-            EventManager.AddEventWithNoParamter("TouchScreen");
+            EventManager.AddEventWithNoParamter(Events.TouchScreen);
 
             //Whenever the player is game over this event will be invoked
-            EventManager.AddEventWithNoParamter("GameOver");
+            EventManager.AddEventWithNoParamter(Events.GameOver);
             // Whenever an insect is killed, this event will be invoked with the insect game object as a parameter
-            EventManager.AddGameObjectEvent("InsectKilled");
+            EventManager.AddGameObjectEvent(Events.InsectKilled);
 
             // Whenever a piece of cake is completely destroyed, this event will be invoked
-            EventManager.AddGameObjectEvent("CakePieceDestroyed");
+            EventManager.AddGameObjectEvent(Events.CakePieceDestroyed);
         }
         else
         {
@@ -88,8 +98,8 @@ public class GameManager : Singleton<GameManager>
 
     void AddListeners()
     {
-        EventManager.StartListening("InsectKilled", ProcessKillings);
-        EventManager.StartListening("GameOver", GameOver);
+        EventManager.StartListening(Events.InsectKilled, ProcessKillings);
+        EventManager.StartListening(Events.GameOver, GameOver);
     }
 
     #endregion
@@ -105,9 +115,6 @@ public class GameManager : Singleton<GameManager>
             _currentLevel++;
 
         Timers.Instance.StartTimer(1, LoadLevel);
-
-        gameUIManager.UpdateLevel(_currentLevel + 1);
-
     }
 
     void LoadLevel()
@@ -123,15 +130,13 @@ public class GameManager : Singleton<GameManager>
     void ProcessKillings(GameObject insect)
     {
         Insect insectComponent = insect.GetComponent<Insect>();
-        if (insectComponent.isBadInsect)
+        if (insectComponent.IsBadInsect)
         {
             BadInsect badInsectComponent = insect.GetComponent<BadInsect>();
             ResultsController.Instance.AddToScore(badInsectComponent.addedPoints);
             ResultsController.Instance.TrueKill();
         }
         else GameOver();
-
-        gameUIManager.UpdateKillNumber(ResultsController.Instance.LevelTrueKillCounter);
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
 
     }
@@ -155,7 +160,6 @@ public class GameManager : Singleton<GameManager>
     {
         _timer += seconds;
         if (gameUIManager != null)
-            gameUIManager.UpdateTimer(_timer);
 
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
     }

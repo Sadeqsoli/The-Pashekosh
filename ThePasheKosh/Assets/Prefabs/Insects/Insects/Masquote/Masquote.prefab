@@ -555,6 +555,8 @@ GameObject:
   - component: {fileID: 2537565409961894953}
   - component: {fileID: 2140779552048432032}
   - component: {fileID: 561650651805670466}
+  - component: {fileID: 7339711062772141827}
+  - component: {fileID: -4514360114990058374}
   m_Layer: 0
   m_Name: Masquote
   m_TagString: Untagged
@@ -628,6 +630,43 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.029799402}
   m_Size: {x: 0.5, y: 0.77903616}
   m_Direction: 0
+--- !u!50 &7339711062772141827
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2239758378684167025}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-4514360114990058374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2239758378684167025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15eed3a956470bf458a6ce1a7ec87699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  insectDead: {fileID: 4070449167323369734, guid: 58b685e20eee1f74cad234ca03a33ded,
+    type: 3}
+  addedPoints: 12
+  impactRate: 4
 --- !u!1 &2583696651542147736
 GameObject:
   m_ObjectHideFlags: 0

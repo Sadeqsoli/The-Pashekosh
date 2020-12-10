@@ -1,110 +1,118 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
 
 
 public class CakeManager : Singleton<CakeManager>
 {
-    public GameObject gameObjectOfOnePiece;
-    public GameObject[] gameObjectOfTwoPieces;
-    public GameObject[] gameObjectOfFourPieces;
+    public Transform screenCenterPoint;
+    
+    private CakeInfo currentCakeInfo;
+    private Cake currentCake;
 
-    List<CakePiece> existedPieces;
-
-    float totalHealth;
-    float maxHealth = 140f;
-
-    public void PutTheCakes(CakeStruct cake, PieceNumber pieceNum)
+    public void PutTheCakes(CakeInfo cakeInfo)
     {
-        existedPieces = new List<CakePiece>();
+        currentCakeInfo = cakeInfo;
+        currentCake = cakeInfo.cakePrefab.GetComponent<Cake>();
+        
+        showCake(cakeInfo);
 
-
-        switch (pieceNum) 
-        {
-            case PieceNumber.One:
-                showCake(gameObjectOfOnePiece, cake.wholeCake, cake.maxHealth);
-                break;
-
-            case PieceNumber.Two:
-                for(int i = 0; i < 2; i++)
-                {
-                    showCake(gameObjectOfTwoPieces[i], cake.cake2Pieces[i], cake.maxHealth / 1.5f);
-                }
-                break;
-            case PieceNumber.Four:
-                for (int i = 0; i < 4; i++)
-                {
-                    showCake(gameObjectOfFourPieces[i], cake.cake4Pieces[i], cake.maxHealth / 3f);
-                }
-                break;
-        }
-
-        EventManager.StartListening("CakePieceDestroyed", CakeDestroyedHandling);
+        EventManager.StartListening(Events.CakePieceDestroyed, CakeDestroyedHandling);
 
         StartCoroutine(HealthUpdateCo());
     }
 
     IEnumerator HealthUpdateCo()
     {
-        maxHealth = GetHealth();
         while (true)
         {
-            UpdateHealth();
+            GameManager.Instance.UpdateHealth(currentCake.Health, currentCake.maxHealth);
+            
             yield return new WaitForSeconds(0.3f);
         }
     }
 
-    public void UpdateHealth()
+    void CakeDestroyedHandling()
     {
-        totalHealth = GetHealth();
-        GameManager.Instance.UpdateHealth(totalHealth, maxHealth);
+        currentCakeInfo.cakePrefab.SetActive(false);
+
+        EventManager.TriggerEvent(Events.GameOver);
     }
 
-    public float GetHealth()
+    void showCake(CakeInfo cakeInfo)
     {
-        float health = 0;
-        for (int i = 0; i < existedPieces.Count; i++)
-        {
-            health += existedPieces[i].Health;
-        }
+        cakeInfo.cakePrefab.SetActive(true);
+        cakeInfo.cakePrefab.transform.position = screenCenterPoint.position;
 
-        return health;
-    }
-
-    void CakeDestroyedHandling(GameObject cakePieceGO)
-    {
-        CakePiece cakePieceComp = cakePieceGO.GetComponent<CakePiece>();
-        existedPieces.Remove(cakePieceComp);
-
-        cakePieceGO.SetActive(false);
-
-        if(existedPieces.Count == 0)
-        {
-            EventManager.TriggerEvent("GameOver");
-        }
-    }
-
-    void showCake(GameObject cakePieceGameObject, Sprite cakeSprite, float maxHealth)
-    {
-        cakePieceGameObject.SetActive(true);
-
-        cakePieceGameObject.GetComponent<SpriteRenderer>().sprite = cakeSprite;
-        CakePiece cakePieceComp = cakePieceGameObject.GetComponent<CakePiece>();
-        cakePieceComp.InitializeCake(maxHealth);
-
-        existedPieces.Add(cakePieceComp);
+        var cake = cakeInfo.cakePrefab.GetComponent<Cake>();
+        cake.InitializeCake(cakeInfo.cakeSprites);
     }
 
     protected override void Awake()
     {
         base.Awake();
-
-        gameObjectOfOnePiece.SetActive(false);
+        
+        /*gameObjectOfOnePiece.SetActive(false);
         for (int i = 0; i < gameObjectOfTwoPieces.Length; i++) gameObjectOfTwoPieces[i].SetActive(false);
         for (int i = 0; i < gameObjectOfFourPieces.Length; i++) gameObjectOfFourPieces[i].SetActive(false);
+        */
     }
 
     private void Start()
     {
+    }
+    
+    public static List<int> stringAnagram(List<string> dictionary, List<string> query)
+    {
+        List<int> result = new List<int>();
+        
+        
+        for(int i = 0; i < query.Count; i++)
+        {
+            int individualResult = 0;
+            
+            var anagrams = GetAnagram(query[i]);
+            
+            for (int j = 0; j < anagrams.Count; j++)
+            {
+                if(dictionary.Contains(anagrams[j]))
+                {
+                    individualResult++;
+                }
+            }
+            
+            result.Add(individualResult);
+        }
+        
+        return result;
+        
+    }
+    
+    private static List<string> GetAnagram(string query)
+    {
+        var anagrams = new List<string>();
+        
+        GetAnagram2(anagrams, query, "");
+        
+        return anagrams;
+    }
+    
+    private static void GetAnagram2(List<string> p, string q, IEnumerable<char> r)
+    {
+        
+        if(q.Length == 1)
+        {
+            r.Append(q[0]);
+            p.Add((string) r);
+        }
+        else
+        {
+            for (int i = 0; i < q.Length; i++)
+            {
+                GetAnagram2(p, q.Remove(i, 1), r.Append(q[i]));
+            }
+        }
     }
 }

@@ -725,6 +725,8 @@ GameObject:
   - component: {fileID: 6360242508814201159}
   - component: {fileID: 5401684490589787660}
   - component: {fileID: 1325965760595999478}
+  - component: {fileID: -2277498111195250898}
+  - component: {fileID: 8800679675692300505}
   m_Layer: 0
   m_Name: Dragonfly
   m_TagString: Untagged
@@ -817,6 +819,41 @@ PolygonCollider2D:
       - {x: 0.3997116, y: 0.54929197}
       - {x: 0.09937668, y: 0.538955}
       - {x: 0.10537958, y: 0.70730394}
+--- !u!50 &-2277498111195250898
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613056746524110214}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &8800679675692300505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613056746524110214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5f3a906e8e30249823c8a85bcffc73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  insectDead: {fileID: 4438845209601847004, guid: 9c4e003614fbc5b40b4374bf0e9d1fb1,
+    type: 3}
 --- !u!1 &6731644369908638832
 GameObject:
   m_ObjectHideFlags: 0

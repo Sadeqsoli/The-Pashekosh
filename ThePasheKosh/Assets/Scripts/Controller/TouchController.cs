@@ -21,16 +21,19 @@ public class TouchController : MonoBehaviour
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
-                // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
-                if (hitInfo)
+                if (!(Camera.main is null))
                 {
-                    EventManager.TriggerEvent("TouchedCollider", hitInfo.collider.gameObject);
-                    // Here you can check hitInfo to see which collider has been hit, and act appropriately.
-                }
-                else
-                {
-                    EventManager.TriggerEvent("TouchedScreen");
+                    RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
+                    // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
+                    if (hitInfo)
+                    {
+                        EventManager.TriggerEvent(Events.TouchCollider, hitInfo.collider.gameObject);
+                        // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                    }
+                    else
+                    {
+                        EventManager.TriggerEvent(Events.TouchScreen);
+                    }
                 }
             }
         }
@@ -41,16 +44,19 @@ public class TouchController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
-            // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
-            if (hitInfo)
+            if (!(Camera.main is null))
             {
-                EventManager.TriggerEvent("TouchCollider", hitInfo.collider.gameObject);
-                // Here you can check hitInfo to see which collider has been hit, and act appropriately.
-            }
-            else
-            {
-                EventManager.TriggerEvent("TouchScreen");
+                RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
+                // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
+                if (hitInfo)
+                {
+                    EventManager.TriggerEvent(Events.TouchCollider, hitInfo.collider.gameObject);
+                    // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                }
+                else
+                {
+                    EventManager.TriggerEvent(Events.TouchScreen);
+                }
             }
         }
     }

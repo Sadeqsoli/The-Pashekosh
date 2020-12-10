@@ -9,10 +9,10 @@ public class Timers : Singleton<Timers>
     private Dictionary<string, float> _coroutineTimePassed;
     private List<string> _timersNameList;
 
-    Coroutine repeatedActionTimer;
+    private Coroutine repeatedActionTimer;
 
-    private int maximumTimerCounterNumber = 200;
-    public int TimerCounterStartNumber { get; private set; }
+    private const int MaximumTimerCounterNumber = 200;
+    private int TimerCounterStartNumber { get; set; }
 
 
     private void OnEnable()
@@ -31,7 +31,7 @@ public class Timers : Singleton<Timers>
     public void StartTimeCounter(int amountOfTimeInSeconds, string finishedTimerCounterEvent, string everySecondsEvent = null)
     {
         TimerCounterStartNumber = amountOfTimeInSeconds > 0 ? amountOfTimeInSeconds : 0;
-        TimerCounterStartNumber = TimerCounterStartNumber < maximumTimerCounterNumber ? TimerCounterStartNumber : maximumTimerCounterNumber;
+        TimerCounterStartNumber = TimerCounterStartNumber < MaximumTimerCounterNumber ? TimerCounterStartNumber : MaximumTimerCounterNumber;
         StartCoroutine(StartGameTimer(TimerCounterStartNumber, finishedTimerCounterEvent, everySecondsEvent));
     }
     IEnumerator StartGameTimer(int timerCounterStartNumber, string finishedEvent, string eachSecondEvent = null)
@@ -44,12 +44,12 @@ public class Timers : Singleton<Timers>
             counter--;
         }
         if(finishedEvent != null)
-        EventManager.TriggerEvent(finishedEvent);
+            EventManager.TriggerEvent(finishedEvent);
     }
 
-    public void StartRepeatedAction(float timeBetween, UnityAction<float> Action)
+    public void StartRepeatedAction(float timeBetween, UnityAction<float> action)
     {
-        repeatedActionTimer = StartCoroutine(StartGameTimer(timeBetween, Action));
+        repeatedActionTimer = StartCoroutine(StartGameTimer(timeBetween, action));
     }
     
     public void StopRepeatedAction()
@@ -60,12 +60,12 @@ public class Timers : Singleton<Timers>
         repeatedActionTimer = null;
     }
 
-    IEnumerator StartGameTimer(float timeBetween, UnityAction<float> Action)
+    IEnumerator StartGameTimer(float timeBetween, UnityAction<float> action)
     {
         while (true)
         {
             yield return new WaitForSeconds(timeBetween);
-            if (Action != null) Action.Invoke(timeBetween);
+            if (action != null) action.Invoke(timeBetween);
         }
 
     }
@@ -138,16 +138,16 @@ public class Timers : Singleton<Timers>
         }
         
     }
-    IEnumerator CountMiliseconds(string nameOfCoroutine, float timeToWait = 0f)
+    IEnumerator CountMiliseconds(string nameOfCoroutine, float waitingTime = 0f)
     {
         _coroutineTimePassed[nameOfCoroutine] = 0;
-        float _timeToWait = timeToWait;
+        float timeToWait = waitingTime;
         while (true)
         {
             yield return new WaitForSeconds(0.1f);
-            if (_timeToWait > 0f)
+            if (timeToWait > 0f)
             {
-                _timeToWait -= 0.1f;
+                timeToWait -= 0.1f;
             }
             else
             {

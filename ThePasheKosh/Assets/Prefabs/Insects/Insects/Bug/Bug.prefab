@@ -1508,6 +1508,8 @@ GameObject:
   - component: {fileID: 6495926173251122219}
   - component: {fileID: 8513543094175482227}
   - component: {fileID: 7151488843017097092}
+  - component: {fileID: -7078294415741737188}
+  - component: {fileID: -1013099772203024664}
   m_Layer: 0
   m_Name: Bug
   m_TagString: Untagged
@@ -1589,6 +1591,43 @@ CapsuleCollider2D:
   m_Offset: {x: 0.009029865, y: 0.020279944}
   m_Size: {x: 0.6354461, y: 1.2572738}
   m_Direction: 0
+--- !u!50 &-7078294415741737188
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916369396275032093}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-1013099772203024664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916369396275032093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15eed3a956470bf458a6ce1a7ec87699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  insectDead: {fileID: 3874488401858310097, guid: c93a40316219f0045a7e7df915c06dac,
+    type: 3}
+  addedPoints: 7
+  impactRate: 2
 --- !u!1 &8181181123699880961
 GameObject:
   m_ObjectHideFlags: 0
