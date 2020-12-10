@@ -7,11 +7,14 @@ using UnityEngine.UI;
 
 
 [System.Serializable]
-public struct CakeInfo
+public struct FoodInfo
 {
-    public string cakeName;
-    public GameObject cakePrefab;
-    public List<Sprite> cakeSprites;
+    [FormerlySerializedAs("cakeName")] 
+    public string foodName;
+    [FormerlySerializedAs("cakePrefab")] 
+    public GameObject foodPrefab;
+    [FormerlySerializedAs("cakeSprites")] 
+    public List<Sprite> foodSprites;
 }
 
 
@@ -21,10 +24,10 @@ public class GameManager : Singleton<GameManager>
 
     public LevelParameters[] levels;
 
+    [FormerlySerializedAs("cakes")]
     [Space]
     [Space]
-
-    public List<CakeInfo> cakes;
+    public List<FoodInfo> foods;
 
     [Space]
     [Space]
@@ -34,8 +37,7 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region Private Variables
-    [Space] [SerializeField] SpriteRenderer spriteRenderer;
-    int _cakeIndex = 0;
+    int foodIndex = 0;
     int _currentLevel = 0;
 
     float _timer;
@@ -45,7 +47,7 @@ public class GameManager : Singleton<GameManager>
     public void UpdateHealth(float health, float maxHealth)
     {
         gameUIManager.UpdateHealth(health);
-        HealthFill.ShowHealth(health, maxHealth);
+        //HealthFill.ShowHealth(health, maxHealth);
     }
 
     void Start()
@@ -59,9 +61,8 @@ public class GameManager : Singleton<GameManager>
         }
 
         AddEvents();
+        
         AddListeners();
-
-        CakeManager.Instance.PutTheCakes(cakes[_cakeIndex]);
 
         LoadLevel();
 
@@ -69,6 +70,8 @@ public class GameManager : Singleton<GameManager>
         Timers.Instance.StartRepeatedAction(1f, AddToTimer);
 
         gameUIManager.Initialize(0, 100);
+        
+        FoodManager.Instance.MakeTheFoodReady(foods[foodIndex]);
     }
 
     #region Events Handling
@@ -87,8 +90,8 @@ public class GameManager : Singleton<GameManager>
             // Whenever an insect is killed, this event will be invoked with the insect game object as a parameter
             EventManager.AddGameObjectEvent(Events.InsectKilled);
 
-            // Whenever a piece of cake is completely destroyed, this event will be invoked
-            EventManager.AddGameObjectEvent(Events.CakePieceDestroyed);
+            // Whenever a piece of food is completely destroyed, this event will be invoked
+            EventManager.AddGameObjectEvent(Events.FoodDestruction);
         }
         else
         {
@@ -120,7 +123,6 @@ public class GameManager : Singleton<GameManager>
     void LoadLevel()
     {
         Timers.Instance.StartTimer(levels[_currentLevel].levelParameters.passLevelTime, GoToNextLevel);
-
         InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
     }
 

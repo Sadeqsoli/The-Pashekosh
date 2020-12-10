@@ -18,7 +18,7 @@ public class Insect : MonoBehaviour
     protected Animator animatorComponent;
 
     protected Collider2D[] targetsCollider;
-    protected Collider2D cakeCollider;
+    protected Collider2D foodCollider;
     protected Collider2D colliderComponent;
 
     protected Rigidbody2D rigidBody2d;
@@ -63,9 +63,9 @@ public class Insect : MonoBehaviour
         EventManager.StartListening(Events.TouchCollider, KillHandling);
     }
 
-    public void SetCakeCollider(Collider2D cake)
+    public void SetFoodCollider(Collider2D food)
     {
-        cakeCollider = cake;
+        foodCollider = food;
     }
 
     protected virtual void Update()

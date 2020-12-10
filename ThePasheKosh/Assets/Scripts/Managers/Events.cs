@@ -9,7 +9,7 @@ public struct Events
 
     public static string InsectKilled { get; } = "InsectKilled";
 
-    public static string CakePieceDestroyed { get; } = "CakePieceDestroyed";
+    public static string FoodDestruction { get; } = "FoodDestruction";
 
     public static string TouchGameObject { get; } = "TouchGameObject";
     

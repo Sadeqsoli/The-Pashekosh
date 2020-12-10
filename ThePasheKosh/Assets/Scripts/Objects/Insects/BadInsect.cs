@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum BadInsectState { TowardsCake, OnCake, Stop }
+public enum BadInsectState { TowardsFood, OnFood, Stop }
 
 
 public class BadInsect : Insect
 {
     public int addedPoints;
     public int impactRate;
-    private static readonly int OnCake = Animator.StringToHash("OnCake");
+    private static readonly int OnFood = Animator.StringToHash("OnFood");
 
-    public bool IsOnCake { get; private set; }
+    public bool IsOnFood { get; private set; }
 
     public BadInsectState CurrentState { get; private set; }
 
@@ -22,10 +22,10 @@ public class BadInsect : Insect
 
         switch (CurrentState)
         {
-            case BadInsectState.TowardsCake:
+            case BadInsectState.TowardsFood:
                 Move();
                 break;
-            case BadInsectState.OnCake:
+            case BadInsectState.OnFood:
                 rigidBody2d.velocity = new Vector2(0, 0);
                 Move();
                 break;
@@ -33,16 +33,16 @@ public class BadInsect : Insect
                 break;
         }
 
-        if (cakeCollider != null && !cakeCollider.IsTouching(colliderComponent))
+        if (foodCollider != null && !foodCollider.IsTouching(colliderComponent))
         {
-            cakeCollider = null;
-            if (CurrentState == BadInsectState.OnCake) GoToFlyState();
+            foodCollider = null;
+            if (CurrentState == BadInsectState.OnFood) GoToFlyState();
         }
     }
 
     public void Initialize(Vector2 endPoint, float speedOfInsect, float rotationSpeed, float randomDirectionPercent)
     {
-        CurrentState = BadInsectState.TowardsCake;
+        CurrentState = BadInsectState.TowardsFood;
         GoToFlyState();
 
         Initialize(endPoint, null, speedOfInsect, rotationSpeed, randomDirectionPercent);
@@ -55,11 +55,11 @@ public class BadInsect : Insect
     {
         if (animatorComponent != null)
         {
-            animatorComponent.SetBool(OnCake, true);
+            animatorComponent.SetBool(OnFood, true);
         }
         speed /= 10;
         rotationSpeed *= 2f;
-        CurrentState = BadInsectState.OnCake;
+        CurrentState = BadInsectState.OnFood;
     }
 
     public void GoToFlyState()
@@ -67,14 +67,14 @@ public class BadInsect : Insect
 
         if (animatorComponent != null)
         {
-            animatorComponent.SetBool(OnCake, false);
+            animatorComponent.SetBool(OnFood, false);
         }
-        if (CurrentState == BadInsectState.OnCake)
+        if (CurrentState == BadInsectState.OnFood)
         {
             speed *= 10;
             rotationSpeed /= 2f;
         }
-        CurrentState = BadInsectState.TowardsCake;
+        CurrentState = BadInsectState.TowardsFood;
     }
     #endregion
 

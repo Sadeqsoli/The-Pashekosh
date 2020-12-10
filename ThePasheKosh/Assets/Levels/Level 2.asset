@@ -15,7 +15,9 @@ MonoBehaviour:
   levelParameters:
     badInsectParameters:
       insectsName:
-      - Fly
+      - Bug
+      - BlueHousefly
+      - Masquote
       timeBetweenSpawn:
         min: 2
         max: 4
@@ -28,6 +30,7 @@ MonoBehaviour:
       randomnessOfDirection: 0.051
     goodInsectPrarmeters:
       insectsName:
+      - Bee
       - Butterfly
       - Dragonfly
       timeBetweenSpawn:
