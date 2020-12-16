@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b9b00e2229610064d85fce98eb7b987e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Sahel
+  fontNames:
+  - Sahel
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 79d1ec6fecb6c1547a31c88b5458cb07, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

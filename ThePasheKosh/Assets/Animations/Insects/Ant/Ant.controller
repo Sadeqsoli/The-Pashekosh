@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: OnCake
+    m_ConditionEvent: OnFood
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 277802199800746304}
@@ -34,7 +34,7 @@ AnimatorController:
   m_Name: Ant
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: OnCake
+  - m_Name: OnFood
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -89,7 +89,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: OnCake
+    m_ConditionEvent: OnFood
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7458796323460177481}

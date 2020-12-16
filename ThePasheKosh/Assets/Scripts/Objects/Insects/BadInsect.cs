@@ -40,12 +40,12 @@ public class BadInsect : Insect
         }
     }
 
-    public void Initialize(Vector2 endPoint, float speedOfInsect, float rotationSpeed, float randomDirectionPercent)
+    public void Initialize(Vector2 endPoint, float insectSpeed, float rotSpeed, float randDirectionRatio)
     {
         CurrentState = BadInsectState.TowardsFood;
         GoToFlyState();
 
-        Initialize(endPoint, null, speedOfInsect, rotationSpeed, randomDirectionPercent);
+        Initialize(endPoint, null, insectSpeed, rotSpeed, randDirectionRatio);
         IsBadInsect = true;
     }
 

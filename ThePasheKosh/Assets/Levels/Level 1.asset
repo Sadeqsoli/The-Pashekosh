@@ -18,8 +18,8 @@ MonoBehaviour:
       - Ant
       - Bug
       timeBetweenSpawn:
-        min: 2
-        max: 4
+        min: 30
+        max: 40
       insectSpeed:
         min: 10
         max: 25
@@ -31,8 +31,8 @@ MonoBehaviour:
       insectsName:
       - Bee
       timeBetweenSpawn:
-        min: 5
-        max: 10
+        min: 30
+        max: 40
       insectSpeed:
         min: 10
         max: 15

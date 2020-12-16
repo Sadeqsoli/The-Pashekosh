@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-#region Creating InsectPool Struct
+#region Creating ItemPool Struct
 [System.Serializable]
 struct PoolStruc
 {

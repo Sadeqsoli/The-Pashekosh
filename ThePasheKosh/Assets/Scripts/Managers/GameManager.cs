@@ -34,6 +34,9 @@ public class GameManager : Singleton<GameManager>
 
     public UIManager gameUIManager;
 
+    [Space] 
+    public SpriteRenderer background;
+
     #endregion
 
     #region Private Variables
@@ -53,7 +56,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         //To Fit Camera Side to Side With The Screen
-        //CameraScaler.CameraFit(spriteRenderer);
+        CameraScaler.CameraFit(background);
         if (!PlayerPrefs2.GetBool("MoreThanOneTime"))
         {
             PlayerPrefs2.SetBool("MoreThanOneTime", true);

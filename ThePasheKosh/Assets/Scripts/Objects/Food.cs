@@ -97,7 +97,6 @@ public class Food : MonoBehaviour
                     badInsectsWithColliders.RemoveAt(i);
                     i--;
 
-                    UpdateSprite();
                 }
             }
         }
@@ -107,7 +106,7 @@ public class Food : MonoBehaviour
     {
         var losingHealth = maxHealth - Health;
         var part = maxHealth / foodSprites.Count;
-
+        
         var currentSprite = foodSprites[(int) (losingHealth / part)];
 
         if (spriteRenderer.sprite != currentSprite)
@@ -130,6 +129,8 @@ public class Food : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             AddHealth(-damage);
+            
+            UpdateSprite();
         }
 
         isCoroutineRunning = false;
@@ -144,7 +145,7 @@ public class Food : MonoBehaviour
         {
             BadInsect insectComponent = collision.gameObject.GetComponent<BadInsect>();
 
-            if (insectComponent.CurrentState != BadInsectState.OnFood && Random.value > 0.3f)
+            if (insectComponent.CurrentState != BadInsectState.OnFood)
             {
                 insectComponent.GoToWalkState();
                 insectComponent.SetFoodCollider(GetComponent<Collider2D>());
