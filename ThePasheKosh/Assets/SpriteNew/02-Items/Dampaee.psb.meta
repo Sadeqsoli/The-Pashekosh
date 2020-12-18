@@ -156,7 +156,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 2}
   platformSettings: []
   mosaicLayers: 1
-  documentPivot: {x: 0.4943561, y: 0.773068}
+  documentPivot: {x: 0.4943561, y: 0.73}
   documentAlignment: 9
   importHiddenLayers: 0
   importedTextureWidth: 512
