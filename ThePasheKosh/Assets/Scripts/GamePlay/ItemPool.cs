@@ -116,7 +116,7 @@ public class ItemPool : MonoBehaviour
         }
         else
         {
-            Debug.LogError("The name doesn't exist in the pool list.");
+            Debug.LogError(name + " doesn't exist in the pool list.");
         }
     }
 

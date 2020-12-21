@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4848258693290956937}
   - component: {fileID: 7367917594682643501}
   - component: {fileID: 2622008598447178263}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1075117073
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 1086028744120377352, guid: 98905a2642fbac4458dfc7ae20e1a33f,
     type: 3}
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5108965765526898188}
   m_Bounds:
-    m_Center: {x: -0.016931653, y: -1.3832486, z: 1.38348}
-    m_Extent: {x: 1.0451996, y: 2.1806679, z: 1.4161421}
+    m_Center: {x: -0.016931653, y: -0.97344303, z: 0}
+    m_Extent: {x: 1.0451998, y: 2.6001484, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &3994385687681618402
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5108965765526898188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,8 @@ GameObject:
   - component: {fileID: 7899565894796439743}
   - component: {fileID: 1766636524499913325}
   - component: {fileID: 1766636524499913324}
-  m_Layer: 0
+  - component: {fileID: -7686601568663001520}
+  m_Layer: 8
   m_Name: GoshtKob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6770848583200351150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4447544, y: -0.6171386, z: 0}
+  m_LocalPosition: {x: -2.4447544, y: -0.6171386, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5108965765526898188}
@@ -202,3 +203,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &-7686601568663001520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770848583200351150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4702e0a63dac4c54a93c3935273081f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactsNames:
+  - HitImpact1

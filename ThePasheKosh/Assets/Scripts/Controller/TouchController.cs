@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 
 public class TouchController : MonoBehaviour
 {
 
-    Vector2 pos;
+    Vector3 pos;
 
     /// <summary>
     /// Handling Touch
@@ -19,6 +21,9 @@ public class TouchController : MonoBehaviour
     {
         if (Input.touchCount>0)
         {
+            var weaponPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            ShowImpact(weaponPos);
+            
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 if (!(Camera.main is null))
@@ -43,7 +48,11 @@ public class TouchController : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            pos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20f);
+
+            var weaponPos = Camera.main.ScreenToWorldPoint(pos);
+            ShowImpact(weaponPos);
+            
             if (!(Camera.main is null))
             {
                 RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
@@ -59,5 +68,10 @@ public class TouchController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ShowImpact(Vector3 weaponPos)
+    {
+        ItemPool.InstantiateGameObjectByName("Dampaee", weaponPos, quaternion.identity);
     }
 }

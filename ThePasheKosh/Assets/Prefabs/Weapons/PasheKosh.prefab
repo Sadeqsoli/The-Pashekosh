@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4845269639567769658}
   - component: {fileID: 4258029822938187582}
   - component: {fileID: 7447300316756338841}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1075117073
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -88369546433858676, guid: d6ceb7eda1486e340a27a86d31cbb9a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1975981678200675732}
   m_Bounds:
-    m_Center: {x: -0.027764916, y: -1.6155326, z: 1.9851394}
-    m_Extent: {x: 0.97502136, y: 3.0194623, z: 2.0328526}
+    m_Center: {x: -0.027785659, y: -1.0095541, z: 0}
+    m_Extent: {x: 0.97500014, y: 3.6400006, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7255294693984747904
@@ -113,7 +113,8 @@ GameObject:
   - component: {fileID: 2482617802190421536}
   - component: {fileID: 4283933548671512797}
   - component: {fileID: 4283933548671512798}
-  m_Layer: 0
+  - component: {fileID: -1765651212845922952}
+  m_Layer: 8
   m_Name: PasheKosh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7255294693984747904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5678341, y: 1.1688889, z: 0}
+  m_LocalPosition: {x: -2.5678341, y: 1.1688889, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1975981678200675732}
@@ -171,6 +172,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &-1765651212845922952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255294693984747904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4702e0a63dac4c54a93c3935273081f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactsNames:
+  - HitImpact1
 --- !u!1 &8022162163003889166
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975981678200675732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

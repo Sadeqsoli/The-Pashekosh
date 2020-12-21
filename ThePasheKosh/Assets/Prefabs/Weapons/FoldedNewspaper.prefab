@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8703540217495617986}
   - component: {fileID: 439035599024053697}
   - component: {fileID: 8696190815605805116}
-  m_Layer: 0
+  - component: {fileID: 6552289422904019568}
+  m_Layer: 8
   m_Name: FoldedNewspaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846607175831609817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.109429, y: -0.67576635, z: 0}
+  m_LocalPosition: {x: -3.109429, y: -0.67576635, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6607999268677767079}
@@ -69,6 +70,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!114 &6552289422904019568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846607175831609817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4702e0a63dac4c54a93c3935273081f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactsNames:
+  - HitImpact1
 --- !u!1 &2466124180040928096
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6607999268677767079}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +125,7 @@ GameObject:
   - component: {fileID: 2995975493182473181}
   - component: {fileID: 7565912317988174626}
   - component: {fileID: 8084462533458093955}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,8 +182,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1075117073
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -5444226094865584470, guid: dae0ebfa0c550644d95815aa705bd861,
     type: 3}
@@ -198,7 +213,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 6607999268677767079}
   m_Bounds:
-    m_Center: {x: 0.032084048, y: -1.3777039, z: 0.13888596}
-    m_Extent: {x: 0.68428266, y: 2.3496988, z: 0.1486498}
+    m_Center: {x: 0.03208506, y: -1.3733108, z: 0}
+    m_Extent: {x: 0.68428266, y: 2.354396, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

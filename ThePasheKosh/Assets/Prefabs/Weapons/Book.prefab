@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3632694788587837342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 8873548901733047188}
   - component: {fileID: 505191563214275423}
   - component: {fileID: 1986964624502982901}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,8 +98,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1075117073
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 5299110056163986524, guid: 4c3752064dae58147bc1e073c3fe97de,
     type: 3}
@@ -131,8 +131,8 @@ MonoBehaviour:
   - {fileID: 5016964813770708833}
   - {fileID: 3632694788587837342}
   m_Bounds:
-    m_Center: {x: 0.05092442, y: -2.2949347, z: -1.5723312}
-    m_Extent: {x: 0.813228, y: 2.56148, z: 1.8679426}
+    m_Center: {x: 0.05091828, y: -1.7633305, z: -0.52814996}
+    m_Extent: {x: 0.8132207, y: 2.5445747, z: 0.845217}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4022493575527761417
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5016964813770708833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,8 @@ GameObject:
   - component: {fileID: 3723306790044519313}
   - component: {fileID: 1521467663911995518}
   - component: {fileID: 1521467663911995517}
-  m_Layer: 0
+  - component: {fileID: 6045832448645512259}
+  m_Layer: 8
   m_Name: Book
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6689825780927209113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.048977375, y: 0.071372986, z: 0}
+  m_LocalPosition: {x: 0.048977375, y: 0.071372986, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4659239241934642527}
@@ -234,6 +235,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &6045832448645512259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6689825780927209113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4702e0a63dac4c54a93c3935273081f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactsNames:
+  - HitImpact1
 --- !u!1 &8548657207924502640
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4659239241934642527}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

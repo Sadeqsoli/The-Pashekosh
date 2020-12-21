@@ -47,13 +47,12 @@ public class InsectManager : Singleton<InsectManager>
         Coroutine goodCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.goodInsectPrarmeters, false));
         allSpawnCoroutines.Add(badCoroutine);
         // GoodInsectCoroutine
-
-
     }
 
     IEnumerator SpawnCoroutine(InsectParameters insectParams, bool isBadInsect)
     {
-        yield return new WaitForSeconds(Random.Range(0, insectParams.timeBetweenSpawn.max));
+        yield return new WaitForSeconds(Random.Range(1f, 2f));
+        
         while (true)
         {
             GameObject newInsect;
@@ -95,7 +94,7 @@ public class InsectManager : Singleton<InsectManager>
 
             existedInsects.Add(newInsect);
 
-            float randomTime = Random.Range(insectParams.timeBetweenSpawn.min, insectParams.timeBetweenSpawn.max);
+            var randomTime = Random.Range(insectParams.timeBetweenSpawn.min, insectParams.timeBetweenSpawn.max);
             yield return new WaitForSeconds(randomTime);
         }
     }

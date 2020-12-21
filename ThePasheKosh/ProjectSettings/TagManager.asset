@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - Cake
+  - Weapon
   - GoodInsect
   - BadInsect
-  - Weapon
+  - Cake
   - 
   - 
   - 
@@ -48,7 +48,7 @@ TagManager:
     uniqueID: 277973225
     locked: 0
   - name: Cake
-    uniqueID: 1075117073
+    uniqueID: 3571974949
     locked: 0
   - name: GoodInsect
     uniqueID: 3164724471
@@ -56,6 +56,9 @@ TagManager:
   - name: BadInsect
     uniqueID: 1999928735
     locked: 0
+  - name: Weapon
+    uniqueID: 1075117073
+    locked: 0
   - name: UI
-    uniqueID: 3571974949
+    uniqueID: 3355457717
     locked: 0

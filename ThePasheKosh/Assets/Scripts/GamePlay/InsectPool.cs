@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 
 #region Creating ItemPool Struct
 [System.Serializable]
-struct PoolStruc
+internal struct PoolStruc
 {
     public string nameOfPool;
     public int initialSizeOfPool;
     public GameObject poolGameObject;
 }
+
 #endregion
 
 public class InsectPool : MonoBehaviour
 {
     #region private Fields
-    [FormerlySerializedAs("_pools")] [SerializeField] PoolStruc[] pools;
+    [FormerlySerializedAs("_pools")] [SerializeField] List<PoolStruc> pools;
 
-    private static PoolStruc[] _pools;
+    private static List<PoolStruc> _pools;
     private static Dictionary<string, List<GameObject>> _poolsContent;
     private static Dictionary<string, GameObject> _parents;
     
     private GameObject newGameObject;
     private GameObject parent;
+
+    private static bool _instantiateWaiting;
+
     #endregion
 
     #region private Methods
@@ -35,28 +40,44 @@ public class InsectPool : MonoBehaviour
 
     void InitializePoolsOnStart()
     {
-        for (int i=0; i < pools.Length; i++)
+        
+        for (int i=0; i < pools.Count; i++)
         {
             pools[i].poolGameObject.name = pools[i].nameOfPool;
         }
 
         // ############# initialize ######################
-        _pools = pools;
+        _pools = new List<PoolStruc>(pools);
         _poolsContent = new Dictionary<string, List<GameObject>>();
         _parents = new Dictionary<string, GameObject>();
         // ################################################
+        
+        StartCoroutine(CreateEachPool());
 
-        for (int i = 0; i < _pools.Length; i++)
+    }
+
+    IEnumerator CreateEachPool()
+    {
+        for (int i = 0; i < _pools.Count; i++)
         {
+            _instantiateWaiting = false;
+            
             string nameOfPool = _pools[i].nameOfPool;
             parent = new GameObject(_pools[i].nameOfPool);
             parent.transform.SetParent(this.transform);
+            
             _parents.Add(nameOfPool, parent);
+
             _poolsContent.Add(nameOfPool, new List<GameObject>());
             StartCoroutine(InstantiatePoolsContent
                 (_pools[i], parent.transform));
+            
+            _instantiateWaiting = true;
+
+            yield return new WaitUntil(() => !_instantiateWaiting);
         }
     }
+    
 
     IEnumerator InstantiatePoolsContent(PoolStruc pool, Transform poolParent)
     {
@@ -70,7 +91,10 @@ public class InsectPool : MonoBehaviour
             _poolsContent[pool.nameOfPool].Add(newGameObject);
 
             yield return new WaitForEndOfFrame();
+            
         }
+
+        _instantiateWaiting = false;
     }
 
     #endregion
@@ -86,7 +110,7 @@ public class InsectPool : MonoBehaviour
             if (poolCurrentSize > 0)
             {
                 var returnGameObject = _poolsContent[nameOfObject][poolCurrentSize - 1];
-                _poolsContent[nameOfObject].Remove(returnGameObject);
+                _poolsContent[nameOfObject].RemoveAt(poolCurrentSize - 1);
 
                 returnGameObject.SetActive(true);
                 returnGameObject.transform.position = pos;
@@ -96,7 +120,7 @@ public class InsectPool : MonoBehaviour
             }
             else
             {
-                for(int i = 0; i < _pools.Length; i++)
+                for(int i = 0; i < _pools.Count; i++)
                 {
                     if (_pools[i].nameOfPool == nameOfObject)
                     {
@@ -110,10 +134,8 @@ public class InsectPool : MonoBehaviour
                 return null;
             }
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 
     public static void DestroyGameObjectByName(string name, GameObject destroyedGameObject)

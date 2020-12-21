@@ -124,10 +124,10 @@ public class Insect : MonoBehaviour
             EventManager.TriggerEvent(Events.InsectKilled, gameObject);
 
             EventManager.StopListening(Events.TouchCollider, KillHandling);
+            
+            InsectPool.DestroyGameObjectByName(name, gameObject);
 
             InsectPool.InstantiateGameObjectByName(name + "_Dead", transform.position, transform.rotation);
-
-            InsectPool.DestroyGameObjectByName(name, gameObject);
         }
     }
 

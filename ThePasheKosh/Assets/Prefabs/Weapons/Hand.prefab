@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1822499916685953782}
   - component: {fileID: 585362958132983604}
   - component: {fileID: 3377838484506325494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1075117073
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 525967359236464442, guid: 34910e5e50b1a984ebde1fc8c7103e65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1400389800257306150}
   m_Bounds:
-    m_Center: {x: 0.19977152, y: -1.5209754, z: 2.1521919}
-    m_Extent: {x: 1.3681316, y: 3.232352, z: 2.2633166}
+    m_Center: {x: 0.19977105, y: -0.84239197, z: 0}
+    m_Extent: {x: 1.3681322, y: 3.9459734, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &6798919982935976596
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1400389800257306150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,8 @@ GameObject:
   - component: {fileID: 4474711944375648353}
   - component: {fileID: 7141582069649595210}
   - component: {fileID: 4143301225187231780}
-  m_Layer: 0
+  - component: {fileID: 6057406752651520530}
+  m_Layer: 8
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8400739787316802364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5344201, y: 0.045767546, z: 0}
+  m_LocalPosition: {x: -1.5344201, y: 0.045767546, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1400389800257306150}
@@ -201,3 +202,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &6057406752651520530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8400739787316802364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4702e0a63dac4c54a93c3935273081f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactsNames:
+  - HitImpact1
