@@ -32,7 +32,8 @@ public class Food : MonoBehaviour
 
     private List<Sprite> foodSprites;
 
-    [field: SerializeField] public float Health { get; private set; }
+    [field: SerializeField] 
+    public float Health { get; private set; }
 
     #region Methods
 
@@ -53,6 +54,8 @@ public class Food : MonoBehaviour
         updateHealthCoroutine = StartCoroutine(UpdateHealthCoroutine());
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
+        EventManager.StartListening(Events.TouchCollider, OnCakeHit);
     }
 
     private float Damage
@@ -83,6 +86,8 @@ public class Food : MonoBehaviour
         if (isCoroutineRunning) StopCoroutine(updateHealthCoroutine);
 
         GetComponent<SpriteRenderer>().sprite = null;
+        
+        Timers.Instance.StartTimer(1, () => EventManager.TriggerEvent(Events.FoodDestruction));
     }
 
     void Update()
@@ -104,8 +109,10 @@ public class Food : MonoBehaviour
 
     private void UpdateSprite()
     {
-        var losingHealth = maxHealth - Health;
+        var losingHealth = maxHealth - Health < maxHealth? maxHealth - Health : maxHealth - 1;
         var part = maxHealth / foodSprites.Count;
+        
+        
         
         var currentSprite = foodSprites[(int) (losingHealth / part)];
 
@@ -135,7 +142,6 @@ public class Food : MonoBehaviour
 
         isCoroutineRunning = false;
 
-        EventManager.TriggerEvent(Events.FoodDestruction, this.gameObject);
         RemoveFood();
     }
 
@@ -167,6 +173,12 @@ public class Food : MonoBehaviour
     {
         damage = 0;
         isInitialized = false;
+    }
+
+    private void OnCakeHit(GameObject hit)
+    {
+        if(hit == gameObject)
+            Health -= maxHealth / 2;
     }
 
     #endregion

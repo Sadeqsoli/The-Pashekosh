@@ -22,12 +22,12 @@ MonoBehaviour:
         min: 30
         max: 40
       insectSpeed:
-        min: 10
-        max: 15
+        min: 50
+        max: 70
       insectRotSpeed:
         min: 50
         max: 70
-      randomnessOfDirection: 0.051
+      randomnessOfDirection: 0.204
     goodInsectPrarmeters:
       insectsName:
       - Bee
@@ -37,10 +37,10 @@ MonoBehaviour:
         min: 30
         max: 40
       insectSpeed:
-        min: 10
-        max: 15
+        min: 50
+        max: 100
       insectRotSpeed:
         min: 20
         max: 30
-      randomnessOfDirection: 0.068
+      randomnessOfDirection: 0.136
     passLevelTime: 30

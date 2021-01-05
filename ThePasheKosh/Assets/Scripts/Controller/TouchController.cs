@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
 public class TouchController : MonoBehaviour
 {
+    
+    public string usingWeapon;
 
     Vector3 pos;
 
@@ -72,6 +75,6 @@ public class TouchController : MonoBehaviour
 
     public void ShowImpact(Vector3 weaponPos)
     {
-        ItemPool.InstantiateGameObjectByName("Dampaee", weaponPos, quaternion.identity);
+        ItemPool.InstantiateGameObjectByName(usingWeapon, weaponPos, quaternion.identity);
     }
 }

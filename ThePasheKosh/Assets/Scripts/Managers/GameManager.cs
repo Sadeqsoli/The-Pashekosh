@@ -94,7 +94,7 @@ public class GameManager : Singleton<GameManager>
             EventManager.AddGameObjectEvent(Events.InsectKilled);
 
             // Whenever a piece of food is completely destroyed, this event will be invoked
-            EventManager.AddGameObjectEvent(Events.FoodDestruction);
+            EventManager.AddEventWithNoParamter(Events.FoodDestruction);
         }
         else
         {
