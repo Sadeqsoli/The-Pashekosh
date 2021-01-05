@@ -18,7 +18,7 @@ MonoBehaviour:
       - Ant
       - Bug
       timeBetweenSpawn:
-        min: 4
+        min: 3
         max: 10
       insectSpeed:
         min: 30

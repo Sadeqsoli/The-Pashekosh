@@ -19,8 +19,8 @@ MonoBehaviour:
       - BlueHousefly
       - Masquote
       timeBetweenSpawn:
-        min: 30
-        max: 40
+        min: 2
+        max: 8
       insectSpeed:
         min: 50
         max: 70
@@ -34,8 +34,8 @@ MonoBehaviour:
       - Butterfly
       - Dragonfly
       timeBetweenSpawn:
-        min: 30
-        max: 40
+        min: 10
+        max: 15
       insectSpeed:
         min: 50
         max: 100
