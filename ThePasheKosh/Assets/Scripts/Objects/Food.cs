@@ -87,7 +87,7 @@ public class Food : MonoBehaviour
 
         GetComponent<SpriteRenderer>().sprite = null;
         
-        Timers.Instance.StartTimer(1, () => EventManager.TriggerEvent(Events.FoodDestruction));
+        EventManager.TriggerEvent(Events.FoodDestruction);
     }
 
     void Update()
@@ -111,8 +111,6 @@ public class Food : MonoBehaviour
     {
         var losingHealth = maxHealth - Health < maxHealth? maxHealth - Health : maxHealth - 1;
         var part = maxHealth / foodSprites.Count;
-        
-        
         
         var currentSprite = foodSprites[(int) (losingHealth / part)];
 
@@ -155,7 +153,7 @@ public class Food : MonoBehaviour
             {
                 insectComponent.GoToWalkState();
                 insectComponent.SetFoodCollider(GetComponent<Collider2D>());
-
+                
                 InsectWithCollider newInsectWithCollider;
                 newInsectWithCollider.collider = collision;
                 newInsectWithCollider.insect = insectComponent;

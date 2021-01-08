@@ -4,6 +4,7 @@ using System.Globalization;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TouchController : MonoBehaviour
 {
@@ -22,10 +23,9 @@ public class TouchController : MonoBehaviour
 
     public void TouchHandling()
     {
-        if (Input.touchCount>0)
+        if (Input.touchCount>0 && GameManager.Instance.IsTouchable)
         {
             var weaponPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-            ShowImpact(weaponPos);
             
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
@@ -35,12 +35,17 @@ public class TouchController : MonoBehaviour
                     // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
                     if (hitInfo)
                     {
-                        EventManager.TriggerEvent(Events.TouchCollider, hitInfo.collider.gameObject);
-                        // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                        if (!hitInfo.collider.CompareTag("Button"))
+                        {
+                            EventManager.TriggerEvent(Events.TouchCollider, hitInfo.collider.gameObject);
+                            // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                            ShowImpact(weaponPos);
+                        }
                     }
                     else
                     {
                         EventManager.TriggerEvent(Events.TouchScreen);
+                        ShowImpact(weaponPos);
                     }
                 }
             }
@@ -49,12 +54,11 @@ public class TouchController : MonoBehaviour
 
     public void MouseHandling()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && GameManager.Instance.IsTouchable)
         {
             pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20f);
 
             var weaponPos = Camera.main.ScreenToWorldPoint(pos);
-            ShowImpact(weaponPos);
             
             if (!(Camera.main is null))
             {
@@ -62,12 +66,17 @@ public class TouchController : MonoBehaviour
                 // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
                 if (hitInfo)
                 {
-                    EventManager.TriggerEvent(Events.TouchCollider, hitInfo.collider.gameObject);
-                    // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                    if (!hitInfo.collider.CompareTag("Button"))
+                    {
+                        EventManager.TriggerEvent(Events.TouchCollider, hitInfo.collider.gameObject);
+                        // Here you can check hitInfo to see which collider has been hit, and act appropriately.
+                        ShowImpact(weaponPos);
+                    }
                 }
                 else
                 {
                     EventManager.TriggerEvent(Events.TouchScreen);
+                    ShowImpact(weaponPos);
                 }
             }
         }

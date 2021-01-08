@@ -18,9 +18,9 @@ public class FoodManager : Singleton<FoodManager>
         currentFood = foodInfo.foodPrefab.GetComponent<Food>();
         
         DisplayFood(foodInfo);
-
+        
         EventManager.StartListening(Events.FoodDestruction, FoodDestructionHandling);
-
+        
         StartCoroutine(HealthUpdateCo());
     }
 
@@ -44,7 +44,7 @@ public class FoodManager : Singleton<FoodManager>
     {
         var foodGo =
             Instantiate(foodInfo.foodPrefab, screenCenterPoint.position, Quaternion.identity);
-
+        
         currentFood = foodGo.GetComponent<Food>();
         
         currentFood.Initialize(foodInfo.foodSprites);

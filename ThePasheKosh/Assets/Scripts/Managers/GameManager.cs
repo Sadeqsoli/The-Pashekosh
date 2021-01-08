@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -37,6 +39,10 @@ public class GameManager : Singleton<GameManager>
     [Space] 
     public SpriteRenderer background;
 
+    [Space] 
+    public Button playButton;
+    public Button pauseButton;
+
     #endregion
 
     #region Private Variables
@@ -46,13 +52,19 @@ public class GameManager : Singleton<GameManager>
     float _timer;
 
     #endregion
+    
+    #region Properties
+    
+    public bool IsTouchable { private set; get; }
+    #endregion
+    
 
     public void UpdateHealth(float health, float maxHealth)
     {
         gameUIManager.UpdateHealth(health);
         //HealthFill.ShowHealth(health, maxHealth);
     }
-
+    
     void Start()
     {
         //To Fit Camera Side to Side With The Screen
@@ -75,7 +87,13 @@ public class GameManager : Singleton<GameManager>
         gameUIManager.Initialize(0, 100);
         
         FoodManager.Instance.MakeTheFoodReady(foods[foodIndex]);
+
+        IsTouchable = true;
     }
+    
+    #region Public Functions
+
+    #endregion
 
     #region Events Handling
     void AddEvents()
@@ -106,6 +124,12 @@ public class GameManager : Singleton<GameManager>
     {
         EventManager.StartListening(Events.InsectKilled, ProcessKillings);
         EventManager.StartListening(Events.GameOver, GameOver);
+
+        if (pauseButton != null && playButton != null)
+        {
+            playButton.onClick.AddListener(PlayGame);
+            pauseButton.onClick.AddListener(PauseGame);
+        }
     }
 
     #endregion
@@ -143,18 +167,20 @@ public class GameManager : Singleton<GameManager>
         }
         else GameOver();
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
-
     }
 
 
     void GameOver()
     {
+        IsTouchable = false;
+        
         float score = ResultsController.Instance.Score;
         ScoreRepo.PushScore(score);
         TimeRepo.PushTime(_timer);
         LevelRepo.PushLevel(_currentLevel + 1);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        var loadNextScene = new UnityAction(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+        Timers.Instance.StartTimer(1, loadNextScene);
     }
     #endregion
 
@@ -167,6 +193,24 @@ public class GameManager : Singleton<GameManager>
         if (gameUIManager != null)
 
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
+    }
+    
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        IsTouchable = false;
+        
+        pauseButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(true);
+    }
+
+    void PlayGame()
+    {
+        Time.timeScale = 1;
+        IsTouchable = true;
+        
+        playButton.gameObject.SetActive(false);
+        pauseButton.gameObject.SetActive(true);
     }
 
     #endregion
