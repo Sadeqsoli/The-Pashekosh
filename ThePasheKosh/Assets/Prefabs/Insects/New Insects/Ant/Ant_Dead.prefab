@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8165922783492480508}
   - component: {fileID: 3275545078560168110}
   - component: {fileID: 5448459257522605853}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 11
   m_Sprite: {fileID: -1393165143546978574, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6500161287253996114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8861410986699323281}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1712077096249411996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 7595059110898832250}
   - component: {fileID: 795582397560335751}
   - component: {fileID: 8766495038436102645}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: body fluid_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,8 +261,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -632766218590957772, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -305,7 +305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7773177777871620191}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 8148137638367063573}
   - component: {fileID: 4228486534316926190}
   - component: {fileID: 8493770297523231330}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,8 +394,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 10
   m_Sprite: {fileID: 6077917863164601001, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -441,7 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6673421257201738520}
   - component: {fileID: 6377748809448841559}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ant_Dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 7334407505488132104}
   - component: {fileID: 6007594533507171206}
   - component: {fileID: 3009736063672581462}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: F LM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,8 +572,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: -7830676384618229315, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -617,7 +617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2732019470802059962}
   - component: {fileID: 8291407281999025854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: blood_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,8 +674,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: 8729022326172949351, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 8091975323925802634}
   - component: {fileID: 1419896425159146073}
   - component: {fileID: 1599179846359528955}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: F RB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,8 +757,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 7
   m_Sprite: {fileID: 379523706419856943, guid: 4bbf59dfe1c954944a24dbe742e5e236, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -800,7 +800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8113321641471561364}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 6091548581330341083}
   - component: {fileID: 1255345146142976858}
   - component: {fileID: 5388648831277185509}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: F RT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,8 +889,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 9
   m_Sprite: {fileID: 3736327517264080606, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -933,7 +933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5173137833217439604}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5813696228967664613}
   - component: {fileID: 3577570413714819534}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: F LT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,8 +1021,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 6
   m_Sprite: {fileID: 1465360876291782048, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -1045,7 +1045,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3709763028001899766}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2986779019702510327}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,7 +1106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6348915664459541913}
   - component: {fileID: 645975080397488470}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: F LB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,8 +1163,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: 4147687054130392195, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -1189,7 +1189,7 @@ GameObject:
   - component: {fileID: 6720979887853481017}
   - component: {fileID: 7834383602581526019}
   - component: {fileID: 8212384616348757933}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: blood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1246,8 +1246,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 12
   m_Sprite: {fileID: 4544095437059700984, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -1290,7 +1290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6695046891510284200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 91775710803804872}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1350,7 +1350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4244866728983360005}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1383,7 +1383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4774762336609024495}
   - component: {fileID: 4022467694020709874}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: body fluid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1440,8 +1440,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: 8420937042714185881, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -1465,7 +1465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4950350258116432270}
   - component: {fileID: 249788241324630568}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: F RM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1522,8 +1522,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1999928735
+  m_SortingLayer: 4
   m_SortingOrder: 8
   m_Sprite: {fileID: 4845021695182325906, guid: 4bbf59dfe1c954944a24dbe742e5e236,
     type: 3}
@@ -1546,7 +1546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3162232097820769234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1576,7 +1576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411524015741231715}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bone_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}

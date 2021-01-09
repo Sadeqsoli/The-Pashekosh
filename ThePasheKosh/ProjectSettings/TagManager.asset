@@ -18,7 +18,7 @@ TagManager:
   - GoodInsect
   - BadInsect
   - Cake
-  - 
+  - Bilboard
   - 
   - 
   - 
@@ -45,8 +45,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Forground
-    uniqueID: 277973225
+  - name: Bilboard
+    uniqueID: 840101179
     locked: 0
   - name: Cake
     uniqueID: 3571974949
@@ -57,9 +57,12 @@ TagManager:
   - name: BadInsect
     uniqueID: 1999928735
     locked: 0
+  - name: UI
+    uniqueID: 3355457717
+    locked: 0
   - name: Weapon
     uniqueID: 1075117073
     locked: 0
-  - name: UI
-    uniqueID: 3355457717
+  - name: Forground
+    uniqueID: 277973225
     locked: 0

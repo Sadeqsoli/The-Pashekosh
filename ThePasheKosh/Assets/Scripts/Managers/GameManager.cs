@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -42,6 +43,10 @@ public class GameManager : Singleton<GameManager>
     [Space] 
     public Button playButton;
     public Button pauseButton;
+
+    [Space] 
+    public Button settingButton;
+    public GameObject settingPanel;
 
     #endregion
 
@@ -130,6 +135,8 @@ public class GameManager : Singleton<GameManager>
             playButton.onClick.AddListener(PlayGame);
             pauseButton.onClick.AddListener(PauseGame);
         }
+        
+        settingButton.onClick.AddListener(ShowSettingPanel);
     }
 
     #endregion
@@ -213,8 +220,30 @@ public class GameManager : Singleton<GameManager>
         pauseButton.gameObject.SetActive(true);
     }
 
+    void ShowSettingPanel()
+    {
+        PauseGame();
+        playButton.onClick.RemoveListener(PlayGame);
+        
+        settingPanel.SetActive(true);
+        
+        settingButton.onClick.RemoveListener(ShowSettingPanel);
+        settingButton.onClick.AddListener(HideSettingPanel);
+    }
+
+    void HideSettingPanel()
+    {
+        playButton.onClick.AddListener(PlayGame);
+        PlayGame();
+        
+        settingPanel.SetActive(false);
+        
+        settingButton.onClick.RemoveListener(HideSettingPanel);
+        settingButton.onClick.AddListener(ShowSettingPanel);
+    }
+
     #endregion
 
-    
+
 
 }
