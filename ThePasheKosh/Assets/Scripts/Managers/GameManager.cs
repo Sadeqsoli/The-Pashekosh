@@ -118,6 +118,10 @@ public class GameManager : Singleton<GameManager>
 
             // Whenever a piece of food is completely destroyed, this event will be invoked
             EventManager.AddEventWithNoParamter(Events.FoodDestruction);
+            
+            // Whenever we want to mute or unmute the insects and background sounds
+            EventManager.AddBoolEvent(Events.BackgroundSound);
+            EventManager.AddBoolEvent(Events.InsectsSound);
         }
         else
         {

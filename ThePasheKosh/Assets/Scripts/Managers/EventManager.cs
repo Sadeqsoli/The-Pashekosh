@@ -5,12 +5,14 @@ using System.Collections.Generic;
 
 
 public class UnityEventGameObject : UnityEvent<GameObject> { }
+public class UnityEventBool : UnityEvent<bool> { }
 
 public class EventManager : Singleton<EventManager>
 {
     public static bool IsInitialized { get; private set; } = false;
     private Dictionary<string, UnityEvent> noParameterEventDictionary;
     private Dictionary<string, UnityEvent<GameObject>> gameObjectEventDictionary;
+    private Dictionary<string, UnityEvent<bool>> boolEventDictionary;
 
     protected void Start()
     {
@@ -18,6 +20,8 @@ public class EventManager : Singleton<EventManager>
             noParameterEventDictionary = new Dictionary<string, UnityEvent>();
         if (gameObjectEventDictionary == null) 
             gameObjectEventDictionary = new Dictionary<string, UnityEvent<GameObject>>();
+        if (boolEventDictionary == null)
+            boolEventDictionary = new Dictionary<string, UnityEvent<bool>>();
         IsInitialized = true;
     }
 
@@ -99,6 +103,47 @@ public class EventManager : Singleton<EventManager>
         if (Instance.gameObjectEventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent?.Invoke(gameObject);
+        }
+    }
+    #endregion
+    
+    #region  Events with one bool parameter
+    public static void AddBoolEvent(string eventName)
+    {
+        UnityEvent<bool> newEvent = new UnityEventBool();
+        Instance.boolEventDictionary.Add(eventName, newEvent);
+    }
+    public static void StartListening(string eventName, UnityAction<bool> listener)
+    {
+        UnityEvent<bool> thisEvent;
+        if (Instance.boolEventDictionary.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.AddListener(listener);
+        }
+        else
+        {
+            Debug.Log("The event " + eventName + " is added by the " + listener + " listener.");
+            thisEvent = new UnityEventBool();
+            thisEvent.AddListener(listener);
+            Instance.boolEventDictionary.Add(eventName, thisEvent);
+        }
+    }
+
+    public static void StopListening(string eventName, UnityAction<bool> listener)
+    {
+        UnityEvent<bool> thisEvent;
+        if (Instance.boolEventDictionary.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.RemoveListener(listener);
+        }
+    }
+
+    public static void TriggerEvent(string eventName, bool condition)
+    {
+        UnityEvent<bool> thisEvent;
+        if (Instance.boolEventDictionary.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent?.Invoke(condition);
         }
     }
     #endregion

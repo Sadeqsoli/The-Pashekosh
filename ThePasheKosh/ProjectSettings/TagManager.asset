@@ -19,7 +19,7 @@ TagManager:
   - BadInsect
   - Cake
   - Bilboard
-  - 
+  - PowerUPs
   - 
   - 
   - 
@@ -62,6 +62,9 @@ TagManager:
     locked: 0
   - name: Weapon
     uniqueID: 1075117073
+    locked: 0
+  - name: PowerUps
+    uniqueID: 970223563
     locked: 0
   - name: Forground
     uniqueID: 277973225

@@ -12,6 +12,10 @@ public struct Events
     public static string FoodDestruction { get; } = "FoodDestruction";
 
     public static string TouchGameObject { get; } = "TouchGameObject";
-    
-    
+
+    public static string BackgroundSound { get; } = "BackgroundSound";
+
+    public static string InsectsSound { get; } = "InsectSound";
+
+
 }
