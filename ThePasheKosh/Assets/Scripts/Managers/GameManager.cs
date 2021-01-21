@@ -9,18 +9,6 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
-[System.Serializable]
-public struct FoodInfo
-{
-    [FormerlySerializedAs("cakeName")] 
-    public string foodName;
-    [FormerlySerializedAs("cakePrefab")] 
-    public GameObject foodPrefab;
-    [FormerlySerializedAs("cakeSprites")] 
-    public List<Sprite> foodSprites;
-}
-
-
 public class GameManager : Singleton<GameManager>
 {
     #region Public Variables
@@ -48,13 +36,18 @@ public class GameManager : Singleton<GameManager>
     public Button settingButton;
     public GameObject settingPanel;
 
+    [Space] 
+    public Button powerUpsButton;
+    public GameObject powerUpsPanel;
+    
+
     #endregion
 
     #region Private Variables
-    int foodIndex = 0;
-    int _currentLevel = 0;
+    private int foodIndex = 0;
+    private int _currentLevel = 0;
 
-    float _timer;
+    private float _timer;
 
     #endregion
     
@@ -63,14 +56,8 @@ public class GameManager : Singleton<GameManager>
     public bool IsTouchable { private set; get; }
     #endregion
     
-
-    public void UpdateHealth(float health, float maxHealth)
-    {
-        gameUIManager.UpdateHealth(health);
-        //HealthFill.ShowHealth(health, maxHealth);
-    }
-    
-    void Start()
+    #region Unity Methods
+    private void Start()
     {
         //To Fit Camera Side to Side With The Screen
         CameraScaler.CameraFit(background);
@@ -79,13 +66,19 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs2.SetBool("MoreThanOneTime", true);
             //PlayerPrefs.SetFloat("HighScore", 0);
         }
-
-        AddEvents();
         
+        // Hide in-game panels
+        HideSettingPanel();
+        HidePowerUpsPanel();
+        
+        // Add listener and events
+        AddEvents();
         AddListeners();
 
+        // Load the level
         LoadLevel();
-
+        
+        // Start the timer
         _timer = 0;
         Timers.Instance.StartRepeatedAction(1f, AddToTimer);
 
@@ -96,12 +89,18 @@ public class GameManager : Singleton<GameManager>
         IsTouchable = true;
     }
     
+    #endregion 
+    
     #region Public Functions
-
+    public void UpdateHealth(float health, float maxHealth)
+    {
+        gameUIManager.UpdateHealth(health);
+        //HealthFill.ShowHealth(health, maxHealth);
+    }
     #endregion
 
     #region Events Handling
-    void AddEvents()
+    private void AddEvents()
     {
         if (EventManager.IsInitialized)
         {
@@ -129,11 +128,13 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    void AddListeners()
+    private void AddListeners()
     {
+        // Add event manager listeners
         EventManager.StartListening(Events.InsectKilled, ProcessKillings);
         EventManager.StartListening(Events.GameOver, GameOver);
 
+        // Add buttons listeners
         if (pauseButton != null && playButton != null)
         {
             playButton.onClick.AddListener(PlayGame);
@@ -141,6 +142,7 @@ public class GameManager : Singleton<GameManager>
         }
         
         settingButton.onClick.AddListener(ShowSettingPanel);
+        powerUpsButton.onClick.AddListener(ShowPowerUpsPanel);
     }
 
     #endregion
@@ -148,7 +150,7 @@ public class GameManager : Singleton<GameManager>
 
     #region Level Handling
 
-    void GoToNextLevel()
+    private void GoToNextLevel()
     {
         InsectManager.Instance.StopAllSpawn(false);
 
@@ -158,7 +160,7 @@ public class GameManager : Singleton<GameManager>
         Timers.Instance.StartTimer(1, LoadLevel);
     }
 
-    void LoadLevel()
+    private void LoadLevel()
     {
         Timers.Instance.StartTimer(levels[_currentLevel].levelParameters.passLevelTime, GoToNextLevel);
         InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
@@ -167,7 +169,7 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region Kill and GameOver Handling
-    void ProcessKillings(GameObject insect)
+    private void ProcessKillings(GameObject insect)
     {
         Insect insectComponent = insect.GetComponent<Insect>();
         if (insectComponent.IsBadInsect)
@@ -181,7 +183,7 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    void GameOver()
+    private void GameOver()
     {
         IsTouchable = false;
         
@@ -198,7 +200,7 @@ public class GameManager : Singleton<GameManager>
 
     #region Game Timer Handling
 
-    void AddToTimer(float seconds)
+    private void AddToTimer(float seconds)
     {
         _timer += seconds;
         if (gameUIManager != null)
@@ -206,7 +208,7 @@ public class GameManager : Singleton<GameManager>
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
     }
     
-    void PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0;
         IsTouchable = false;
@@ -215,7 +217,7 @@ public class GameManager : Singleton<GameManager>
         playButton.gameObject.SetActive(true);
     }
 
-    void PlayGame()
+    private void PlayGame()
     {
         Time.timeScale = 1;
         IsTouchable = true;
@@ -224,30 +226,78 @@ public class GameManager : Singleton<GameManager>
         pauseButton.gameObject.SetActive(true);
     }
 
-    void ShowSettingPanel()
+    private void ShowSettingPanel()
     {
+        // Pause the game
         PauseGame();
         playButton.onClick.RemoveListener(PlayGame);
         
+        // Show the setting panel
         settingPanel.SetActive(true);
         
-        settingButton.onClick.RemoveListener(ShowSettingPanel);
-        settingButton.onClick.AddListener(HideSettingPanel);
+        // Change the function of setting button
+        ChangeButtonFunc(settingButton, ShowSettingPanel, HideSettingPanel);
+        
+        // Remove powerUp button listener
+        ChangeButtonFunc(powerUpsButton, ShowPowerUpsPanel, null);
     }
 
-    void HideSettingPanel()
+    private void HideSettingPanel()
     {
+        // Play the game again
         playButton.onClick.AddListener(PlayGame);
         PlayGame();
         
+        // Hide the setting panel
         settingPanel.SetActive(false);
         
-        settingButton.onClick.RemoveListener(HideSettingPanel);
-        settingButton.onClick.AddListener(ShowSettingPanel);
+        // Change the function of setting button
+        ChangeButtonFunc(settingButton, HideSettingPanel, ShowSettingPanel);
+        
+        // Add powerUp button listener
+        ChangeButtonFunc(powerUpsButton, null, ShowPowerUpsPanel);
+    }
+
+    private void ShowPowerUpsPanel()
+    {
+        // Pause the game
+        PauseGame();
+        playButton.onClick.RemoveListener(PlayGame);
+        
+        // Show powerUps panel
+        powerUpsPanel.SetActive(true);
+        
+        // Change the function of powerUps button
+        ChangeButtonFunc(powerUpsButton, ShowPowerUpsPanel, HidePowerUpsPanel);
+        
+        // Remove setting button listener
+        ChangeButtonFunc(settingButton, ShowSettingPanel, null);
+    }
+
+    private void HidePowerUpsPanel()
+    {
+        // Play the game
+        playButton.onClick.AddListener(PlayGame);
+        PlayGame();
+        
+        // Hide powerUps panel
+        powerUpsPanel.SetActive(false);
+        
+        // Change the function of powerUps button
+        ChangeButtonFunc(powerUpsButton, HidePowerUpsPanel, ShowPowerUpsPanel);
+        
+        // Add setting button listener
+        ChangeButtonFunc(settingButton, null, ShowSettingPanel);
+        
+    }
+
+    private void ChangeButtonFunc(Button btn, UnityAction lastListener, UnityAction newListener)
+    {
+        if(lastListener != null)
+            btn.onClick.RemoveListener(lastListener);
+        if(newListener != null)
+            btn.onClick.AddListener(newListener);
     }
 
     #endregion
-
-
-
 }
