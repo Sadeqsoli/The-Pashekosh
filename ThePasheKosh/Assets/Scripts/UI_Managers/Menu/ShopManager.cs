@@ -6,11 +6,8 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    enum ShopCat { Target, Killer, Powerups }
-    ShopCat shopCategorey;
-
     // shopButtons[0] = targetshop, shopButtons[1] = killershop, shopButtons[2] = powerupsShop
-    public Button[] shopButtons;
+    [SerializeField] Button[] shopButtons;
     [Space]
     [SerializeField] Sprite selectedSprite, deselectedSprite;
     [Space]
@@ -18,11 +15,10 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        ChangeToKillerShop();
         shopButtons[0].onClick.AddListener(ChangeToTargetShop);
         shopButtons[1].onClick.AddListener(ChangeToKillerShop);
         shopButtons[2].onClick.AddListener(ChangeToPowerupsShop);
-
+        ChangeToKillerShop();
     }//Starttttt
 
     //when Target Shop is selected.

@@ -3,31 +3,17 @@
 
 public static class CameraScaler 
 {
-    #region Properties
 
-    #endregion
-
-    #region Fields
-
-    #endregion
-
-    #region Public Methods
-    #endregion
-
-
-
-
-
-    #region Private Methods
+    static Camera mainCamera = Camera.main;
 
 
     public static void SetCameraByWidth(SpriteRenderer sprite)
     {
-        Camera.main.orthographicSize = sprite.bounds.size.x * Screen.height / Screen.width * 0.5f;
+        mainCamera.orthographicSize = sprite.bounds.size.x * Screen.height / Screen.width * 0.5f;
     }
     public static void SetCameraByHeight(SpriteRenderer sprite)
     {
-        Camera.main.orthographicSize = sprite.bounds.size.y / 2;
+        mainCamera.orthographicSize = sprite.bounds.size.y / 2;
     }
     public static void CameraFit(SpriteRenderer sprite)
     {
@@ -36,17 +22,14 @@ public static class CameraScaler
 
         if (screenRatio <= targetRatio)
         {
-            Camera.main.orthographicSize = sprite.bounds.size.y / 2;
+            mainCamera.orthographicSize = sprite.bounds.size.y / 2;
         }
         else
         {
             float differenceInSize = targetRatio / screenRatio;
-            Camera.main.orthographicSize = sprite.bounds.size.y / 2 * differenceInSize;
+            mainCamera.orthographicSize = sprite.bounds.size.y / 2 * differenceInSize;
         }
     }
 
 
-
-
-    #endregion
 }
