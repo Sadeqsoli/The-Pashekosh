@@ -1,13 +1,52 @@
 ﻿using UnityEngine;
-using TMPro;
-
+using RTLTMPro;
+using UnityEngine.UI;
 
 public class GameOverMenu : MonoBehaviour
 {
     [Space]
-    public TextMeshProUGUI scoreText;
+    [SerializeField] RTLTextMeshPro HighestLevelProgressionTXT;
     [Space]
-    public TextMeshProUGUI levelText;
+    [SerializeField] RTLTextMeshPro LastScoreTXT;
+    [Space]
+    [SerializeField] Button GoToMainButton;
+
+
+    void Start()
+    {
+        //Delete();
+
+        DisplayLatestScores(ScoreRepo.GetLastScore());
+        DisplayBestOpenedLevel(LevelRepo.GetLevel());
+
+        GoToMainButton.onClick.AddListener(GoToMain);
+    }
+
+
+
+    void DisplayLatestScores(float lastScore)
+    {
+        if(lastScore == 0f)
+        {
+            LastScoreTXT.text = lastScore.ToString() /*+ "بهترین امتیاز "*/;
+        }
+        else
+        {
+            LastScoreTXT.text = lastScore.ToString("##.#") /*+ "بهترین امتیاز "*/;
+        }
+    }
+    void DisplayBestOpenedLevel(int bestLevel)
+    {
+        HighestLevelProgressionTXT.text = bestLevel.ToString() /*+ "بهترین مرحله "*/;
+    }
+
+
+    void GoToMain()
+    {
+        HelperSceneManager.GoToAnotherScene(0);
+    }
+
+
 
     void Delete()
     {
@@ -16,23 +55,5 @@ public class GameOverMenu : MonoBehaviour
         Debug.Log("Deleted");
     }
 
-    public void GoToRunningState()
-    {
-        HelperSceneManager.GoToAnotherScene(0);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Delete();
-        float score = ScoreRepo.GetLastScore();
-        float highScore = ScoreRepo.GetHighScore();
-        float time = TimeRepo.GetLastTime();
-        int level = LevelRepo.GetLevel();
-
-        scoreText.text = "Score: "  + ((int)score).ToString();
-        //highScoreText.text = "Best Score: " + highScore.ToString();
-        //timeText.text = "Best Time " + time.ToString();
-        levelText.text = "Level " + level.ToString();
-    }
-}
+}//EndClassss
 

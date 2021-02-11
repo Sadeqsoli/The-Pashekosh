@@ -31,7 +31,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         }
         else
         {
-            Debug.LogError("[Singletone] You can NOT instantiate a singletone class more than once.");
+            Debug.LogWarning("[Singletone] You can NOT instantiate a singletone class more than once.");
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this.gameObject);

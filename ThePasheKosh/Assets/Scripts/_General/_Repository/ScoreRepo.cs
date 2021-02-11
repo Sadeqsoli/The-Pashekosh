@@ -3,7 +3,7 @@
 public static class ScoreRepo
 {
     #region Properties
-    public static string allScoreKeyName { get { return allScoreRepo; } }
+    public static string AllScoreRepoKey { get { return allScoreRepo; } }
     #endregion
 
     #region Fields
@@ -14,23 +14,23 @@ public static class ScoreRepo
 
     #region Public Methods
 
-    public static void PushScore(float newScore)
+    public static void PushScore(float latestScore)
     {
-        if (newScore > 0)
+        if (latestScore > 0)
         {
             //Sum the New score To The All Score Repository.
-            float scores = GetAllScore();
-            scores += newScore;
-            Save(allScoreRepo, scores);
+            float allScores = GetAllScore();
+            allScores += latestScore;
+            Save(allScoreRepo, allScores);
 
             //Setting the new score as Last Score.
-            Save(lastScoreRepo, newScore);
+            Save(lastScoreRepo, latestScore);
 
             //Check if new Score is bigger than the last high score and Set it as the new High Score.
             float highScore = GetHighScore();
-            if (newScore > highScore)
+            if (latestScore > highScore)
             {
-                Save(highScoreRepo, newScore);
+                Save(highScoreRepo, latestScore);
             }
         }
     }
@@ -38,15 +38,42 @@ public static class ScoreRepo
 
     public static float GetAllScore()
     {
-        return Retrive(allScoreRepo);
+        float allScores = 0f;
+        if (PlayerPrefs.HasKey(allScoreRepo))
+        {
+            allScores = Retrive(allScoreRepo);
+            return allScores;
+        }
+        else
+        {
+            return allScores;
+        }
     }
     public static float GetLastScore()
     {
-        return Retrive(lastScoreRepo);
+        float latestScore = 0f;
+        if (PlayerPrefs.HasKey(lastScoreRepo))
+        {
+            latestScore = Retrive(lastScoreRepo);
+            return latestScore;
+        }
+        else
+        {
+            return latestScore;
+        }
     }
     public static float GetHighScore()
     {
-        return Retrive(highScoreRepo);
+        float highestScore = 0f;
+        if (PlayerPrefs.HasKey(highScoreRepo))
+        {
+            highestScore = Retrive(highScoreRepo);
+            return highestScore;
+        }
+        else
+        {
+            return highestScore;
+        }
     }
     #endregion
 

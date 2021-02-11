@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RTLTMPro;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -48,20 +49,24 @@ public class ShopManager : MonoBehaviour
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(unityAction);
     }
-    void ChangeColor(Button[] buttons, int numb)//changing the transform of suggestted button to mainHolder 
+
+    void ChangeColor(Button[] buttons, int numb)
     {
         for (int i = 0; i < buttons.Length; i++)
         {
             if (numb == i)
             {
                 buttons[i].gameObject.GetComponent<Image>().sprite = selectedSprite;
+                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.white;
             }
             else
             {
                 buttons[i].gameObject.GetComponent<Image>().sprite = deselectedSprite;
+                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.black;
             }
         }
     }
+
     void SetObj_On(GameObject[] gameObjects, int numb)
     {
         for (int i = 0; i < gameObjects.Length; i++)
