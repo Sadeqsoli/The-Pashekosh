@@ -87,8 +87,9 @@ public class InsectPool : MonoBehaviour
             newGameObject =
                 Instantiate(pool.poolGameObject, poolParent, true);
             newGameObject.name = pool.nameOfPool;
-            newGameObject.SetActive(false);
             _poolsContent[pool.nameOfPool].Add(newGameObject);
+            
+            newGameObject.SetActive(false);
 
             yield return new WaitForEndOfFrame();
             
@@ -107,31 +108,43 @@ public class InsectPool : MonoBehaviour
         if (_poolsContent.ContainsKey(nameOfObject))
         {
             var poolCurrentSize = _poolsContent[nameOfObject].Count;
-            if (poolCurrentSize > 0)
+            var newOne = !(poolCurrentSize > 0);
+            if (!newOne)
             {
-                var returnGameObject = _poolsContent[nameOfObject][poolCurrentSize - 1];
-                _poolsContent[nameOfObject].RemoveAt(poolCurrentSize - 1);
-
-                returnGameObject.SetActive(true);
-                returnGameObject.transform.position = pos;
-                returnGameObject.transform.rotation = rotation;
-                returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
-                return returnGameObject;
-            }
-            else
-            {
-                for(int i = 0; i < _pools.Count; i++)
+                GameObject returnGameObject = null;
+                do
                 {
-                    if (_pools[i].nameOfPool == nameOfObject)
+                    poolCurrentSize = _poolsContent[nameOfObject].Count;
+                    if (poolCurrentSize <= 0)
                     {
-                        var returnGameObject =
-                            Instantiate(_pools[i].poolGameObject, pos, rotation);
-                        returnGameObject.name = nameOfObject;
-                        returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
-                        return returnGameObject;
+                        newOne = true;
+                        break;
                     }
+                    
+                    returnGameObject = _poolsContent[nameOfObject][poolCurrentSize - 1];
+                    _poolsContent[nameOfObject].Remove(returnGameObject);
+                } while (returnGameObject.activeSelf);
+
+                if (!newOne)
+                {
+                    returnGameObject.SetActive(true);
+
+                    returnGameObject.transform.position = pos;
+                    returnGameObject.transform.rotation = rotation;
+                    returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
+                    return returnGameObject;
                 }
-                return null;
+            }
+            for (int i = 0; i < _pools.Count; i++)
+            {
+                if (_pools[i].nameOfPool == nameOfObject)
+                {
+                    var returnGameObject =
+                        Instantiate(_pools[i].poolGameObject, pos, rotation);
+                    returnGameObject.name = nameOfObject;
+                    returnGameObject.transform.SetParent(_parents[nameOfObject].transform);
+                    return returnGameObject;
+                }
             }
         }
 
