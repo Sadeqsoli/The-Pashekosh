@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,34 +9,52 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+public enum GameStates
+{
+    Normal,
+    ElectricalPasheKosh,
+    Fan,
+    Spray,
+    Pill
+}
 
 public class GameManager : Singleton<GameManager>
 {
     #region Public Variables
 
+    // The state of the game (in terms of using power ups)
+    public static GameStates gameState = GameStates.Normal;
+    public static bool isPowerUpActive = false;
+    
+    // Levels information that is added through inspector
     public LevelParameters[] levels;
 
+    // Foods information that is added through inspector
     [FormerlySerializedAs("cakes")]
     [Space]
     [Space]
     public List<FoodInfo> foods;
 
+    // Game UI Manager that is added through inspector
     [Space]
     [Space]
-
     public UIManager gameUIManager;
-
+    
+    // Background that is added through inspector to fit the screen
     [Space] 
     public SpriteRenderer background;
 
+    // Play/Pause buttons that is added through inspector
     [Space] 
     public Button playButton;
     public Button pauseButton;
 
+    // Setting panel/button that is added through inspector
     [Space] 
     public Button settingButton;
     public GameObject settingPanel;
-
+    
+    // Power Ups panel/button that is added through inspector
     [Space] 
     public Button powerUpsButton;
     public GameObject powerUpsPanel;
@@ -44,15 +63,17 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region Private Variables
+    
     private int foodIndex = 0;
-    private int _currentLevel = 0;
+    private int currentLevel;
 
-    private float _timer;
+    private float timer;
 
     #endregion
     
     #region Properties
     
+    // Make it false, whenever we don't want the player touches have impact on the game
     public bool IsTouchable { private set; get; }
     #endregion
     
@@ -79,19 +100,26 @@ public class GameManager : Singleton<GameManager>
         LoadLevel();
         
         // Start the timer
-        _timer = 0;
+        timer = 0;
         Timers.Instance.StartRepeatedAction(1f, AddToTimer);
 
+        // Initializing GameUIManager
         gameUIManager.Initialize(0, 100);
         
+        // Initializing PowerUps
+        var powerUpNumbers = GetPowerUpsNum();
+        PowerUpsManager.Initialize(powerUpNumbers);
+        
+        // Show the food in the game
         FoodManager.Instance.MakeTheFoodReady(foods[foodIndex]);
-
+        
+        // Make sure that the game is touchable
         IsTouchable = true;
     }
     
     #endregion 
     
-    #region Public Functions
+    #region Updating Health
     public void UpdateHealth(float health, float maxHealth)
     {
         gameUIManager.UpdateHealth(health);
@@ -99,6 +127,7 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
 
+    
     #region Events Handling
     private void AddEvents()
     {
@@ -121,6 +150,12 @@ public class GameManager : Singleton<GameManager>
             // Whenever we want to mute or unmute the insects and background sounds
             EventManager.AddBoolEvent(Events.BackgroundSound);
             EventManager.AddBoolEvent(Events.InsectsSound);
+            
+            // Events that are realted to Power Ups
+            EventManager.AddEventWithNoParamter(Events.ElectricalPasheKosh);
+            EventManager.AddEventWithNoParamter(Events.Fan);
+            EventManager.AddEventWithNoParamter(Events.Pill);
+            EventManager.AddEventWithNoParamter(Events.Spray);
         }
         else
         {
@@ -133,6 +168,11 @@ public class GameManager : Singleton<GameManager>
         // Add event manager listeners
         EventManager.StartListening(Events.InsectKilled, ProcessKillings);
         EventManager.StartListening(Events.GameOver, GameOver);
+        
+        EventManager.StartListening(Events.ElectricalPasheKosh, UseElectricalPK);
+        EventManager.StartListening(Events.Fan, UseFan);
+        EventManager.StartListening(Events.Pill, UsePill);
+        EventManager.StartListening(Events.Spray, UseSpray);
 
         // Add buttons listeners
         if (pauseButton != null && playButton != null)
@@ -154,16 +194,16 @@ public class GameManager : Singleton<GameManager>
     {
         InsectManager.Instance.StopAllSpawn(false);
 
-        if(_currentLevel < levels.Length - 1)
-            _currentLevel++;
+        if(currentLevel < levels.Length - 1)
+            currentLevel++;
 
         Timers.Instance.StartTimer(1, LoadLevel);
     }
 
     private void LoadLevel()
     {
-        Timers.Instance.StartTimer(levels[_currentLevel].levelParameters.passLevelTime, GoToNextLevel);
-        InsectManager.Instance.StartInsectSpawning(levels[_currentLevel].levelParameters);
+        Timers.Instance.StartTimer(levels[currentLevel].levelParameters.passLevelTime, GoToNextLevel);
+        InsectManager.Instance.StartInsectSpawning(levels[currentLevel].levelParameters);
     }
 
     #endregion
@@ -189,25 +229,25 @@ public class GameManager : Singleton<GameManager>
         
         float score = ResultsController.Instance.Score;
         ScoreRepo.PushScore(score);
-        TimeRepo.PushTime(_timer);
-        LevelRepo.PushLevel(_currentLevel + 1);
+        TimeRepo.PushTime(timer);
+        LevelRepo.PushLevel(currentLevel + 1);
 
         var loadNextScene = new UnityAction(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
         Timers.Instance.StartTimer(1, loadNextScene);
     }
     #endregion
 
-
     #region Game Timer Handling
 
     private void AddToTimer(float seconds)
     {
-        _timer += seconds;
+        timer += seconds;
         if (gameUIManager != null)
-
-        gameUIManager.UpdateScore(ResultsController.Instance.Score);
+            gameUIManager.UpdateScore(ResultsController.Instance.Score);
     }
+    #endregion
     
+    #region Game Buttons Hanlding
     private void PauseGame()
     {
         Time.timeScale = 0;
@@ -298,6 +338,71 @@ public class GameManager : Singleton<GameManager>
         if(newListener != null)
             btn.onClick.AddListener(newListener);
     }
+    #endregion
+    
+    #region PowerUps Handling
 
+    private void UseElectricalPK()
+    {
+        UsePowerUps(GameStates.ElectricalPasheKosh);
+    }
+
+    private void UseFan()
+    {
+        UsePowerUps(GameStates.Fan);
+    }
+
+    private void UsePill()
+    {
+        UsePowerUps(GameStates.Pill);
+    }
+
+    private void UseSpray()
+    {
+        UsePowerUps(GameStates.Spray);
+    }
+
+    private void UsePowerUps(GameStates currentState)
+    {
+        HidePowerUpsPanel();
+        gameState = currentState;
+        IsTouchable = false;
+        isPowerUpActive = true;
+        StartCoroutine(UsePowerUpsCo());
+    }
+
+    private IEnumerator UsePowerUpsCo()
+    {
+        yield return new WaitUntil(() => !isPowerUpActive);
+        FinishPowerUp();
+    }
+
+    private void FinishPowerUp()
+    {
+        gameState = GameStates.Normal;
+        IsTouchable = true;
+    }
+
+    private PowerUpNumbers GetPowerUpsNum()
+    {
+        PowerUpNumbers powerUpNumbers = new PowerUpNumbers();
+        if (PlayerPrefs.HasKey(PowerUps.ElectricalPasheKosh))
+        {
+            powerUpNumbers.electricalPasheKoshNum = PlayerPrefs.GetInt(PowerUps.ElectricalPasheKosh);
+            powerUpNumbers.fanNum = PlayerPrefs.GetInt(PowerUps.Fan);
+            powerUpNumbers.pillNum = PlayerPrefs.GetInt(PowerUps.Pill);
+            powerUpNumbers.sprayNum = PlayerPrefs.GetInt(PowerUps.Spray);
+        }
+        else
+        {
+            Debug.Log("Number Of PowerUps haven't saved from Main Menu Scene.");
+            powerUpNumbers.electricalPasheKoshNum = 0;
+            powerUpNumbers.fanNum = 0;
+            powerUpNumbers.pillNum = 0;
+            powerUpNumbers.sprayNum = 0;
+        }
+
+        return powerUpNumbers;
+    }
     #endregion
 }

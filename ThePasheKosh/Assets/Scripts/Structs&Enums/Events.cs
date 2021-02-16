@@ -2,7 +2,6 @@
 public struct Events
 {
     public static string TouchCollider { get; } = "TouchCollider";
-
     public static string TouchScreen { get; } = "TouchScreen";
 
     public static string GameOver { get; } = "GameOver";
@@ -16,6 +15,12 @@ public struct Events
     public static string BackgroundSound { get; } = "BackgroundSound";
 
     public static string InsectsSound { get; } = "InsectSound";
+
+
+    public static string ElectricalPasheKosh { get; } = "ElectricalPasheKosh";
+    public static string Fan { get; } = "Fan";
+    public static string Pill { get; } = "Pill";
+    public static string Spray { get; } = "Spray";
 
 
 }
