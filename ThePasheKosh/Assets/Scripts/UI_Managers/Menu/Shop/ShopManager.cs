@@ -8,19 +8,25 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     // shopButtons[0] = targetshop, shopButtons[1] = killershop, shopButtons[2] = powerupsShop
-    [SerializeField] Button[] shopButtons;
-    [Space]
     [SerializeField] Sprite selectedSprite, deselectedSprite;
+    [Space]
+    [SerializeField] Button[] shopButtons;
     [Space]
     [SerializeField] GameObject[] shops;
 
+
     void Start()
+    {
+        AddCategoryButtons();
+        ChangeToKillerShop();
+    }//Starttttt
+
+    void AddCategoryButtons()
     {
         shopButtons[0].onClick.AddListener(ChangeToTargetShop);
         shopButtons[1].onClick.AddListener(ChangeToKillerShop);
         shopButtons[2].onClick.AddListener(ChangeToPowerupsShop);
-        ChangeToKillerShop();
-    }//Starttttt
+    }
 
     //when Target Shop is selected.
     void ChangeToTargetShop()
@@ -49,7 +55,6 @@ public class ShopManager : MonoBehaviour
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(unityAction);
     }
-
     void ChangeColor(Button[] buttons, int numb)
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -57,16 +62,15 @@ public class ShopManager : MonoBehaviour
             if (numb == i)
             {
                 buttons[i].gameObject.GetComponent<Image>().sprite = selectedSprite;
-                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.white;
+                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.black;
             }
             else
             {
                 buttons[i].gameObject.GetComponent<Image>().sprite = deselectedSprite;
-                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.black;
+                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.white;
             }
         }
     }
-
     void SetObj_On(GameObject[] gameObjects, int numb)
     {
         for (int i = 0; i < gameObjects.Length; i++)

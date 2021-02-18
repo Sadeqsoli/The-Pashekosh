@@ -39,10 +39,6 @@ public class GameManager : Singleton<GameManager>
     [Space]
     [Space]
     public UIManager gameUIManager;
-    
-    // Background that is added through inspector to fit the screen
-    [Space] 
-    public SpriteRenderer background;
 
     // Play/Pause buttons that is added through inspector
     [Space] 
@@ -80,8 +76,6 @@ public class GameManager : Singleton<GameManager>
     #region Unity Methods
     private void Start()
     {
-        //To Fit Camera Side to Side With The Screen
-        CameraScaler.CameraFit(background);
         if (!PlayerPrefs2.GetBool("MoreThanOneTime"))
         {
             PlayerPrefs2.SetBool("MoreThanOneTime", true);

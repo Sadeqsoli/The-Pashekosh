@@ -15,14 +15,15 @@ public static class CoinRepo
     #region Public Methods
     public static bool PopCoins(int count)
     {
-        if (HasCoins(count))
+        if (!HasCoins(count))
         {
-            int allCoins = GetCoins();
-            allCoins -= count;
-            SaveRepo(coinRepository, allCoins);
-            return true;
+            return false;
+
         }
-        return false;
+        int allCoins = GetCoins();
+        allCoins -= count;
+        SaveRepo(coinRepository, allCoins);
+        return true;
 
     }
     public static void PushCoins(int newCoins)

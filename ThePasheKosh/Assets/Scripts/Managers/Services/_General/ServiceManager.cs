@@ -38,7 +38,7 @@ namespace GameServices
             _serviceManagers.Clear();
         }
 
-        protected void OnDestroy()
+        void OnDestroy()
         {
             ClearServices();
         }

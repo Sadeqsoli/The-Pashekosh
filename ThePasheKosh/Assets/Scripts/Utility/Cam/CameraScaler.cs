@@ -30,6 +30,21 @@ public static class CameraScaler
             mainCamera.orthographicSize = sprite.bounds.size.y / 2 * differenceInSize;
         }
     }
+    public static void CameraFit(Camera camera, SpriteRenderer sprite)
+    {
+        float screenRatio = (float)Screen.width / (float)Screen.height;
+        float targetRatio = sprite.bounds.size.x / sprite.bounds.size.y;
+
+        if (screenRatio <= targetRatio)
+        {
+            camera.orthographicSize = sprite.bounds.size.y / 2;
+        }
+        else
+        {
+            float differenceInSize = targetRatio / screenRatio;
+            camera.orthographicSize = sprite.bounds.size.y / 2 * differenceInSize;
+        }
+    }
 
 
 }
