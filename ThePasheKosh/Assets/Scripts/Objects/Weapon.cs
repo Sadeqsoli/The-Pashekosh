@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -29,6 +30,18 @@ public class Weapon : MonoBehaviour
     }
 
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (gameObject.name == WeaponType.ElectricalPashekosh.ToString())
+        {
+            var badInsectComponent = other.gameObject.GetComponent<BadInsect>();
+            if (badInsectComponent != null)
+            {
+                EventManager.TriggerEvent(Events.TouchCollider, other.gameObject);
+            }
+        }
+    }
 
     #region Methods
 

@@ -54,10 +54,6 @@ public class PowerUps : MonoBehaviour
         sprayButton.onClick.AddListener(() => powerUpsManager.UseSpray());
     }
 
-    private void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {

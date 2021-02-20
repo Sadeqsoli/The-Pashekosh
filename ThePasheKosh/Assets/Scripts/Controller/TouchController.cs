@@ -23,7 +23,7 @@ public class TouchController : MonoBehaviour
 
     public void TouchHandling()
     {
-        if (Input.touchCount>0 && GameManager.Instance.IsTouchable)
+        if (Input.touchCount>0 && GameManager.IsNormalWeaponActive)
         {
             var weaponPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             
@@ -54,7 +54,7 @@ public class TouchController : MonoBehaviour
 
     public void MouseHandling()
     {
-        if (Input.GetMouseButtonUp(0) && GameManager.Instance != null && GameManager.Instance.IsTouchable)
+        if (Input.GetMouseButtonUp(0) && GameManager.Instance != null && GameManager.IsNormalWeaponActive)
         {
             pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20f);
 
@@ -80,10 +80,23 @@ public class TouchController : MonoBehaviour
                 }
             }
         }
+        else if (Input.GetMouseButtonUp(0) && GameManager.Instance != null && GameManager.isPowerUpActive && GameManager.IsElectricalPkActive)
+        {
+            pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20f);
+
+            var weaponPos = Camera.main.ScreenToWorldPoint(pos);
+            
+            if (!(Camera.main is null))
+            {
+                ItemPool.InstantiateGameObjectByName(WeaponType.ElectricalPashekosh.ToString(), weaponPos, Quaternion.identity);
+            }
+        }
     }
 
     public void ShowImpact(Vector3 weaponPos)
     {
         ItemPool.InstantiateGameObjectByName(usingWeapon.ToString(), weaponPos, quaternion.identity);
     }
+    
+    
 }

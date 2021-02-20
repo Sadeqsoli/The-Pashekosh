@@ -2,21 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Channels;
 using UnityEditor;
+using UnityEditor.Experimental.U2D.IK;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-
-public enum GameStates
-{
-    Normal,
-    ElectricalPasheKosh,
-    Fan,
-    Spray,
-    Pill
-}
 
 public class GameManager : Singleton<GameManager>
 {
@@ -70,7 +63,8 @@ public class GameManager : Singleton<GameManager>
     #region Properties
     
     // Make it false, whenever we don't want the player touches have impact on the game
-    public bool IsTouchable { private set; get; }
+    public static bool IsNormalWeaponActive { private set; get; }
+    public static bool IsElectricalPkActive { private set; get; }
     #endregion
     
     #region Unity Methods
@@ -100,15 +94,11 @@ public class GameManager : Singleton<GameManager>
         // Initializing GameUIManager
         gameUIManager.Initialize(0, 100);
         
-        // Initializing PowerUps
-        var powerUpNumbers = GetPowerUpsNum();
-        PowerUpsManager.Initialize(powerUpNumbers);
-        
         // Show the food in the game
         FoodManager.Instance.MakeTheFoodReady(foods[foodIndex]);
         
         // Make sure that the game is touchable
-        IsTouchable = true;
+        IsNormalWeaponActive = true;
     }
     
     #endregion 
@@ -145,11 +135,17 @@ public class GameManager : Singleton<GameManager>
             EventManager.AddBoolEvent(Events.BackgroundSound);
             EventManager.AddBoolEvent(Events.InsectsSound);
             
-            // Events that are realted to Power Ups
+            // Events that are realted to Power Ups buttons
             EventManager.AddEventWithNoParamter(Events.ElectricalPasheKosh);
             EventManager.AddEventWithNoParamter(Events.Fan);
             EventManager.AddEventWithNoParamter(Events.Pill);
             EventManager.AddEventWithNoParamter(Events.Spray);
+            
+            // Events that are related to Power Ups actions
+            EventManager.AddEventWithNoParamter(Events.ElectricalPasheKoshTriggered);
+            EventManager.AddEventWithNoParamter(Events.FanTriggered);
+            EventManager.AddEventWithNoParamter(Events.PillTriggered);
+            EventManager.AddEventWithNoParamter(Events.SprayTriggered);
         }
         else
         {
@@ -219,7 +215,7 @@ public class GameManager : Singleton<GameManager>
 
     private void GameOver()
     {
-        IsTouchable = false;
+        IsNormalWeaponActive = false;
         
         float score = ResultsController.Instance.Score;
         ScoreRepo.PushScore(score);
@@ -245,7 +241,9 @@ public class GameManager : Singleton<GameManager>
     private void PauseGame()
     {
         Time.timeScale = 0;
-        IsTouchable = false;
+        
+        IsNormalWeaponActive = false;
+        IsElectricalPkActive = false;
         
         pauseButton.gameObject.SetActive(false);
         playButton.gameObject.SetActive(true);
@@ -254,7 +252,15 @@ public class GameManager : Singleton<GameManager>
     private void PlayGame()
     {
         Time.timeScale = 1;
-        IsTouchable = true;
+        Timers.Instance.StartTimer(0.1f, PlayGameWithDelay);
+    }
+
+    private void PlayGameWithDelay()
+    {
+        if(gameState == GameStates.Normal)
+            IsNormalWeaponActive = true;
+        else if (gameState == GameStates.ElectricalPasheKosh)
+            IsElectricalPkActive = true;
         
         playButton.gameObject.SetActive(false);
         pauseButton.gameObject.SetActive(true);
@@ -339,6 +345,8 @@ public class GameManager : Singleton<GameManager>
     private void UseElectricalPK()
     {
         UsePowerUps(GameStates.ElectricalPasheKosh);
+        Timers.Instance.StartTimer(10f, FinishPowerUp);
+        IsElectricalPkActive = true;
     }
 
     private void UseFan()
@@ -360,7 +368,7 @@ public class GameManager : Singleton<GameManager>
     {
         HidePowerUpsPanel();
         gameState = currentState;
-        IsTouchable = false;
+        IsNormalWeaponActive = false;
         isPowerUpActive = true;
         StartCoroutine(UsePowerUpsCo());
     }
@@ -373,30 +381,13 @@ public class GameManager : Singleton<GameManager>
 
     private void FinishPowerUp()
     {
+        isPowerUpActive = false;
+        IsElectricalPkActive = false;
+        
         gameState = GameStates.Normal;
-        IsTouchable = true;
+        IsNormalWeaponActive = true;
     }
 
-    private PowerUpNumbers GetPowerUpsNum()
-    {
-        PowerUpNumbers powerUpNumbers = new PowerUpNumbers();
-        if (PlayerPrefs.HasKey(PowerUps.ElectricalPasheKosh))
-        {
-            powerUpNumbers.electricalPasheKoshNum = PlayerPrefs.GetInt(PowerUps.ElectricalPasheKosh);
-            powerUpNumbers.fanNum = PlayerPrefs.GetInt(PowerUps.Fan);
-            powerUpNumbers.pillNum = PlayerPrefs.GetInt(PowerUps.Pill);
-            powerUpNumbers.sprayNum = PlayerPrefs.GetInt(PowerUps.Spray);
-        }
-        else
-        {
-            Debug.Log("Number Of PowerUps haven't saved from Main Menu Scene.");
-            powerUpNumbers.electricalPasheKoshNum = 0;
-            powerUpNumbers.fanNum = 0;
-            powerUpNumbers.pillNum = 0;
-            powerUpNumbers.sprayNum = 0;
-        }
-
-        return powerUpNumbers;
-    }
+    
     #endregion
 }

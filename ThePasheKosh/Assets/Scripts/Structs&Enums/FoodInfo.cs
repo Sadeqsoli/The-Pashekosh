@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public struct FoodInfo
 {
     [FormerlySerializedAs("cakeName")] 
-    public string foodName;
+    public FoodType foodType;
     [FormerlySerializedAs("cakePrefab")] 
     public GameObject foodPrefab;
     [FormerlySerializedAs("cakeSprites")] 

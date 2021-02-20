@@ -13,6 +13,7 @@ public class InsectManager : Singleton<InsectManager>
 
     #region Private Variables
     List<Coroutine> allSpawnCoroutines;
+    
     List<GameObject> existedInsects;
 
     #endregion

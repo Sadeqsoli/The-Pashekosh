@@ -19,5 +19,6 @@ public enum WeaponType
     GoshtKob,
     FoldedNewsPaper,
     Painting,
-    Book
+    Book,
+    ElectricalPashekosh
 }
