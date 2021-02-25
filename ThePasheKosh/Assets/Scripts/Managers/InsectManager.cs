@@ -25,21 +25,15 @@ public class InsectManager : Singleton<InsectManager>
         existedInsects = new List<GameObject>();
     }
 
-
-    public void RemoveInsects()
-    {
-        StartCoroutine(RemoveInsectsCoroutine());
-    }
-
-    public void RemoveInsect(GameObject insect)
-    {
-        existedInsects.Remove(insect);
-    }
-
+    #region Spawn-related Functions
 
     public void StartInsectSpawning(LevelParametersStruct levelParameters)
     {
         EventManager.StartListening(Events.InsectKilled, RemoveInsect);
+        
+        EventManager.StartListening(Events.FanTriggered, FanTriggeredHandling);
+        EventManager.StartListening(Events.PillTriggered, PillTriggeredHandling);
+        EventManager.StartListening(Events.SprayTriggered, SprayTriggeredHandling);
 
         // Bad Insect Coroutine
         Coroutine badCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.badInsectParameters, true));
@@ -49,8 +43,73 @@ public class InsectManager : Singleton<InsectManager>
         allSpawnCoroutines.Add(badCoroutine);
         // GoodInsectCoroutine
     }
+    
+    public void StopAllSpawn(bool removeInsects)
+    {
+        while (allSpawnCoroutines.Count > 0)
+        {
+            StopCoroutine(allSpawnCoroutines[allSpawnCoroutines.Count - 1]);
+            allSpawnCoroutines.RemoveAt(allSpawnCoroutines.Count - 1);
+        }
+        if (removeInsects) RemoveInsects(1);
+    }
 
-    IEnumerator SpawnCoroutine(InsectParameters insectParams, bool isBadInsect)
+    #endregion
+    
+
+    #region Removing Functions
+    public void RemoveInsects(float removagePercentage)
+    {
+        StartCoroutine(RemoveInsectsCoroutine(removagePercentage));
+    }
+
+    public void RemoveInsect(GameObject insect)
+    {
+        existedInsects.Remove(insect);
+    }
+    #endregion
+
+    private float AngleOf(Vector2 p1, Vector2 p2)
+    {
+        float deltaY = (p1.y - p2.y);
+        float deltaX = (p2.x - p1.x);
+        float result = ((float)System.Math.Atan2(deltaY, deltaX)) * 180f / (2f * (float) System.Math.PI);
+        return result;
+    }
+
+    private void GetSpawnTargetPoints(SpawnPoint[] spawnPointArray,
+        out Transform spawnPoint, out Transform targetPoint, out Collider2D[] targetColliders)
+    {
+        int randomPosIndex = Random.Range(0, spawnPointArray.Length);
+        int randomTargetPosIndex = Random.Range(0, spawnPointArray[randomPosIndex].targetCollider.Length);
+        spawnPoint = spawnPointArray[randomPosIndex].gameObject.transform;
+        targetPoint = spawnPointArray[randomPosIndex].targetCollider[randomTargetPosIndex].gameObject.transform;
+        targetColliders = spawnPointArray[randomPosIndex].targetCollider;
+    }
+
+    #region powerUpsHandling
+
+    private void FanTriggeredHandling()
+    {
+        
+    }
+
+    private void SprayTriggeredHandling()
+    {
+        RemoveInsects(1f);
+    }
+
+    private void PillTriggeredHandling()
+    {
+        RemoveInsects(0.75f);
+    }
+
+    #endregion
+
+    
+    
+    #region IEnumerators
+    private IEnumerator SpawnCoroutine(InsectParameters insectParams, bool isBadInsect)
     {
         yield return new WaitForSeconds(Random.Range(1f, 2f));
         
@@ -100,51 +159,39 @@ public class InsectManager : Singleton<InsectManager>
         }
     }
 
-    float AngleOf(Vector2 p1, Vector2 p2)
+    private IEnumerator RemoveInsectsCoroutine(float removagePercentage)
     {
-        float deltaY = (p1.y - p2.y);
-        float deltaX = (p2.x - p1.x);
-        float result = ((float)System.Math.Atan2(deltaY, deltaX)) * 180f / (2f * (float) System.Math.PI);
-        return result;
-    }
-
-    void GetSpawnTargetPoints(SpawnPoint[] spawnPointArray,
-        out Transform spawnPoint, out Transform targetPoint, out Collider2D[] targetColliders)
-    {
-        int randomPosIndex = Random.Range(0, spawnPointArray.Length);
-        int randomTargetPosIndex = Random.Range(0, spawnPointArray[randomPosIndex].targetCollider.Length);
-        spawnPoint = spawnPointArray[randomPosIndex].gameObject.transform;
-        targetPoint = spawnPointArray[randomPosIndex].targetCollider[randomTargetPosIndex].gameObject.transform;
-        targetColliders = spawnPointArray[randomPosIndex].targetCollider;
-    }
-
-    T GetRandomItem<T>(T[] input)
-    {
-        int randomIndex = Random.Range(0, input.Length);
-        T output = input[randomIndex];
-        return output;
-    }
-
-    public void StopAllSpawn(bool removeInsects)
-    {
-        while (allSpawnCoroutines.Count > 0)
-        {
-            StopCoroutine(allSpawnCoroutines[allSpawnCoroutines.Count - 1]);
-            allSpawnCoroutines.RemoveAt(allSpawnCoroutines.Count - 1);
-        }
-        if (removeInsects) RemoveInsects();
-    }
-
-
-    IEnumerator RemoveInsectsCoroutine()
-    {
-        while(existedInsects.Count > 0)
+        /* while(existedInsects.Count > 0)
         {
             Insect insectComponent = existedInsects[existedInsects.Count - 1].GetComponent<Insect>();
             insectComponent.RemoveInsect();
             existedInsects.RemoveAt(existedInsects.Count - 1);
             yield return new WaitForEndOfFrame();
+        }*/
+
+        if (existedInsects.Count > 0)
+        {
+            for (int i = existedInsects.Count - 1; i >= 0; i--)
+            {
+                if (Random.Range(0f, 1f) < removagePercentage)
+                {
+                    var insect = existedInsects[i].GetComponent<Insect>();
+                    existedInsects.RemoveAt(i);
+
+                    insect.RemoveInsect();
+
+                    yield return new WaitForEndOfFrame();
+                }
+            }
         }
     }
-
+    
+    #endregion
+    
+    private T GetRandomItem<T>(T[] input)
+    {
+        int randomIndex = Random.Range(0, input.Length);
+        T output = input[randomIndex];
+        return output;
+    }
 }

@@ -269,8 +269,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -2.6600796e-11, y: -0.017378924}
+  m_Size: {x: 0.5000001, y: 1.0882359}
   m_Direction: 0
 --- !u!50 &-1400263478644244028
 Rigidbody2D:
@@ -615,7 +615,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909119936967438899}
-  m_LocalRotation: {x: 0.000000010805869, y: -2.9925392e-11, z: -0.00000071525574,
+  m_LocalRotation: {x: 0.000000010805869, y: -2.9925392e-11, z: -0.0000007152556,
     w: 1}
   m_LocalPosition: {x: 0.361, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1237,7 +1237,7 @@ MonoBehaviour:
     m_StoredLocalRotations:
     - {x: 0, y: 0, z: -0.436978, w: 0.89947224}
     - {x: -0.000000010576863, y: 0.0000000022130728, z: -0.2020899, w: 0.979367}
-    - {x: 0.000000010805869, y: -2.9925392e-11, z: -0.00000071525585, w: 1}
+    - {x: 0.000000010805869, y: -2.9925392e-11, z: -0.0000007152556, w: 1}
   m_Flip: 0
 --- !u!1 &909119938622707139
 GameObject:
@@ -1957,13 +1957,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4654167334054482104}
-  m_LocalRotation: {x: -0, y: -0, z: -0.021056384, w: 0.99977833}
+  m_LocalRotation: {x: -0, y: -0, z: -0.011251956, w: 0.99993676}
   m_LocalPosition: {x: 0.38152623, y: 0.00000004715616, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_Children: []
   m_Father: {fileID: 7170063073405773888}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.413}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.289}
 --- !u!1 &5152233601063548899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,8 +2490,8 @@ MonoBehaviour:
   - {fileID: 8818769886882693507}
   - {fileID: 7170063073405773888}
   m_Bounds:
-    m_Center: {x: -0.00681749, y: -0.003717959, z: 0}
-    m_Extent: {x: 0.16688526, y: 0.401442, z: 0}
+    m_Center: {x: -0.002986148, y: -0.0022972822, z: 0}
+    m_Extent: {x: 0.16303861, y: 0.40002128, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &8330029572249271699
