@@ -5,6 +5,9 @@ using UnityEngine;
 public class InsectManager : Singleton<InsectManager>
 {
     #region Public Variables
+
+    public float windPower = 0.1f;
+    
     public SpawnPoint[] spawnPoints;
 
     public Transform cakePoint;
@@ -91,7 +94,22 @@ public class InsectManager : Singleton<InsectManager>
 
     private void FanTriggeredHandling()
     {
-        
+        foreach (var insect in existedInsects)
+        {
+            var insectCom = insect.GetComponent<Insect>();
+            insectCom.cakePoint = cakePoint.gameObject;
+
+            if (insectCom.IsBadInsect)
+            {
+                var badInsectCom = insect.GetComponent<BadInsect>();
+                badInsectCom.GoToWindState(windPower);
+            }
+            else
+            {
+                var goodInsectCom = insect.GetComponent<GoodInsect>();
+                goodInsectCom.GoToWindState(windPower);
+            }
+        }
     }
 
     private void SprayTriggeredHandling()

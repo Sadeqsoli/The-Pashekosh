@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 
-public enum BadInsectState { TowardsFood, OnFood, Stop }
+public enum BadInsectState { TowardsFood, OnFood, Wind, Stop }
 
 
 public class BadInsect : Insect
 {
+    public float windPower;
+    
     public int addedPoints;
     public int impactRate;
     private static readonly int OnFood = Animator.StringToHash("OnFood");
@@ -28,6 +31,9 @@ public class BadInsect : Insect
             case BadInsectState.OnFood:
                 rigidBody2d.velocity = new Vector2(0, 0);
                 Move();
+                break;
+            case BadInsectState.Wind:
+                MoveAgainstCake();
                 break;
             case BadInsectState.Stop:
                 break;
@@ -76,11 +82,30 @@ public class BadInsect : Insect
         }
         CurrentState = BadInsectState.TowardsFood;
     }
+
+    public void GoToWindState(float windPower)
+    {
+        this.windPower = windPower;
+        GoToFlyState();
+        CurrentState = BadInsectState.Wind;
+        StartCoroutine(GoBackToNormal());
+    }
     #endregion
 
+    private void MoveAgainstCake()
+    {
+        rigidBody2d.AddForce((transform.position - cakePoint.transform.position).normalized * windPower, ForceMode2D.Impulse);
+    }
+    
     protected override void OnDisable()
     {
         base.OnDisable();
         CurrentState = BadInsectState.Stop;
+    }
+    
+    private IEnumerator GoBackToNormal()
+    {
+        yield return new WaitForSeconds(0.6f);
+        GoToFlyState();
     }
 }

@@ -9,6 +9,7 @@ public class Insect : MonoBehaviour
 
 
     public GameObject insectDead;
+    public GameObject cakePoint;
 
     private Vector2 endPoint;
     private Vector2 spawnPoint;
