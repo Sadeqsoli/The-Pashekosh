@@ -6,7 +6,7 @@ public class InsectManager : Singleton<InsectManager>
 {
     #region Public Variables
 
-    public float windPower = 0.1f;
+    public float windPower = 0.2f;
     
     public SpawnPoint[] spawnPoints;
 
@@ -191,13 +191,11 @@ public class InsectManager : Singleton<InsectManager>
         {
             for (int i = existedInsects.Count - 1; i >= 0; i--)
             {
-                if (Random.Range(0f, 1f) < removagePercentage)
+                if (Random.Range(0f, 1f) < removagePercentage && i <= existedInsects.Count - 1)
                 {
                     var insect = existedInsects[i].GetComponent<Insect>();
                     existedInsects.RemoveAt(i);
-
                     insect.RemoveInsect();
-
                     yield return new WaitForEndOfFrame();
                 }
             }
