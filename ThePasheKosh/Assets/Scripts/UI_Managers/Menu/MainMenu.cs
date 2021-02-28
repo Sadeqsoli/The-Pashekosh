@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : Static<MainMenu>
 {
     [SerializeField] Button SettingButton;
     [SerializeField] Button ShopButton;
@@ -19,10 +19,23 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject UsernamePanel;
 
 
+    public void DeletingKeys()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SetCoinsText();
+    }
+    public void AddCoinsDebug(int coins)
+    {
+        CoinRepo.PushCoins(coins);
+        SetCoinsText();
+    }
 
 
-
-
+    public void SetCoinsText()
+    {
+        CoinCounterTXT.text = CoinRepo.GetCoins().ToString();
+    }
 
 
     void Start()
@@ -93,9 +106,6 @@ public class MainMenu : MonoBehaviour
         highScoreTXT.gameObject.SetActive(true);
         highScoreTXT.text = ScoreRepo.GetHighScore().ToString();
     }
-    void SetCoinsText()
-    {
-        CoinCounterTXT.text = CoinRepo.GetCoins().ToString();
-    }
+
 
 }//EndClassss

@@ -307,6 +307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   insectDead: {fileID: 2239121432623724552, guid: 3b9acb1010126844eaa9565ffdc8a477,
     type: 3}
+  cakePoint: {fileID: 0}
+  windPower: 0
   addedPoints: 5
   impactRate: 1
 --- !u!1 &851786215881749716

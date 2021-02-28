@@ -13,7 +13,7 @@ public class TargetStruct : MonoBehaviour
 
     const int TAXCOINonTARGETS = 1000;
 
-    void Start()
+    void OnEnable()
     {
         UpdateTargetState();
     }
@@ -34,20 +34,20 @@ public class TargetStruct : MonoBehaviour
             if (isLocked)
             {
                 locker.SetDisplayFee(taxForOpeningNewTarget.ToString());
-                locker.ChangeListener(delegate { OpenNewBackground(taxForOpeningNewTarget, (TargetManager.TargetType)currentTargetNumb); });
+                locker.ChangeListener(delegate { OpenNewBackground(taxForOpeningNewTarget, (FoodType)currentTargetNumb); });
             }
 
-            Targets[currentTargetNumb].onClick.AddListener(delegate { SetNewTarget((TargetManager.TargetType)currentTargetNumb); });
+            Targets[currentTargetNumb].onClick.AddListener(delegate { SetNewTarget((FoodType)currentTargetNumb); });
         }
     }
 
-    void OpenNewBackground(int taxCoin, TargetManager.TargetType targetType)
+    void OpenNewBackground(int taxCoin, FoodType targetType)
     {
         if (CoinRepo.PopCoins(taxCoin))
         {
             //TODO: Make a sound for opening 
             //TODO: Make a Visual for opening 
-            LockRepo.OpenTarget(DB.Key(targetType.ToString()));
+            LockRepo.OpenTarget(DB.Key(targetType));
             UpdateTargetState();
         }
         else
@@ -59,7 +59,7 @@ public class TargetStruct : MonoBehaviour
         }
     }
 
-    void SetNewTarget(TargetManager.TargetType targetType)
+    void SetNewTarget(FoodType targetType)
     {
         if (TargetManager.Instance.CurrentTarget != targetType)
             TargetManager.Instance.UpdateBackground(targetType);

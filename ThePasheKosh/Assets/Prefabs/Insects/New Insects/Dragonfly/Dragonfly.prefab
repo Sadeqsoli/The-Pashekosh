@@ -854,6 +854,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   insectDead: {fileID: 4438845209601847004, guid: 9c4e003614fbc5b40b4374bf0e9d1fb1,
     type: 3}
+  cakePoint: {fileID: 0}
+  windPower: 0
 --- !u!1 &6731644369908638832
 GameObject:
   m_ObjectHideFlags: 0

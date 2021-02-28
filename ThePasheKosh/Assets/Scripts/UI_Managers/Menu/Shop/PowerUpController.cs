@@ -1,54 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using RTLTMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PowerUpController : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI CoinsText;
+    [SerializeField] RTLTextMeshPro CoinsText;
     [Space]
     [SerializeField] PowerupStruct PU_EPasheKosh;
     [Space]
-    [SerializeField] PowerupStruct PU_Ghorse;
+    [SerializeField] PowerupStruct PU_Pill;
     [Space]
     [SerializeField] PowerupStruct PU_EFan;
     [Space]
     [SerializeField] PowerupStruct PU_Spray;
 
+
+    //base taxes.
     int baseTaxOnEPashekosh = 0;
-    int baseTaxOnGhors = 0;
+    int baseTaxOnPill = 0;
     int baseTaxOnEFan = 0;
     int baseTaxOnSpray = 0;
 
     //Powerups.
     int puEPashekosh = 0;
-    int puGhors = 0;
+    int puPill = 0;
     int puEFan = 0;
     int puSpray = 0;
 
-    //Powerups level.
-    int puEPashekoshLevel = 0;
-    int puGhorsLevel = 0;
-    int puEFanLevel = 0;
-    int puSprayLevel = 0;
-
-    //Powerups Current Price.
-    int puEPashekoshCurrentPrice = 0;
-    int puGhorsCurrentPrice = 0;
-    int puEFanCurrentPrice = 0;
-    int puSprayCurrentPrice = 0;
 
 
 
 
-    void Start()
+
+    void OnEnable()
     {
-        UpdateAllPowerups();
+        InitializePowerups();
     }
 
-
+    void InitializePowerups()
+    {
+        CoinsText.text = CoinRepo.GetCoins().ToString();
+        UpdateAllPowerups();
+    }
 
 
 
@@ -57,7 +53,7 @@ public class PowerUpController : MonoBehaviour
     void UpdateAllPowerups()
     {
         UpdateEPashekoshStatus();
-        UpdateGhorsStatus();
+        UpdatePillStatus();
         UpdateEFanStatus();
         UpdateSprayStatus();
     }
@@ -67,39 +63,54 @@ public class PowerUpController : MonoBehaviour
 
     void UpdateEPashekoshStatus()
     {
-        puEPashekoshLevel = PowerupRepo.GetPowerupLevel(PowerUpType.EPashekosh);
-        puEPashekoshCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(PowerUpType.EPashekosh);
+
+        int puEPashekoshLevel = PowerupRepo.GetPowerupLevel(PowerUpType.ElectricalPasheKosh);
+        int puEPashekoshCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(PowerUpType.ElectricalPasheKosh);
+
+        Debug.Log("puEPashekoshLevel: " + puEPashekoshLevel);
+        Debug.Log("puEPashekoshCurrentPrice: " + puEPashekoshCurrentPrice);
 
         PU_EPasheKosh.GetPU_LevelAndPrice(puEPashekoshLevel, puEPashekoshCurrentPrice);
         PU_EPasheKosh.LockPowerUp(CoinRepo.HasCoins(puEPashekoshCurrentPrice));
-        PU_EPasheKosh.AddNewListener(delegate { PowerupLevelup(PowerUpType.EPashekosh, puEPashekoshCurrentPrice); });
+        PU_EPasheKosh.AddNewListener(delegate { PowerupLevelup(PowerUpType.ElectricalPasheKosh, puEPashekoshCurrentPrice); });
     }
-    void UpdateGhorsStatus()
+    void UpdatePillStatus()
     {
-        puGhorsLevel = PowerupRepo.GetPowerupLevel(PowerUpType.Ghors);
-        puGhorsCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(PowerUpType.Ghors);
+        int puPillLevel = PowerupRepo.GetPowerupLevel(PowerUpType.Pill);
+        int puPillCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(PowerUpType.Pill);
 
-        PU_Ghorse.GetPU_LevelAndPrice(puGhorsLevel, puGhorsCurrentPrice);
-        PU_Ghorse.LockPowerUp(CoinRepo.HasCoins(puGhorsCurrentPrice));
-        PU_Ghorse.AddNewListener(delegate { PowerupLevelup(PowerUpType.Ghors, puGhorsCurrentPrice); });
+        Debug.Log("puPillLevel: " + puPillLevel);
+        Debug.Log("puPillCurrentPrice: " + puPillCurrentPrice);
+
+        PU_Pill.GetPU_LevelAndPrice(puPillLevel, puPillCurrentPrice);
+        PU_Pill.LockPowerUp(CoinRepo.HasCoins(puPillCurrentPrice));
+        PU_Pill.AddNewListener(delegate { PowerupLevelup(PowerUpType.Pill, puPillCurrentPrice); });
     }
     void UpdateEFanStatus()
     {
-        puEFanLevel = PowerupRepo.GetPowerupLevel(PowerUpType.EFan);
-        puEFanCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(PowerUpType.EFan);
+
+        int puEFanLevel = PowerupRepo.GetPowerupLevel(PowerUpType.Fan);
+       int puEFanCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(PowerUpType.Fan);
+
+        Debug.Log("puEFanLevel: " + puEFanLevel);
+        Debug.Log("puEFanCurrentPrice: " + puEFanCurrentPrice);
 
         PU_EFan.GetPU_LevelAndPrice(puEFanLevel, puEFanCurrentPrice);
         PU_EFan.LockPowerUp(CoinRepo.HasCoins(puEFanCurrentPrice));
-        PU_EFan.AddNewListener(delegate { PowerupLevelup(PowerUpType.EFan, puEFanCurrentPrice); });
+        PU_EFan.AddNewListener(delegate { PowerupLevelup(PowerUpType.Fan, puEFanCurrentPrice); });
     }
     void UpdateSprayStatus()
     {
-        puSprayLevel = PowerupRepo.GetPowerupLevel(PowerUpType.Spray);
-        puSprayCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(PowerUpType.Spray);
+        PowerUpType spray = PowerUpType.Spray;
+        int puSprayLevel = PowerupRepo.GetPowerupLevel(spray);
+        int puSprayCurrentPrice = PowerupRepo.GetPowerupCurrentPrice(spray);
+
+        Debug.Log("puSprayLevel: " + puSprayLevel);
+        Debug.Log("puSprayCurrentPrice: " + puSprayCurrentPrice);
 
         PU_Spray.GetPU_LevelAndPrice(puSprayLevel, puSprayCurrentPrice);
         PU_Spray.LockPowerUp(CoinRepo.HasCoins(puSprayCurrentPrice));
-        PU_Spray.AddNewListener(delegate { PowerupLevelup(PowerUpType.Spray, puSprayCurrentPrice); });
+        PU_Spray.AddNewListener(delegate { PowerupLevelup(spray, puSprayCurrentPrice); });
     }
 
 
@@ -108,19 +119,19 @@ public class PowerUpController : MonoBehaviour
     {
         switch (powerUp)
         {
-            case PowerUpType.EPashekosh:
+            case PowerUpType.ElectricalPasheKosh:
                 int EPasheKoshGap = 100;
                 PowerupRepo.PushPowerupNewPrice(powerUp, EPasheKoshGap);
                 break;
 
-            case PowerUpType.Ghors:
-                int GhorsGap = 150;
-                PowerupRepo.PushPowerupNewPrice(powerUp, GhorsGap);
+            case PowerUpType.Fan:
+                int EFanGap = 150;
+                PowerupRepo.PushPowerupNewPrice(powerUp, EFanGap);
                 break;
 
-            case PowerUpType.EFan:
-                int EFanGap = 200;
-                PowerupRepo.PushPowerupNewPrice(powerUp, EFanGap);
+            case PowerUpType.Pill:
+                int PillGap = 200;
+                PowerupRepo.PushPowerupNewPrice(powerUp, PillGap);
                 break;
 
             case PowerUpType.Spray:
@@ -142,11 +153,11 @@ public class PowerUpController : MonoBehaviour
     {
         if (CoinRepo.PopCoins(currentPrice))
         {
+            CoinsText.text = CoinRepo.GetCoins().ToString();
             PowerupRepo.PushPowerupToNextLevel(powerUp);
             CalculateNewPrice(powerUp);
-            CoinsText.text = CoinRepo.GetCoins().ToString();
             UpdateAllPowerups();
-            Debug.Log("You bought " + powerUp + " with price of " + currentPrice + " coins!");
+            Debug.Log("You've bought " + powerUp + " with price of " + currentPrice + " coins!");
         }
         else
         {
@@ -156,9 +167,4 @@ public class PowerUpController : MonoBehaviour
 
 #endregion
 
-
-
-
-
-
-}
+}//EndClassss

@@ -13,7 +13,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] Button[] shopButtons;
     [Space]
     [SerializeField] GameObject[] shops;
-
+    [Space]
+    [SerializeField] Button ClosingShopButton;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class ShopManager : MonoBehaviour
 
     void AddCategoryButtons()
     {
+        ClosingShopButton.onClick.AddListener(GetBackToMain);
         shopButtons[0].onClick.AddListener(ChangeToTargetShop);
         shopButtons[1].onClick.AddListener(ChangeToKillerShop);
         shopButtons[2].onClick.AddListener(ChangeToPowerupsShop);
@@ -47,7 +49,12 @@ public class ShopManager : MonoBehaviour
         ChangeColor(shopButtons, 2);
     }
 
-    //this used to change button sprite to selected.
+
+    void GetBackToMain()
+    {
+        MainMenu.Instance.SetCoinsText();
+        gameObject.SetActive(false);
+    }
 
 
     void ChangeListener(Button button, UnityAction unityAction)

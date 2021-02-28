@@ -21,7 +21,7 @@ public class PowerupStruct : MonoBehaviour
 
     public void LockPowerUp(bool isLock)
     {
-        NoMoneyLock.SetActive(isLock);
+        NoMoneyLock.SetActive(!isLock);
     }
     public void AddNewListener(UnityAction unityAction)
     {
