@@ -29,9 +29,9 @@ public static class CoinRepo
     {
         if (newCoins > 0)
         {
-            int coins = GetCoins();
-            coins += newCoins;
-            SaveRepo(coinRepository, coins);
+            int allCoins = GetCoins();
+            allCoins += newCoins;
+            SaveRepo(coinRepository, allCoins);
         }
     }
     public static int GetCoins()

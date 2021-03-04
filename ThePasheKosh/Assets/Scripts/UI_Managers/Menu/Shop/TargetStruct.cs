@@ -20,7 +20,7 @@ public class TargetStruct : MonoBehaviour
 
     void UpdateTargetState()
     {
-        for (int i = 0; i < Targets.Length; i++)
+        for (int i = 1; i < Targets.Length; i++)
         {
             int currentTargetNumb = i;
 
@@ -28,10 +28,10 @@ public class TargetStruct : MonoBehaviour
 
             Locker locker = Targets[currentTargetNumb].gameObject.GetComponentInChildren<Locker>();
 
-            bool isLocked = LockRepo.IsRepoHas(LockRepo.GetOpenedTarget());
+            bool isOpened = LockRepo.IsOpened(DB.Key((FoodType)currentTargetNumb));
 
-            locker.gameObject.SetActive(isLocked);
-            if (isLocked)
+            locker?.IsLocked(isOpened);
+            if (!isOpened)
             {
                 locker.SetDisplayFee(taxForOpeningNewTarget.ToString());
                 locker.ChangeListener(delegate { OpenNewBackground(taxForOpeningNewTarget, (FoodType)currentTargetNumb); });
@@ -47,7 +47,7 @@ public class TargetStruct : MonoBehaviour
         {
             //TODO: Make a sound for opening 
             //TODO: Make a Visual for opening 
-            LockRepo.OpenTarget(DB.Key(targetType));
+            LockRepo.OpenLock(DB.Key(targetType),true);
             UpdateTargetState();
         }
         else

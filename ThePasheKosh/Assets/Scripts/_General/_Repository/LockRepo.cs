@@ -3,98 +3,28 @@
 
 public static class LockRepo
 {
-    #region Properties
-    #endregion
 
-    #region Fields
-    const string repo_OPENED = "OpenedTarget";
-    const string fieldSeprator = "/";
-    #endregion
-
-    #region Public Methods
-    public static void OpenTarget(string target)
+    public static void OpenLock(string key, bool value)
     {
-        if (IsRepoHas(target))
-            return;
-        string value = Retrive(repo_OPENED);
-        value += target + fieldSeprator;
-        Save(repo_OPENED, value);
-    }
-    public static bool IsRepoHas(string NewInput)
-    {
-        string[] repoTarget = RetriveFromRepoToArray();
-        for (int i = 0; i < repoTarget.Length; i++)
-        {
-            if (repoTarget[i] == NewInput)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public static string GetOpenedTarget()
-    {
-        string repoTarget = "";
-        if (PlayerPrefs.HasKey(repo_OPENED))
-        {
-            int lastSlashW = Retrive(repo_OPENED).LastIndexOf(fieldSeprator);
-            repoTarget = Retrive(repo_OPENED).Remove(lastSlashW);
-        }
-        return repoTarget;
-    }
-    #endregion
-
-
-    #region Private Methods
-
-
-    static string[] RetriveFromRepoToArray()
-    {
-        string repoTarget = Retrive(repo_OPENED);
-        return repoTarget.Split('/');
-    }
-    static void DeleteFromRepo(string oldInput)
-    {
-        string[] Allwords = RetriveFromRepoToArray();
-        string value = Retrive(repo_OPENED);
-        for (int i = 0; i < Allwords.Length; i++)
-        {
-            if (Allwords[i] == oldInput)
-            {
-                Allwords[i] = "";
-                value = ConvertToString(Allwords);
-                Save(repo_OPENED, value);
-            }
-        }
+        SetBool(key, value);
     }
 
-    static string ConvertToString(string[] str)
+    public static bool IsOpened(string key)
     {
-        string newS = "";
-        for (int i = 0; i < str.Length; i++)
-        {
-            if (!string.IsNullOrEmpty(str[i]))
-            {
-                newS += str[i] + fieldSeprator;
-            }
-        }
-        return newS;
+        return GetBool(key);
     }
 
 
 
-
-
-
-    static string Retrive(string key)
+    static bool GetBool(string key)
     {
-        return PlayerPrefs.GetString(key);
+        return (PlayerPrefs.GetInt(key) == 1);
     }
-    static void Save(string key, string val)
+    static void SetBool(string key, bool state)
     {
-        PlayerPrefs.SetString(key, val);
+        PlayerPrefs.SetInt(key, state ? 1 : 0);
     }
-    #endregion
+
 }//EndClasssss
 
 

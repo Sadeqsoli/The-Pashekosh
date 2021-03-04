@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using RTLTMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PowerupStruct : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI PU_LevelTXT;
-    [SerializeField] TextMeshProUGUI PU_CurrentPriceTXT;
+    [SerializeField] RTLTextMeshPro PU_LevelTXT;
+    [SerializeField] RTLTextMeshPro PU_CurrentPriceTXT;
     [SerializeField] Button LevelUpButton;
     [SerializeField] GameObject NoMoneyLock;
 
 
-    public void GetPU_LevelAndPrice(int levelNumber, int price)
+    public void GetPU_LevelAndPrice(PowerUpType powerUp)
     {
-        PU_LevelTXT.text = levelNumber.ToString();
-        PU_CurrentPriceTXT.text = price.ToString();
+        PU_LevelTXT.text = PowerupRepo.GetPowerupLevel(powerUp).ToString() ;
+        PU_CurrentPriceTXT.text = PowerupRepo.GetPowerupCurrentPrice(powerUp).ToString();
     }
 
     public void LockPowerUp(bool isLock)

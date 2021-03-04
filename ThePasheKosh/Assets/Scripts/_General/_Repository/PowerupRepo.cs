@@ -40,22 +40,22 @@ public static class PowerupRepo
         {
             case PowerUpType.ElectricalPasheKosh:
                 int EPashekoshPowerups = GetPowerupLevel(powerUpType);
-                EPashekoshPowerups += 1;
+                EPashekoshPowerups = EPashekoshPowerups +1;
                 SaveRepo(PU_EPashekoshLevel, EPashekoshPowerups);
                 break;
             case PowerUpType.Fan:
                 int EFanPowerups = GetPowerupLevel(powerUpType);
-                EFanPowerups += 1;
+                EFanPowerups = EFanPowerups + 1;
                 SaveRepo(PU_EFanLevel, EFanPowerups);
                 break;
             case PowerUpType.Pill:
                 int GhorsPowerups = GetPowerupLevel(powerUpType);
-                GhorsPowerups += 1;
+                GhorsPowerups = GhorsPowerups + 1;
                 SaveRepo(PU_PillLevel, GhorsPowerups);
                 break;
             case PowerUpType.Spray:
                 int SprayPowerups = GetPowerupLevel(powerUpType);
-                SprayPowerups += 1;
+                SprayPowerups = SprayPowerups + 1;
                 SaveRepo(PU_SprayLevel, SprayPowerups);
                 break;
         }
@@ -195,7 +195,7 @@ public static class PowerupRepo
 
 
 
-
+    
     #endregion
 
     #region Private Methods
