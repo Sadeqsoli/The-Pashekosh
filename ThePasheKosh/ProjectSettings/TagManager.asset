@@ -51,11 +51,11 @@ TagManager:
   - name: Cake
     uniqueID: 3571974949
     locked: 0
-  - name: GoodInsect
-    uniqueID: 3164724471
-    locked: 0
   - name: BadInsect
     uniqueID: 1999928735
+    locked: 0
+  - name: GoodInsect
+    uniqueID: 3164724471
     locked: 0
   - name: UI
     uniqueID: 3355457717
