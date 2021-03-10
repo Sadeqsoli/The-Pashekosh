@@ -13,14 +13,14 @@ public class TargetStruct : MonoBehaviour
 
     const int TAXCOINonTARGETS = 1000;
 
-    void Start()
+    void OnEnable()
     {
         UpdateTargetState();
     }
 
     void UpdateTargetState()
     {
-        for (int i = 0; i < Targets.Length; i++)
+        for (int i = 1; i < Targets.Length; i++)
         {
             int currentTargetNumb = i;
 
@@ -28,26 +28,26 @@ public class TargetStruct : MonoBehaviour
 
             Locker locker = Targets[currentTargetNumb].gameObject.GetComponentInChildren<Locker>();
 
-            bool isLocked = LockRepo.IsRepoHas(LockRepo.GetOpenedTarget());
+            bool isOpened = LockRepo.IsOpened(DB.Key((FoodType)currentTargetNumb));
 
-            locker.gameObject.SetActive(isLocked);
-            if (isLocked)
+            locker?.IsLocked(isOpened);
+            if (!isOpened)
             {
                 locker.SetDisplayFee(taxForOpeningNewTarget.ToString());
-                locker.ChangeListener(delegate { OpenNewBackground(taxForOpeningNewTarget, (TargetManager.TargetType)currentTargetNumb); });
+                locker.ChangeListener(delegate { OpenNewBackground(taxForOpeningNewTarget, (FoodType)currentTargetNumb); });
             }
 
-            Targets[currentTargetNumb].onClick.AddListener(delegate { SetNewTarget((TargetManager.TargetType)currentTargetNumb); });
+            Targets[currentTargetNumb].onClick.AddListener(delegate { SetNewTarget((FoodType)currentTargetNumb); });
         }
     }
 
-    void OpenNewBackground(int taxCoin, TargetManager.TargetType targetType)
+    void OpenNewBackground(int taxCoin, FoodType targetType)
     {
         if (CoinRepo.PopCoins(taxCoin))
         {
             //TODO: Make a sound for opening 
             //TODO: Make a Visual for opening 
-            LockRepo.OpenTarget(DB.Key(targetType.ToString()));
+            LockRepo.OpenLock(DB.Key(targetType),true);
             UpdateTargetState();
         }
         else
@@ -59,7 +59,7 @@ public class TargetStruct : MonoBehaviour
         }
     }
 
-    void SetNewTarget(TargetManager.TargetType targetType)
+    void SetNewTarget(FoodType targetType)
     {
         if (TargetManager.Instance.CurrentTarget != targetType)
             TargetManager.Instance.UpdateBackground(targetType);

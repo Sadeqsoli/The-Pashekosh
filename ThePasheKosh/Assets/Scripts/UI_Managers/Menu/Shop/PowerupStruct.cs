@@ -1,18 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using RTLTMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PowerupStruct : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] RTLTextMeshPro PU_LevelTXT;
+    [SerializeField] RTLTextMeshPro PU_CurrentPriceTXT;
+    [SerializeField] Button LevelUpButton;
+    [SerializeField] GameObject NoMoneyLock;
+
+
+    public void GetPU_LevelAndPrice(PowerUpType powerUp)
     {
-        
+        PU_LevelTXT.text = PowerupRepo.GetPowerupLevel(powerUp).ToString() ;
+        PU_CurrentPriceTXT.text = PowerupRepo.GetPowerupCurrentPrice(powerUp).ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LockPowerUp(bool isLock)
     {
-        
+        NoMoneyLock.SetActive(!isLock);
     }
+    public void AddNewListener(UnityAction unityAction)
+    {
+        LevelUpButton.onClick.RemoveAllListeners();
+        LevelUpButton.onClick.AddListener(unityAction);
+    }
+
 }

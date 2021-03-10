@@ -10,6 +10,10 @@ public class Locker : MonoBehaviour
 
 
 
+    public void IsLocked(bool isLocked)
+    {
+        gameObject.SetActive(!isLocked);
+    }
     public void SetDisplayFee(string priceText)
     {
         DisplayFeeTXT.text = priceText;

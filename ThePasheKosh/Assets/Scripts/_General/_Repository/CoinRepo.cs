@@ -18,7 +18,6 @@ public static class CoinRepo
         if (!HasCoins(count))
         {
             return false;
-
         }
         int allCoins = GetCoins();
         allCoins -= count;
@@ -30,9 +29,9 @@ public static class CoinRepo
     {
         if (newCoins > 0)
         {
-            int coins = GetCoins();
-            coins += newCoins;
-            SaveRepo(coinRepository, coins);
+            int allCoins = GetCoins();
+            allCoins += newCoins;
+            SaveRepo(coinRepository, allCoins);
         }
     }
     public static int GetCoins()
@@ -50,12 +49,15 @@ public static class CoinRepo
 
 
 
-    static bool HasCoins(int Count)
+    public static bool HasCoins(int Count)
     {
-        int coins = GetCoins();
-        if (coins >= Count)
+        if (Count > 0)
         {
-            return true;
+            int coins = GetCoins();
+            if (coins >= Count)
+            {
+                return true;
+            }
         }
         return false;
     }

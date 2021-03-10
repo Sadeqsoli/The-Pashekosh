@@ -7,17 +7,16 @@ using UnityEngine;
 public class TargetManager : AbsSingleton<TargetManager>
 {
     // Initializers --->>>
-    public enum TargetType { Spagetti, Pitzza, Cake, IceCream, Hamberger, GhormehSabzi, Chicken, KalehPacheh }
     public enum GameState { MainMenu, GamePlay, GameOver }
-
+    
 
     // Properties --->>>
-    public TargetType CurrentTarget { get { return _currentTarget; } }
+    public FoodType CurrentTarget { get { return _currentTarget; } }
     public GameState CurrentGameState { get { return _currentState; } }
 
     // Fields --->>>
 
-    TargetType _currentTarget = TargetType.Spagetti;
+    FoodType _currentTarget = FoodType.Spagetti;
     GameState _currentState = GameState.MainMenu;
 
     AudioSource _audioSource;
@@ -35,7 +34,7 @@ public class TargetManager : AbsSingleton<TargetManager>
     [Space] // Sprite of every background.
     [SerializeField] Sprite[] SpriteOfTargets;
 
-    public void UpdateBackground(TargetType bgType)
+    public void UpdateBackground(FoodType bgType)
     {
         _currentTarget = bgType;
 
@@ -45,50 +44,50 @@ public class TargetManager : AbsSingleton<TargetManager>
         //ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
         switch (bgType)
         {
-            case TargetType.Spagetti://WhiteWooden Table
+            case FoodType.Spagetti://WhiteWooden Table
 
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
-            case TargetType.Pitzza: //Glass Table
+            case FoodType.Pizza: //Glass Table
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
-            case TargetType.Cake: //Brown Wooden Table
+            case FoodType.Cake: //Brown Wooden Table
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
-            case TargetType.IceCream: //Metall Table
+            case FoodType.IceCream: //Metall Table
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
-            case TargetType.Hamberger: //Plastic Table
+            case FoodType.Burger: //Plastic Table
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
-            case TargetType.GhormehSabzi:  //Iranian Table
+            case FoodType.QormehSabzi:  //Iranian Table
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
-            case TargetType.Chicken:  //Glass Table
+            case FoodType.Chicken:  //Glass Table
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
-            case TargetType.KalehPacheh:  //Stone Table
+            case FoodType.KalehPache:  //Stone Table
                 //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;

@@ -5,9 +5,13 @@ using UnityEngine;
 public static class DB 
 {
     
-    public static string Key(string targetID)
+    public static string Key(FoodType targetType)
     {
-        return "KeyRepositoryFor" + targetID;
+        return "KeyRepoFor" + targetType;
+    }
+    public static string Key(WeaponType weaponType)
+    {
+        return "KeyRepoFor" + weaponType;
     }
 
 }

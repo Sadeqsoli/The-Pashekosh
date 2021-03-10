@@ -12,14 +12,14 @@ public class KillerStruct : MonoBehaviour
 
     const int TAXCOINonKILLERS = 1000;
 
-    void Start()
+    void OnEnable()
     {
         UpdateTargetState();
     }
 
     void UpdateTargetState()
     {
-        for (int i = 0; i < Killers.Length; i++)
+        for (int i = 1; i < Killers.Length; i++)
         {
             int currentTargetNumb = i;
 
@@ -27,26 +27,25 @@ public class KillerStruct : MonoBehaviour
 
             Locker locker = Killers[currentTargetNumb].gameObject.GetComponentInChildren<Locker>();
 
-            bool isLocked = LockRepo.IsRepoHas(LockRepo.GetOpenedTarget());
+            bool isOpened = LockRepo.IsOpened(DB.Key((WeaponType)currentTargetNumb));
 
-            locker.gameObject.SetActive(isLocked);
-            if (isLocked)
+            locker?.IsLocked(isOpened);
+            if (!isOpened)
             {
                 locker.SetDisplayFee(taxForOpeningNewTarget.ToString());
-                locker.ChangeListener(delegate { OpenNewBackground(taxForOpeningNewTarget, (WeaponType)currentTargetNumb); });
+                locker.ChangeListener(delegate { OpenNewWeapon(taxForOpeningNewTarget, (WeaponType)currentTargetNumb); });
             }
-
             Killers[currentTargetNumb].onClick.AddListener(delegate { SetNewTarget((WeaponType)currentTargetNumb); });
         }
     }
-    
-    void OpenNewBackground(int taxCoin, WeaponType weaponType)
+
+    void OpenNewWeapon(int taxCoin, WeaponType weaponType)
     {
         if (CoinRepo.PopCoins(taxCoin))
         {
             //TODO: Make a sound for opening 
             //TODO: Make a Visual for opening 
-            LockRepo.OpenTarget(DB.Key(weaponType.ToString()));
+            LockRepo.OpenLock(DB.Key(weaponType), true);
             UpdateTargetState();
         }
         else
@@ -60,7 +59,7 @@ public class KillerStruct : MonoBehaviour
 
     void SetNewTarget(WeaponType killerType)
     {
-        
+
     }
 
     void SetObj_On(GameObject[] gameObjects, int numb)
