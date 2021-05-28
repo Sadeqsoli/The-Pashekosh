@@ -34,16 +34,28 @@ public class MainMenu : Static<MainMenu>
 
     public void SetCoinsText()
     {
-        CoinCounterTXT.text = CoinRepo.GetCoins().ToString();
+        CTween.ToInt(0, CoinRepo.GetCoins(),1,delegate 
+        {
+            CoinCounterTXT.text = CoinRepo.GetCoins().ToString();
+        },
+        delegate 
+        {
+            CoinCounterTXT.transform.Scaler(TTScale.ShakeIt);
+        });
+
+        //SetScoresAndLevelProgressionText();
     }
 
-
+    void OnEnable()
+    {
+        ShakeThingsOff();
+    }
     void Start()
     {
         SetValues();
         AddButtonListeners();
         SignUpCheck();
-        CheckforScore();
+        //CheckforScore();
         SetCoinsText();
     }
 
@@ -62,6 +74,14 @@ public class MainMenu : Static<MainMenu>
         StartButton.onClick.AddListener(GoToGameScene);
     }
 
+    void ShakeThingsOff()
+    {
+        CoinCounterTXT.transform.Scaler(TTScale.ShakeIt);
+        ShopButton.transform.Scaler(TTScale.ShakeIt);
+        SettingButton.transform.Scaler(TTScale.ShakeIt);
+        StartButton.transform.Scaler(TTScale.ShakeIt);
+    }
+
     void GoToShop()
     {
         ShopPanel.SetActive(true);
@@ -72,7 +92,7 @@ public class MainMenu : Static<MainMenu>
     }
     void GoToGameScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneController.Instance.GoToNextOrPrevScene(true);
     }
 
 
@@ -80,7 +100,7 @@ public class MainMenu : Static<MainMenu>
     {
         if (!PlayerPrefs.HasKey(UserRepo.RepoUser))
         {
-            UsernamePanel.SetActive(true);
+            UsernamePanel.transform.Scaler(TTScale.ScaleUp);
         }
         else if (PlayerPrefs.HasKey(UserRepo.RepoUser))
         {

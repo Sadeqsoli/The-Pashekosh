@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using RTLTMPro;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.PlayerLoop;
 
 public class PowerUps : MonoBehaviour
 {

@@ -19,7 +19,7 @@ public class GameOverMenu : MonoBehaviour
         DisplayLatestScores(ScoreRepo.GetLastScore());
         DisplayBestOpenedLevel(LevelRepo.GetLevel());
 
-        GoToMainButton.onClick.AddListener(GoToMain);
+        GoToMainButton.onClick.AddListener(()=> SceneController.Instance.GoToSpecificScene(0));
     }
 
 
@@ -41,10 +41,7 @@ public class GameOverMenu : MonoBehaviour
     }
 
 
-    void GoToMain()
-    {
-        HelperSceneManager.GoToAnotherScene(0);
-    }
+
 
 
 

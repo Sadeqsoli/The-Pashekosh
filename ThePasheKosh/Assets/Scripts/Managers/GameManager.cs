@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Channels;
-using UnityEditor;
-using UnityEditor.Experimental.U2D.IK;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -222,7 +218,7 @@ public class GameManager : Singleton<GameManager>
         TimeRepo.PushTime(timer);
         LevelRepo.PushLevel(currentLevel + 1);
 
-        var loadNextScene = new UnityAction(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
+        var loadNextScene = new UnityAction(() => SceneController.Instance.GoToNextOrPrevScene(true));
         Timers.Instance.StartTimer(1, loadNextScene);
     }
     #endregion

@@ -69,12 +69,14 @@ public class ShopManager : MonoBehaviour
             if (numb == i)
             {
                 buttons[i].gameObject.GetComponent<Image>().sprite = selectedSprite;
-                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.black;
+                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>()
+                    .TXTColoring(TTTColoring.SimpleColoring, Color.black);
             }
             else
             {
                 buttons[i].gameObject.GetComponent<Image>().sprite = deselectedSprite;
-                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>().color = Color.white;
+                buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>()
+                    .TXTColoring(TTTColoring.SimpleColoring, Color.white);
             }
         }
     }
@@ -84,11 +86,11 @@ public class ShopManager : MonoBehaviour
         {
             if (numb == i)
             {
-                gameObjects[i].SetActive(true);
+                gameObjects[i].transform.Scaler(TTScale.ScaleUp);
             }
             else
             {
-                gameObjects[i].SetActive(false);
+                gameObjects[i].transform.Scaler(TTScale.ScaleDown);
             }
         }
     }
