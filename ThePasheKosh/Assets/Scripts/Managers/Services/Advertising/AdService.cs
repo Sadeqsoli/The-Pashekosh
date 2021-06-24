@@ -102,16 +102,16 @@ namespace GameServices
             if (showResult == ShowResult.Finished)
             {
                 // Reward the user for watching the ad to completion.
-                Debug.Log("You'll get a reward!");
+                Toast.Instance.SendToast("You'll get a reward!");
             }
             else if (showResult == ShowResult.Skipped)
             {
                 // Do not reward the user for skipping the ad.
-                Debug.Log("You don't get a reward!");
+                Toast.Instance.SendToast("You don't get a reward!");
             }
             else if (showResult == ShowResult.Failed)
             {
-                Debug.LogWarning("The ad did not finish due to an error.");
+                Toast.Instance.SendToast("The ad did not finish due to an error.");
             }
         }
         #endregion

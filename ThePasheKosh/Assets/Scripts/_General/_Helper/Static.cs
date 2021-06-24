@@ -19,4 +19,8 @@ public class Static<T> : MonoBehaviour where T : Static<T>
             _instance = (T)this;
         }
     }
+
+
+    
+
 }

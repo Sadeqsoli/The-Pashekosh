@@ -8,30 +8,30 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum TTScale { XScaleUp, XScaleDown, ScaleUp, ScaleDown, YScaleUp, YScaleDown, ShakeIt }
-public enum TTMove { XMove, Move, YMove,ShakePos, ShakeRot }
-
-public enum TTIFader { IMGFadeIn, IMGFadeOut }
-public enum TTIColoring { Coloring, Gradient }
-
+public enum TTRotate { XRotate, YRotate, ZRotate, ShakeRot }
+public enum TTMove { XMove, Move, YMove, ShakePos }
+public enum TTIColoring { IMGFadeIn, IMGFadeOut , Coloring }
 public enum TTTFader { TXTFadeIn, TXTFadeOut }
 public enum TTTColoring { SimpleColoring, GlowColoring }
-public static class CTween 
+
+public static class CTween
 {
     static Vector3 zeroX = new Vector3(0, 1, 1);
     static Vector3 zeroY = new Vector3(1, 0, 1);
 
 
     //To Scale.
-    public static void Scaler(this Transform t, TTScale tweenScaler,UnityAction completeAction = null,
+    public static Tweener Scaler(this Transform t, TTScale tweenScaler, UnityAction completeAction = null,
         float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
+        Tweener tweener = null;
         switch (tweenScaler)
         {
             //Scaling up in X vector.
             case TTScale.XScaleUp:
                 t.localScale = zeroX;
                 t.gameObject.SetActive(true);
-                t.DOScaleX(1, tweenTime)
+                tweener = t.DOScaleX(1, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -55,7 +55,7 @@ public static class CTween
             case TTScale.ScaleUp:
                 t.localScale = Vector3.zero;
                 t.gameObject.SetActive(true);
-                t.DOScale(Vector3.one, tweenTime)
+                tweener = t.DOScale(Vector3.one, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -66,7 +66,7 @@ public static class CTween
             //Scaling Down in X , Y vector.
             case TTScale.ScaleDown:
 
-                t.DOScale(Vector3.zero, tweenTime)
+                tweener = t.DOScale(Vector3.zero, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -80,7 +80,7 @@ public static class CTween
             case TTScale.YScaleUp:
                 t.localScale = zeroY;
                 t.gameObject.SetActive(true);
-                t.DOScaleY(1, tweenTime)
+                tweener = t.DOScaleY(1, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -91,7 +91,7 @@ public static class CTween
             //Scaling Down in Y vector.
             case TTScale.YScaleDown:
                 t.localScale = Vector3.one;
-                t.DOScaleY(0, tweenTime)
+                tweener = t.DOScaleY(0, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -102,7 +102,7 @@ public static class CTween
 
             //Shake Scaling in every Direction
             case TTScale.ShakeIt:
-                t.DOShakeScale(1f, 0.5f, 5)
+                tweener = t.DOShakeScale(1f, 0.5f, 5)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -110,20 +110,80 @@ public static class CTween
                     });
                 break;
         }
+        return tweener;
+    }
+
+
+    //To Rotate.
+    public static Tweener Rotater(this Transform t, TTRotate tweenScaler, float endValue, UnityAction completeAction = null,
+        float tweenTime = 1f, Ease ease = Ease.Unset)
+    {
+        Tweener tweener = null;
+        switch (tweenScaler)
+        {
+            //Rotating in X vector.
+            case TTRotate.XRotate:
+                Vector3 xRot = new Vector3(endValue, 0, 0);
+                t.gameObject.SetActive(true);
+                tweener = t.DORotate(xRot, tweenTime)
+                    .SetEase(ease)
+                    .OnComplete(() =>
+                    {
+                        completeAction?.Invoke();
+                    });
+                break;
+
+            //Rotating in Y vector.
+            case TTRotate.YRotate:
+                Vector3 yRot = new Vector3(0, endValue, 0);
+                t.gameObject.SetActive(true);
+                tweener = t.DORotate(yRot, tweenTime)
+                    .SetEase(ease)
+                    .OnComplete(() =>
+                    {
+                        completeAction?.Invoke();
+                    });
+                break;
+
+            //Rotating in Z vector.
+            case TTRotate.ZRotate:
+                Vector3 zRot = new Vector3(0, 0, endValue);
+                t.gameObject.SetActive(true);
+                tweener = t.DORotate(zRot, tweenTime)
+                    .SetEase(ease)
+                    .OnComplete(() =>
+                    {
+                        completeAction?.Invoke();
+                    });
+                break;
+
+            //Shake Rotation in every Direction
+            case TTRotate.ShakeRot:
+
+                tweener = t.DOShakeRotation(1f, 0.5f, 5)
+                    .SetEase(ease)
+                    .OnComplete(() =>
+                    {
+                        completeAction?.Invoke();
+                    });
+                break;
+        }
+        return tweener;
     }
 
 
     //To Move.
-    public static void Mover(this Transform t, TTMove tweenMover, UnityAction completeAction = null,
-        float tweenTime = 1f,Ease ease = Ease.InOutExpo)
+    public static Tweener Mover(this Transform t, TTMove tweenMover, UnityAction completeAction = null,
+        float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
+        Tweener tweener = null;
         switch (tweenMover)
         {
             //Scaling up in X vector.
             case TTMove.XMove:
                 t.localScale = zeroX;
                 t.gameObject.SetActive(true);
-                t.DOScaleX(1, tweenTime)
+                tweener = t.DOScaleX(1, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -134,7 +194,7 @@ public static class CTween
             //Scaling Down in X vector.
             case TTMove.YMove:
                 t.localScale = Vector3.one;
-                t.DOScaleX(0, tweenTime)
+                tweener = t.DOScaleX(0, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -147,7 +207,7 @@ public static class CTween
             case TTMove.Move:
                 t.localScale = Vector3.zero;
                 t.gameObject.SetActive(true);
-                t.DOScale(Vector3.one, tweenTime)
+                tweener = t.DOScale(Vector3.one, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -157,7 +217,7 @@ public static class CTween
 
             //Shake Position in every Direction
             case TTMove.ShakePos:
-                t.DOShakePosition(1f, 0.5f, 5)
+                tweener = t.DOShakePosition(1f, 0.5f, 5)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -165,16 +225,9 @@ public static class CTween
                     });
                 break;
 
-            //Shake Rotation in every Direction
-            case TTMove.ShakeRot:
-                t.DOShakeRotation(1f, 0.5f, 5)
-                    .SetEase(ease)
-                    .OnComplete(() =>
-                    {
-                        completeAction?.Invoke();
-                    });
-                break;
+
         }
+        return tweener ;
     }
 
 
@@ -182,43 +235,79 @@ public static class CTween
 
 
     //For float numbers.
-    public static void ToFloat(float starter,float endValue,float tweenTime = 1f,
-        UnityAction updateAction = null,UnityAction completeAction = null, Ease ease = Ease.InOutExpo)
+    public static Tweener ToFloat(float starter, float endValue, float tweenTime = 1f,
+        UnityAction updateAction = null, UnityAction completeAction = null, Ease ease = Ease.InOutExpo)
     {
-        DOTween.To(() => starter, x => starter = x, endValue, tweenTime)
+        Tweener tweener = null;
+        tweener = DOTween.To(() => starter, x => starter = x, endValue, tweenTime)
             .SetEase(ease)
             .OnUpdate(() => { updateAction?.Invoke(); })
             .OnComplete(() => { completeAction?.Invoke(); });
 
+        return tweener;
     }
 
 
     //For Int numbers.
-    public static void ToInt(int starter, int endValue,float tweenTime = 1f,
-        UnityAction updateAction = null,UnityAction completeAction = null, Ease ease = Ease.InOutExpo)
+    public static Tweener ToInt(int starter, int endValue, float tweenTime = 1f,
+        UnityAction updateAction = null, UnityAction completeAction = null, Ease ease = Ease.InOutExpo)
     {
-        DOTween.To(() => starter, x => starter = x, endValue, tweenTime)
+        Tweener tweener = null;
+        tweener = DOTween.To(() => starter, x => starter = x, endValue, tweenTime)
             .SetEase(ease)
             .OnUpdate(() => { updateAction?.Invoke(); })
             .OnComplete(() => { completeAction?.Invoke(); });
-
+        return tweener;
     }
 
     //For Vector3 numbers.
-    public static void ToVector3(Vector3 starter, Vector3 endValue,float tweenTime = 1f,
-        UnityAction updateAction = null,UnityAction completeAction = null, Ease ease = Ease.InOutExpo)
+    public static Tweener ToVector3(Vector3 starter, Vector3 endValue, float tweenTime = 1f,
+        UnityAction updateAction = null, UnityAction completeAction = null, Ease ease = Ease.InOutExpo)
     {
-        DOTween.To(() => starter, x => starter = x, endValue, tweenTime)
+        Tweener tweener = null;
+        tweener = DOTween.To(() => starter, x => starter = x, endValue, tweenTime)
             .SetEase(ease)
             .OnUpdate(() => { updateAction?.Invoke(); })
             .OnComplete(() => { completeAction?.Invoke(); });
+        return tweener;
+    }
+
+
+
+    //To Do a Scuencer Animation
+    public static void Sequencer(List<Tweener> tweeners)
+    {
+        Sequence sequence = DOTween.Sequence();
+        int tweenerChilds = tweeners.Count;
+        for (int i = 0; i < tweenerChilds; i++)
+        {
+            sequence.Append(tweeners[i]);
+        }
+        sequence.Play();
+    }
+    //To Do a Scuencer Animation
+    public static void Sequencer(Tweener[] tweeners)
+    {
+        Sequence sequence = DOTween.Sequence();
+        int tweenerChilds = tweeners.Length;
+        for (int i = 0; i < tweenerChilds; i++)
+        {
+            sequence.Append(tweeners[i]);
+        }
+        sequence.Play();
+    }
+
+
+
+    //Fade In Fade Out...
+    public static void FadeInFadeOut(this CanvasGroup canvasGroup)
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(canvasGroup.DOFade(1.0f, 0.2f));
+        sequence.Append(canvasGroup.DOFade(0.0f, 1.5f));
+        sequence.Play();
 
     }
-    
-
-
-
-
 
 
 
@@ -226,21 +315,30 @@ public static class CTween
 
 
     //To Fade Image.
-    public static void IMGFader(this Image IMG, TTIFader tweenFader, UnityAction completeAction = null, 
+    public static Tweener Imager(this Image IMG, TTIColoring tweenFader, UnityAction completeAction = null, Color color = default,
         float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
+        Tweener tweener = null;
         switch (tweenFader)
         {
-            case TTIFader.IMGFadeIn:
-                IMG.DOFade(1f, tweenTime)
+            case TTIColoring.IMGFadeIn:
+                tweener = IMG.DOFade(1f, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
                 completeAction?.Invoke();
             });
                 break;
-            case TTIFader.IMGFadeOut:
-                IMG.DOFade(0f, tweenTime)
+            case TTIColoring.IMGFadeOut:
+                tweener = IMG.DOFade(0f, tweenTime)
+            .SetEase(ease)
+            .OnComplete(() =>
+            {
+                completeAction?.Invoke();
+            });
+                break;
+            case TTIColoring.Coloring:
+                tweener = IMG.DOColor(color, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
@@ -248,55 +346,50 @@ public static class CTween
             });
                 break;
         }
+        return tweener;
     }
 
     //To Color Image.
-    public static void IMGColoring(this Image IMG, TTIColoring tweenFader, Color color = default, Gradient gradient = default,
-        UnityAction completeAction = null, float tweenTime = 1f,  Ease ease = Ease.InOutExpo)
+    public static void IMGGradientColor(this Image IMG, Gradient gradient = default,
+        UnityAction completeAction = null, float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
-        switch (tweenFader)
-        {
-            case TTIColoring.Coloring:
-                IMG.DOColor(color, tweenTime)
+         IMG.DOGradientColor(gradient, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
                 completeAction?.Invoke();
             });
-                break;
-            case TTIColoring.Gradient:
-                IMG.DOGradientColor(gradient, tweenTime)
-            .SetEase(ease)
-            .OnComplete(() =>
-            {
-                completeAction?.Invoke();
-            });
-                break;
-        }
     }
     //To Fill Image.
-    public static void IMGFiller(this Image IMG, float filAmount, UnityAction completeAction = null,
-        float tweenTime = 1f, Ease ease = Ease.InOutExpo)
+    public static Tweener IMGFiller(this Image IMG, float filAmount, UnityAction updateAction = null,
+        UnityAction completeAction = null, float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
-        IMG.DOFillAmount(filAmount, tweenTime)
+        Tweener tweener = null;
+        tweener = IMG.DOFillAmount(filAmount, tweenTime)
             .SetEase(ease)
+            .OnUpdate(() =>
+            {
+                updateAction?.Invoke();
+            })
             .OnComplete(() =>
             {
                 completeAction?.Invoke();
             });
+        return tweener;
     }
 
 
 
 
     //To Fade TextmeshPro.
-    public static void TXTFader(this TextMeshProUGUI TXT, TTTFader tweenFader, UnityAction completeAction = null,
+    public static Tweener TXTFader(this TextMeshProUGUI TXT, TTTFader tweenFader, UnityAction completeAction = null,
         float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
+        Tweener tweener = null;
         switch (tweenFader)
         {
             case TTTFader.TXTFadeIn:
-                TXT.DOFade(1f, tweenTime)
+                tweener = TXT.DOFade(1f, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
@@ -304,7 +397,7 @@ public static class CTween
             });
                 break;
             case TTTFader.TXTFadeOut:
-                TXT.DOFade(0f, tweenTime)
+                tweener = TXT.DOFade(0f, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
@@ -313,16 +406,18 @@ public static class CTween
                 break;
 
         }
+        return tweener;
     }
 
     //To Color TextmeshPro.
-    public static void TXTColoring(this TextMeshProUGUI TXT, TTTColoring tweenFader, Color color,
+    public static Tweener TXTColoring(this TextMeshProUGUI TXT, TTTColoring tweenFader, Color color,
        UnityAction completeAction = null, float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
+        Tweener tweener = null;
         switch (tweenFader)
         {
             case TTTColoring.SimpleColoring:
-                TXT.DOColor(color, tweenTime)
+                tweener = TXT.DOColor(color, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
@@ -330,7 +425,7 @@ public static class CTween
             });
                 break;
             case TTTColoring.GlowColoring:
-                TXT.DOGlowColor(color, tweenTime)
+                tweener = TXT.DOGlowColor(color, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
@@ -339,24 +434,32 @@ public static class CTween
                 break;
 
         }
+        return tweener;
     }
 
     //To Write in TextmeshPro.
-    public static void Texter(this TextMeshProUGUI TXT, string textSTR, UnityAction completeAction = null,
+    public static Tweener Texter(this TextMeshProUGUI TXT, string textSTR, UnityAction updateAction = null,
+        UnityAction completeAction = null,
         float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
+        Tweener tweener = null;
         TXT.text = " ";
-        TXT.DOText(textSTR, tweenTime)
+        tweener = TXT.DOText(textSTR, tweenTime)
             .SetEase(ease)
+            .OnUpdate(() =>
+            {
+                updateAction?.Invoke();
+            })
             .OnComplete(() =>
             {
                 completeAction?.Invoke();
             });
+        return tweener;
     }
 
 
 
 
 
-    
+
 } // ███ END OF CLASS ████████████████████████████████████████████████████████████████████████████████████████████████

@@ -101,7 +101,7 @@ public class SceneController : Singleton<SceneController>
             ProgressTXT.text = "%0";
             float delay = 1.5f;
 
-            BackgroundIMG.transform.Scaler(TTScale.XScaleUp);
+            BackgroundIMG.transform.Scaler(TTScale.YScaleUp);
 
             yield return new WaitForSecondsRealtime(delay);
             AsyncOperation asyncLoader = SceneManager.LoadSceneAsync(sceneIndex);
@@ -117,7 +117,7 @@ public class SceneController : Singleton<SceneController>
             }
             yield return new WaitForSecondsRealtime(delay);
 
-            BackgroundIMG.transform.Scaler(TTScale.XScaleDown,delegate 
+            BackgroundIMG.transform.Scaler(TTScale.YScaleDown,delegate 
             {
                 BackgroundIMG.gameObject.SetActive(false);
                 Debug.Log("Scaled Down Completed!");
