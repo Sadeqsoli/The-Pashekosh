@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -8,7 +9,7 @@ public class TargetManager : AbsSingleton<TargetManager>
 {
     // Initializers --->>>
     public enum GameState { MainMenu, GamePlay, GameOver }
-    
+
 
     // Properties --->>>
     public FoodType CurrentTarget { get { return _currentTarget; } }
@@ -19,7 +20,6 @@ public class TargetManager : AbsSingleton<TargetManager>
     FoodType _currentTarget = FoodType.Spagetti;
     GameState _currentState = GameState.MainMenu;
 
-    AudioSource _audioSource;
     SpriteRenderer _spriteRenderer;
 
 
@@ -28,11 +28,8 @@ public class TargetManager : AbsSingleton<TargetManager>
     [Space] // Array of design for diffrent targets.
     [SerializeField] GameObject[] TableDesigns;
 
-    [Space] // Sounds for background Selection feedback
-    [SerializeField] AudioClip[] SoundAfterSelection;
-
     [Space] // Sprite of every background.
-    [SerializeField] Sprite[] SpriteOfTargets;
+    List<Sprite> SpriteOfTargets = new List<Sprite>();
 
     public void UpdateBackground(FoodType bgType)
     {
@@ -117,17 +114,14 @@ public class TargetManager : AbsSingleton<TargetManager>
 
     void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
+        InitializingAllBackground();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         CameraScaler.CameraFit(_spriteRenderer);
         UpdateBackground(_currentTarget);
     }//Starttttt
 
-    void PlaybackRelatedAudio(AudioClip _clip)
-    {
-        if (_clip != null)
-            _audioSource.PlayOneShot(_clip);
-    }
+
+
     void ChangeRelatedSprite(Sprite _sprite)
     {
         if (_sprite != null)
@@ -139,9 +133,9 @@ public class TargetManager : AbsSingleton<TargetManager>
         if (TableDesigns.Length > 0)
             for (int i = 0; i < TableDesigns.Length; i++)
             {
-                if(rnd == i)
+                if (rnd == i)
                 {
-                    TableDesigns[i].SetActive(true);
+                    TableDesigns[i].transform.Scaler(TTScale.ScaleUp);
                 }
                 else
                 {
@@ -150,5 +144,19 @@ public class TargetManager : AbsSingleton<TargetManager>
             }
     }
 
+    public void InitializingAllBackground()
+    {
+        DirectoryInfo dir = new DirectoryInfo(DB.LocalBackgroundDIR());
+        FileInfo[] fileInfo = dir.GetFiles("*.*");
+        foreach (FileInfo file in fileInfo)
+        {
+            NetCenter.Instance.DownloadImage(DB.LocalMusics(file.Name), AddSprite);
+        }
+    }
 
+
+    void AddSprite(Sprite sprite)
+    {
+        SpriteOfTargets.Add(sprite);
+    }
 }//EndClassss

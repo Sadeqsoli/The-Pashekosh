@@ -10,7 +10,7 @@ using TMPro;
 public enum TTScale { XScaleUp, XScaleDown, ScaleUp, ScaleDown, YScaleUp, YScaleDown, ShakeIt }
 public enum TTRotate { XRotate, YRotate, ZRotate, ShakeRot }
 public enum TTMove { XMove, Move, YMove, ShakePos }
-public enum TTIColoring { IMGFadeIn, IMGFadeOut , Coloring }
+public enum TTIColoring { IMGFadeIn, CustomFadeIn, IMGFadeOut, Coloring }
 public enum TTTFader { TXTFadeIn, TXTFadeOut }
 public enum TTTColoring { SimpleColoring, GlowColoring }
 
@@ -173,7 +173,7 @@ public static class CTween
 
 
     //To Move.
-    public static Tweener Mover(this Transform t, TTMove tweenMover, UnityAction completeAction = null,
+    public static Tweener Mover(this Transform t, TTMove tweenMover, Vector3 destination, UnityAction completeAction = null,
         float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
         Tweener tweener = null;
@@ -183,7 +183,7 @@ public static class CTween
             case TTMove.XMove:
                 t.localScale = zeroX;
                 t.gameObject.SetActive(true);
-                tweener = t.DOScaleX(1, tweenTime)
+                tweener = t.DOMoveX(1, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -194,7 +194,7 @@ public static class CTween
             //Scaling Down in X vector.
             case TTMove.YMove:
                 t.localScale = Vector3.one;
-                tweener = t.DOScaleX(0, tweenTime)
+                tweener = t.DOMoveY(0, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -207,7 +207,7 @@ public static class CTween
             case TTMove.Move:
                 t.localScale = Vector3.zero;
                 t.gameObject.SetActive(true);
-                tweener = t.DOScale(Vector3.one, tweenTime)
+                tweener = t.DOMove(destination, tweenTime)
                     .SetEase(ease)
                     .OnComplete(() =>
                     {
@@ -227,7 +227,7 @@ public static class CTween
 
 
         }
-        return tweener ;
+        return tweener;
     }
 
 
@@ -315,7 +315,7 @@ public static class CTween
 
 
     //To Fade Image.
-    public static Tweener Imager(this Image IMG, TTIColoring tweenFader, UnityAction completeAction = null, Color color = default,
+    public static Tweener Imager(this Image IMG, TTIColoring tweenFader, float endValue, UnityAction completeAction = null, Color color = default,
         float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
         Tweener tweener = null;
@@ -323,6 +323,14 @@ public static class CTween
         {
             case TTIColoring.IMGFadeIn:
                 tweener = IMG.DOFade(1f, tweenTime)
+            .SetEase(ease)
+            .OnComplete(() =>
+            {
+                completeAction?.Invoke();
+            });
+                break;
+            case TTIColoring.CustomFadeIn:
+                tweener = IMG.DOFade(endValue, tweenTime)
             .SetEase(ease)
             .OnComplete(() =>
             {
@@ -353,12 +361,12 @@ public static class CTween
     public static void IMGGradientColor(this Image IMG, Gradient gradient = default,
         UnityAction completeAction = null, float tweenTime = 1f, Ease ease = Ease.InOutExpo)
     {
-         IMG.DOGradientColor(gradient, tweenTime)
-            .SetEase(ease)
-            .OnComplete(() =>
-            {
-                completeAction?.Invoke();
-            });
+        IMG.DOGradientColor(gradient, tweenTime)
+           .SetEase(ease)
+           .OnComplete(() =>
+           {
+               completeAction?.Invoke();
+           });
     }
     //To Fill Image.
     public static Tweener IMGFiller(this Image IMG, float filAmount, UnityAction updateAction = null,

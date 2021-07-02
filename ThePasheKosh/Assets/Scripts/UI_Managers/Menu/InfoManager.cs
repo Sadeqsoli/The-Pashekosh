@@ -33,7 +33,8 @@ public class InfoManager : MonoBehaviour
     {
         string username = UsernameInputField.text;
         UserRepo.PushUsername(username);
-        gameObject.SetActive(false);
+        UserRepo.SetUserSignedIn(true);
+        gameObject.transform.Scaler(TTScale.ScaleDown);
     }
 
 }//EndClassss

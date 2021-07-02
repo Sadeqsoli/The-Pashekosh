@@ -5,19 +5,23 @@ using UnityEngine;
 public static class UserRepo 
 {
     #region Properties
-    public static string RepoUser { get { return repoUser; } }
+    public static string RepoUserSignup { get { return repoUserSignup; } }
 
     #endregion
 
     #region Fields
+    const string repoUserSignup = "userRepoSignup";
     const string repoUser = "userRepo";
     const string repoPhone = "phoneRepo";
     const string repoEmail = "emailRepo";
     #endregion
 
     #region Public Methods
-    
 
+    public static void SetUserSignedIn(bool isTrue)
+    {
+        PlayerPrefs2.SetBool(repoUserSignup, isTrue);
+    }
     public static void PushUsername(string newUser)
     {
         Save(repoUser, newUser);
@@ -31,8 +35,12 @@ public static class UserRepo
         Save(repoEmail, newEmail);
     }
 
-   
 
+
+    public static bool IsUserSignedIn()
+    {
+        return PlayerPrefs2.GetBool(repoUserSignup);
+    }
     public static string GetUser()
     {
         return Retrive(repoUser);

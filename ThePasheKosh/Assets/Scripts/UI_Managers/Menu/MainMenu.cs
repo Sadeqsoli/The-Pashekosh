@@ -98,13 +98,13 @@ public class MainMenu : Static<MainMenu>
 
     void SignUpCheck()
     {
-        if (!PlayerPrefs.HasKey(UserRepo.RepoUser))
-        {
-            UsernamePanel.transform.Scaler(TTScale.ScaleUp);
-        }
-        else if (PlayerPrefs.HasKey(UserRepo.RepoUser))
+        if (UserRepo.IsUserSignedIn())
         {
             UsernamePanel.SetActive(false);
+        }
+        else
+        {
+            UsernamePanel.transform.Scaler(TTScale.ScaleUp);
         }
     }
     void CheckforScore()
