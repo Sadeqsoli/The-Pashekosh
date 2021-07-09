@@ -12,9 +12,9 @@ public static class DB
     const string BaseURLPath = "http://www.sloppystudio.ir";
 
 
-    const string localBcakgrondPath = "/Pashe/IMG/Backgrounds/";
-    const string localMusicPath = "/Pashe/Audio/Musics/";
-    const string localSFXPath = "/Pashe/Audio/SFXs/";
+    const string localBcakgrondPath = @"IMG/Backgrounds/";
+    const string localMusicPath = @"Audio/Musics/";
+    const string localSFXPath = @"Audio/SFXs/";
     const string MP3Format = ".mp3";
     const string JPGFormat = ".jpg";
     const string PNGFormat = ".png";
@@ -32,60 +32,31 @@ public static class DB
 
 
 
-    public static string LocalBackgroundDIR()
-    {
-        return Application.persistentDataPath + localBcakgrondPath;
-    }
-    public static string ServerBackgroundDIR()
-    {
-        return BaseURLPath + localBcakgrondPath;
-    }
     public static string LocalBackPath(string backgroundName)
     {
-        return Application.persistentDataPath + localBcakgrondPath + backgroundName + PNGFormat;
+        return  localBcakgrondPath + backgroundName + PNGFormat;
     }
-    public static string ServerBackPath(string backgroundName)
-    {
-        return BaseURLPath + localBcakgrondPath + backgroundName + PNGFormat;
-    }
+
 
 
     public static string LocalMusicsDIR()
     {
-        return Application.persistentDataPath + localMusicPath;
+        return  localMusicPath;
     }
-    public static string ServerMusicsDIR()
+
+
+
+
+
+    public static string LocalSFXs(int sfxNumb)
     {
-        return BaseURLPath + localMusicPath;
+        return  localSFXPath + sfxNumb + MP3Format;
     }
-    public static string LocalMusics(string musicName)
-    {
-        return Application.persistentDataPath + localMusicPath + musicName + MP3Format;
-    }
-    public static string ServerMusics(string musicName)
-    {
-        return BaseURLPath + localMusicPath + musicName + MP3Format;
-    }
-
-
-
-
     public static string LocalSFXsDIR()
     {
-        return Application.persistentDataPath + localSFXPath;
+        return  localSFXPath;
     }
-    public static string ServerSFXsDIR()
-    {
-        return BaseURLPath + localSFXPath;
-    }
-    public static string LocalSFXs(string sfxName)
-    {
-        return Application.persistentDataPath + localSFXPath + sfxName + MP3Format;
-    }
-    public static string ServerSFXs(string sfxName)
-    {
-        return BaseURLPath + localSFXPath+ sfxName + MP3Format;
-    }
+
 
 
 

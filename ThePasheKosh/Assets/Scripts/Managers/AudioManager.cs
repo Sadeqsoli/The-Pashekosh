@@ -7,21 +7,12 @@ public class AudioManager : Singleton<AudioManager>
 {
     [Header("Sfx Player")]
     [Space]
-    [SerializeField] AudioPlayer SFXPlayer;
+    [SerializeField] SFXPlayer sfxPlayer;
 
 
     [Header("Media Player")]
     [Space]
-    [SerializeField] AudioPlayer MusicPlayer;
-
-
-    void Start()
-    {
-        SFXPlayer.InitializingAllClips(DB.LocalSFXsDIR(),false);
-        MusicPlayer.InitializingAllClips(DB.LocalMusicsDIR(),true);
-    }
-
-
+    [SerializeField] MediaPlayer MusicPlayer;
 
 
 }//EndClassss

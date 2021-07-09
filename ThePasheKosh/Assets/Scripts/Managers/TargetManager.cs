@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -29,7 +30,7 @@ public class TargetManager : AbsSingleton<TargetManager>
     [SerializeField] GameObject[] TableDesigns;
 
     [Space] // Sprite of every background.
-    List<Sprite> SpriteOfTargets = new List<Sprite>();
+    [SerializeField] List<Sprite> SpriteOfTargets = new List<Sprite>();
 
     public void UpdateBackground(FoodType bgType)
     {
@@ -43,49 +44,41 @@ public class TargetManager : AbsSingleton<TargetManager>
         {
             case FoodType.Spagetti://WhiteWooden Table
 
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
             case FoodType.Pizza: //Glass Table
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
             case FoodType.Cake: //Brown Wooden Table
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
             case FoodType.IceCream: //Metall Table
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
             case FoodType.Burger: //Plastic Table
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
             case FoodType.QormehSabzi:  //Iranian Table
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
             case FoodType.Chicken:  //Glass Table
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
 
 
             case FoodType.KalehPache:  //Stone Table
-                //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
                 ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
                 break;
         }
@@ -129,7 +122,7 @@ public class TargetManager : AbsSingleton<TargetManager>
     }
     void SetActiveRandomTableDesigns()
     {
-        int rnd = Random.Range(0, TableDesigns.Length);
+        int rnd = UnityEngine.Random.Range(0, TableDesigns.Length);
         if (TableDesigns.Length > 0)
             for (int i = 0; i < TableDesigns.Length; i++)
             {
@@ -146,11 +139,13 @@ public class TargetManager : AbsSingleton<TargetManager>
 
     public void InitializingAllBackground()
     {
-        DirectoryInfo dir = new DirectoryInfo(DB.LocalBackgroundDIR());
-        FileInfo[] fileInfo = dir.GetFiles("*.*");
-        foreach (FileInfo file in fileInfo)
+        string[] targetNames = Enum.GetNames(typeof(FoodType));
+        int targetLength = targetNames.Length;
+        for (int i = 0; i < targetLength; i++)
         {
-            NetCenter.Instance.DownloadImage(DB.LocalMusics(file.Name), AddSprite);
+            string path = DB.LocalBackPath(targetNames[i]);
+            Sprite sprite = Resourcer.SpriteLoader(path);
+            SpriteOfTargets.Add(sprite);
         }
     }
 

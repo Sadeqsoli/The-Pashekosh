@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -55,6 +57,10 @@ public static class Resourcer
     public static AudioClip Mp3Loader(string path)
     {
         return ReturnMP3Resource(path);
+    }
+    public static AudioClip[] ListOfClips(string path)
+    {
+        return ReturnAllMP3(path);
     }
     public static AudioClip WAVLoader(string path)
     {
@@ -223,6 +229,25 @@ public static class Resourcer
 
         //Try to load AudioClip from file path.
         AudioClip audioAsset = Resources.Load(path) as AudioClip;
+
+        if (audioAsset != null)
+            return audioAsset;
+        else
+            return null;
+    }
+    static AudioClip[] ReturnAllMP3(string path)
+    {
+        //Remove default file extension and format the path to the platform.
+        path = RemoveLeadingDirectorySeparator(path);
+
+        if (path == string.Empty)
+        {
+            Debug.LogError("ReturnFileResource -> path is empty.");
+            return null;
+        }
+
+        //Try to load AudioClip from file path.
+        AudioClip[] audioAsset = Resources.LoadAll(path) as AudioClip[];
 
         if (audioAsset != null)
             return audioAsset;
