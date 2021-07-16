@@ -13,7 +13,7 @@ public static class DB
 
 
     const string localBcakgrondPath = @"IMG/Backgrounds/";
-    const string localMusicPath = @"Audio/Musics/";
+    const string localMusicPath = @"Audio/Musics";
     const string localSFXPath = @"Audio/SFXs/";
     const string MP3Format = ".mp3";
     const string JPGFormat = ".jpg";

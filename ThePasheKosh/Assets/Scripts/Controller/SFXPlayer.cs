@@ -19,6 +19,11 @@ public class SFXPlayer : Singleton<SFXPlayer>
     {
         Player.PlayOneShot(Clips[(int)sfxType]);
     }
+    public void MuteSFXPlayer(bool isMute)
+    {
+        Player.mute = isMute;
+    }
+
 
 
 

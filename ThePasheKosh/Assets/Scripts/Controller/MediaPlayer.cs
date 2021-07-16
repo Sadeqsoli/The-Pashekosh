@@ -18,6 +18,10 @@ public class MediaPlayer : Singleton<MediaPlayer>
     {
         Player.loop = isLopping;
     }
+    public void MuteMediaPlayer(bool isMute)
+    {
+        Player.mute = isMute;
+    }
 
     public void ShufflePlayMP(bool isLopping = false)
     {
@@ -50,11 +54,12 @@ public class MediaPlayer : Singleton<MediaPlayer>
         Player = GetComponent<AudioSource>();
         Player.playOnAwake = false;
         InitializeMediaClips();
+        ShufflePlayMP();
     }//Awakeeeee
 
     void InitializeMediaClips()
     {
-        AudioClip[] ACs = Resourcer.ListOfClips(DB.LocalMusicsDIR());
+        AudioClip[] ACs = Resources.LoadAll<AudioClip>(DB.LocalMusicsDIR());
         int clipLength = ACs.Length;
         for (int i = 0; i < clipLength; i++)
         {
