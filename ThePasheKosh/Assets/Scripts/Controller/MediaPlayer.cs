@@ -59,7 +59,7 @@ public class MediaPlayer : Singleton<MediaPlayer>
 
     void InitializeMediaClips()
     {
-        AudioClip[] ACs = Resources.LoadAll<AudioClip>(DB.LocalMusicsDIR());
+        AudioClip[] ACs = Resourcer.ListOfClips(DB.LocalMusicsDIR());
         int clipLength = ACs.Length;
         for (int i = 0; i < clipLength; i++)
         {

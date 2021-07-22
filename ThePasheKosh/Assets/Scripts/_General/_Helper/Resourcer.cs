@@ -247,7 +247,7 @@ public static class Resourcer
         }
 
         //Try to load AudioClip from file path.
-        AudioClip[] audioAsset = Resources.LoadAll(path) as AudioClip[];
+        AudioClip[] audioAsset = Resources.LoadAll<AudioClip>(path);
 
         if (audioAsset != null)
             return audioAsset;

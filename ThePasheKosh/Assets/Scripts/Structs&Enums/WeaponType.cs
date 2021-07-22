@@ -1,15 +1,4 @@
-﻿//public enum WeaponType
-//{
-//    Bludgeon,
-//    Book,
-//    Dampaee,
-//    FoldedNewsPaper,
-//    GoshtKob,
-//    Hand,
-//    Painting,
-//    PasheKosh
-//}
-
+﻿
 public enum WeaponType
 {
     PasheKosh,
