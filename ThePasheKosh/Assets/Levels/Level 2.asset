@@ -15,32 +15,28 @@ MonoBehaviour:
   levelParameters:
     badInsectParameters:
       insectsName:
+      - Ant
       - Bug
-      - BlueHousefly
-      - Masquote
       timeBetweenSpawn:
-        min: 2
-        max: 8
+        min: 1
+        max: 3
       insectSpeed:
-        min: 50
-        max: 70
+        min: 55
+        max: 65
       insectRotSpeed:
-        min: 50
-        max: 70
-      randomnessOfDirection: 0.204
+        min: 55
+        max: 75
+      randomnessOfDirection: 0.072
     goodInsectPrarmeters:
-      insectsName:
-      - Bee
-      - Butterfly
-      - Dragonfly
+      insectsName: []
       timeBetweenSpawn:
-        min: 10
-        max: 15
+        min: 0
+        max: 0
       insectSpeed:
-        min: 50
-        max: 100
+        min: 0
+        max: 0
       insectRotSpeed:
-        min: 20
-        max: 30
-      randomnessOfDirection: 0.136
-    passLevelTime: 30
+        min: 0
+        max: 0
+      randomnessOfDirection: 0
+    passLevelTime: 10

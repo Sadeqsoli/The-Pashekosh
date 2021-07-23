@@ -19,7 +19,7 @@ MonoBehaviour:
       - Bug
       timeBetweenSpawn:
         min: 3
-        max: 10
+        max: 5
       insectSpeed:
         min: 30
         max: 45
@@ -28,16 +28,15 @@ MonoBehaviour:
         max: 70
       randomnessOfDirection: 0.051
     goodInsectPrarmeters:
-      insectsName:
-      - Bee
+      insectsName: []
       timeBetweenSpawn:
-        min: 10
-        max: 20
+        min: 0
+        max: 0
       insectSpeed:
-        min: 50
-        max: 80
+        min: 0
+        max: 0
       insectRotSpeed:
-        min: 20
-        max: 30
-      randomnessOfDirection: 0.204
-    passLevelTime: 30
+        min: 0
+        max: 0
+      randomnessOfDirection: 0
+    passLevelTime: 20

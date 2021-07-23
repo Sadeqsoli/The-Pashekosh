@@ -16,6 +16,9 @@ public class TargetManager : AbsSingleton<TargetManager>
     public FoodType CurrentTarget { get { return _currentTarget; } }
     public GameState CurrentGameState { get { return _currentState; } }
 
+    public static bool isSplashed { get; set; } = false;
+
+
     // Fields --->>>
 
     FoodType _currentTarget = FoodType.Spagetti;

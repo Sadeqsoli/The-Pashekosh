@@ -21,14 +21,14 @@ public class SplashScreenManager : MonoBehaviour
 
     void GoToMainMenu()
     {
-        if (DataHolder.isSplashed)
+        if (TargetManager.isSplashed)
         {
             gameObject.SetActive(false);
         }
         else
         {
             gameObject.SetActive(true);
-            DataHolder.isSplashed = true;
+            TargetManager.isSplashed = true;
         }
     }
 
