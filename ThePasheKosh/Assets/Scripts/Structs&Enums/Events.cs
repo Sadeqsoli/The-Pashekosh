@@ -9,6 +9,9 @@ public struct Events
     
     // Game Over Event
     public static string GameOver { get; } = "GameOver";
+    
+    // Zero Health Event
+    public static string ZeroHealth { get; } = "ZeroHealth";
 
     
     // Events related to destroying game objects

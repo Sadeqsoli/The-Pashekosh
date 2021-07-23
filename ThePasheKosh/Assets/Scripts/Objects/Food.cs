@@ -56,6 +56,7 @@ public class Food : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         
         EventManager.StartListening(Events.TouchCollider, OnCakeHit);
+        EventManager.StartListening(Events.ZeroHealth, RemoveFood);
     }
 
     private float Damage
@@ -140,7 +141,7 @@ public class Food : MonoBehaviour
 
         isCoroutineRunning = false;
 
-        RemoveFood();
+        //RemoveFood();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

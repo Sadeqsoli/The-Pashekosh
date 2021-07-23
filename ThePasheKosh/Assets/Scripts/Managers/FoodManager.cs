@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class FoodManager : Singleton<FoodManager>
     private FoodInfo currentFoodInfo;
     private Food currentFood;
 
-    public void MakeTheFoodReady(FoodInfo foodInfo)
+    public void MakeFoodReady(FoodInfo foodInfo)
     {
         currentFoodInfo = foodInfo;
         currentFood = foodInfo.foodPrefab.GetComponent<Food>();
@@ -26,18 +27,23 @@ public class FoodManager : Singleton<FoodManager>
 
     private IEnumerator HealthUpdateCo()
     {
+        var lastHealth = currentFood.Health;
+        GameManager.Instance.UpdateHealth(currentFood.Health, currentFood.maxHealth);
         while (true)
         {
-            GameManager.Instance.UpdateHealth(currentFood.Health, currentFood.maxHealth);
-            
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.5f);
+            if (Math.Abs(lastHealth - currentFood.Health) > 0.001f)
+            {
+                lastHealth = currentFood.Health;
+                GameManager.Instance.UpdateHealth(currentFood.Health, currentFood.maxHealth);
+            }
         }
     }
 
     private void FoodDestructionHandling()
     {
         Destroy(currentFood);
-        EventManager.TriggerEvent(Events.GameOver);
+        //EventManager.TriggerEvent(Events.GameOver);
     }
 
     private void DisplayFood(FoodInfo foodInfo)

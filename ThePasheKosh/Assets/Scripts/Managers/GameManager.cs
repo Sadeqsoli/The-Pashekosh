@@ -91,7 +91,7 @@ public class GameManager : Singleton<GameManager>
         gameUIManager.Initialize(0, 100);
         
         // Show the food in the game
-        FoodManager.Instance.MakeTheFoodReady(foods[foodIndex]);
+        FoodManager.Instance.MakeFoodReady(foods[foodIndex]);
         
         // Make sure that the game is touchable
         IsNormalWeaponActive = true;
@@ -121,6 +121,7 @@ public class GameManager : Singleton<GameManager>
 
             //Whenever the player is game over this event will be invoked
             EventManager.AddEventWithNoParamter(Events.GameOver);
+            EventManager.AddEventWithNoParamter(Events.ZeroHealth);
             // Whenever an insect is killed, this event will be invoked with the insect game object as a parameter
             EventManager.AddGameObjectEvent(Events.InsectKilled);
 
@@ -172,7 +173,6 @@ public class GameManager : Singleton<GameManager>
     }
 
     #endregion
-
 
     #region Level Handling
 

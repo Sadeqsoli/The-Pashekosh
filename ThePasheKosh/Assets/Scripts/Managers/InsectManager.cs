@@ -39,11 +39,19 @@ public class InsectManager : Singleton<InsectManager>
         EventManager.StartListening(Events.SprayTriggered, SprayTriggeredHandling);
 
         // Bad Insect Coroutine
-        Coroutine badCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.badInsectParameters, true));
-        allSpawnCoroutines.Add(badCoroutine);
+        if (levelParameters.badInsectParameters.insectsName.Length > 0 &&
+            levelParameters.badInsectParameters.timeBetweenSpawn.max > 0)
+        {
+            Coroutine badCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.badInsectParameters, true));
+            allSpawnCoroutines.Add(badCoroutine);
+        }
 
-        Coroutine goodCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.goodInsectPrarmeters, false));
-        allSpawnCoroutines.Add(badCoroutine);
+        if (levelParameters.goodInsectPrarmeters.insectsName.Length > 0 &&
+            levelParameters.goodInsectPrarmeters.timeBetweenSpawn.max > 0)
+        {
+            Coroutine goodCoroutine = StartCoroutine(SpawnCoroutine(levelParameters.goodInsectPrarmeters, false));
+            allSpawnCoroutines.Add(goodCoroutine);
+        }
         // GoodInsectCoroutine
     }
     
