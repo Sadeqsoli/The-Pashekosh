@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     // The state of the game (in terms of using power ups)
     public static GameStates gameState = GameStates.Normal;
     public static bool isPowerUpActive = false;
-    
+
     // Levels information that is added through inspector
     public LevelParameters[] levels;
 
@@ -30,39 +30,40 @@ public class GameManager : Singleton<GameManager>
     public UIManager gameUIManager;
 
     // Play/Pause buttons that is added through inspector
-    [Space] 
-    public Button playButton;
-    public Button pauseButton;
+    [Space]
+    public Toggle PlayPauseToggle;
 
     // Setting panel/button that is added through inspector
-    [Space] 
-    public Button settingButton;
+    [Space]
+    public Toggle settingButton;
     public GameObject settingPanel;
-    
+
     // Power Ups panel/button that is added through inspector
-    [Space] 
-    public Button powerUpsButton;
+    [Space]
+    public Toggle powerUpsButton;
     public GameObject powerUpsPanel;
-    
+
+    public Sprite openPanelSprite, closePanelSprite;
+    public Sprite playSprite, pauseSprite;
 
     #endregion
 
     #region Private Variables
-    
+
     private int foodIndex = 0;
     private int currentLevel;
 
     private float timer;
 
     #endregion
-    
+
     #region Properties
-    
+
     // Make it false, whenever we don't want the player touches have impact on the game
     public static bool IsNormalWeaponActive { private set; get; }
     public static bool IsElectricalPkActive { private set; get; }
     #endregion
-    
+
     #region Unity Methods
     private void Start()
     {
@@ -71,34 +72,34 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs2.SetBool("MoreThanOneTime", true);
             //PlayerPrefs.SetFloat("HighScore", 0);
         }
-        
+
         // Hide in-game panels
-        HideSettingPanel();
-        HidePowerUpsPanel();
-        
+        settingPanel.SetActive(false);
+        powerUpsPanel.SetActive(false);
+
         // Add listener and events
         AddEvents();
         AddListeners();
 
         // Load the level
         LoadLevel();
-        
+
         // Start the timer
         timer = 0;
         Timers.Instance.StartRepeatedAction(1f, AddToTimer);
 
         // Initializing GameUIManager
         gameUIManager.Initialize(0, 100);
-        
+
         // Show the food in the game
         FoodManager.Instance.MakeFoodReady(foods[foodIndex]);
-        
+
         // Make sure that the game is touchable
         IsNormalWeaponActive = true;
     }
-    
-    #endregion 
-    
+
+    #endregion
+
     #region Updating Health
     public void UpdateHealth(float health, float maxHealth)
     {
@@ -107,7 +108,7 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
 
-    
+
     #region Events Handling
     private void AddEvents()
     {
@@ -127,17 +128,17 @@ public class GameManager : Singleton<GameManager>
 
             // Whenever a piece of food is completely destroyed, this event will be invoked
             EventManager.AddEventWithNoParamter(Events.FoodDestruction);
-            
+
             // Whenever we want to mute or unmute the insects and background sounds
             EventManager.AddBoolEvent(Events.BackgroundSound);
             EventManager.AddBoolEvent(Events.InsectsSound);
-            
+
             // Events that are realted to Power Ups buttons
             EventManager.AddEventWithNoParamter(Events.ElectricalPasheKosh);
             EventManager.AddEventWithNoParamter(Events.Fan);
             EventManager.AddEventWithNoParamter(Events.Pill);
             EventManager.AddEventWithNoParamter(Events.Spray);
-            
+
             // Events that are related to Power Ups actions
             EventManager.AddEventWithNoParamter(Events.ElectricalPasheKoshTriggered);
             EventManager.AddEventWithNoParamter(Events.FanTriggered);
@@ -155,21 +156,17 @@ public class GameManager : Singleton<GameManager>
         // Add event manager listeners
         EventManager.StartListening(Events.InsectKilled, ProcessKillings);
         EventManager.StartListening(Events.GameOver, GameOver);
-        
+
         EventManager.StartListening(Events.ElectricalPasheKosh, UseElectricalPK);
         EventManager.StartListening(Events.Fan, UseFan);
         EventManager.StartListening(Events.Pill, UsePill);
         EventManager.StartListening(Events.Spray, UseSpray);
 
-        // Add buttons listeners
-        if (pauseButton != null && playButton != null)
-        {
-            playButton.onClick.AddListener(PlayGame);
-            pauseButton.onClick.AddListener(PauseGame);
-        }
-        
-        settingButton.onClick.AddListener(ShowSettingPanel);
-        powerUpsButton.onClick.AddListener(ShowPowerUpsPanel);
+        // Add toggles listeners
+        PlayPauseToggle.onValueChanged.AddListener(PlayPauseGame);
+
+        settingButton.onValueChanged.AddListener(ShowHideSettingPanel);
+        powerUpsButton.onValueChanged.AddListener(ShowHidePowerUpsPanel);
     }
 
     #endregion
@@ -180,7 +177,7 @@ public class GameManager : Singleton<GameManager>
     {
         InsectManager.Instance.StopAllSpawn(false);
 
-        if(currentLevel < levels.Length - 1)
+        if (currentLevel < levels.Length - 1)
             currentLevel++;
 
         Timers.Instance.StartTimer(1, LoadLevel);
@@ -212,7 +209,7 @@ public class GameManager : Singleton<GameManager>
     private void GameOver()
     {
         IsNormalWeaponActive = false;
-        
+
         float score = ResultsController.Instance.Score;
         ScoreRepo.PushScore(score);
         TimeRepo.PushTime(timer);
@@ -232,110 +229,96 @@ public class GameManager : Singleton<GameManager>
             gameUIManager.UpdateScore(ResultsController.Instance.Score);
     }
     #endregion
-    
-    #region Game Buttons Hanlding
-    private void PauseGame()
-    {
-        Time.timeScale = 0;
-        
-        IsNormalWeaponActive = false;
-        IsElectricalPkActive = false;
-        
-        pauseButton.gameObject.SetActive(false);
-        playButton.gameObject.SetActive(true);
-    }
 
-    private void PlayGame()
+    #region Game Buttons Hanlding
+
+
+    private void PlayPauseGame(bool isGamePaused)
     {
-        Time.timeScale = 1;
-        Timers.Instance.StartTimer(0.1f, PlayGameWithDelay);
+        if (isGamePaused)
+        {
+            Time.timeScale = 0;
+
+            IsNormalWeaponActive = false;
+            IsElectricalPkActive = false;
+
+            PlayPauseToggle.image.sprite = playSprite;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Timers.Instance.StartTimer(0.1f, PlayGameWithDelay);
+        }
     }
 
     private void PlayGameWithDelay()
     {
-        if(gameState == GameStates.Normal)
+        if (gameState == GameStates.Normal)
             IsNormalWeaponActive = true;
         else if (gameState == GameStates.ElectricalPasheKosh)
             IsElectricalPkActive = true;
-        
-        playButton.gameObject.SetActive(false);
-        pauseButton.gameObject.SetActive(true);
+
+
+        PlayPauseToggle.image.sprite = pauseSprite;
     }
 
-    private void ShowSettingPanel()
+    private void ShowHideSettingPanel(bool isPanelOn)
     {
-        // Pause the game
-        PauseGame();
-        playButton.onClick.RemoveListener(PlayGame);
-        
-        // Show the setting panel
-        settingPanel.SetActive(true);
-        
-        // Change the function of setting button
-        ChangeButtonFunc(settingButton, ShowSettingPanel, HideSettingPanel);
-        
-        // Remove powerUp button listener
-        ChangeButtonFunc(powerUpsButton, ShowPowerUpsPanel, null);
-    }
-
-    private void HideSettingPanel()
-    {
-        // Play the game again
-        playButton.onClick.AddListener(PlayGame);
-        PlayGame();
-        
-        // Hide the setting panel
-        settingPanel.SetActive(false);
-        
-        // Change the function of setting button
-        ChangeButtonFunc(settingButton, HideSettingPanel, ShowSettingPanel);
-        
-        // Add powerUp button listener
-        ChangeButtonFunc(powerUpsButton, null, ShowPowerUpsPanel);
-    }
-
-    private void ShowPowerUpsPanel()
-    {
-        // Pause the game
-        PauseGame();
-        playButton.onClick.RemoveListener(PlayGame);
-        
-        // Show powerUps panel
-        powerUpsPanel.SetActive(true);
-        
-        // Change the function of powerUps button
-        ChangeButtonFunc(powerUpsButton, ShowPowerUpsPanel, HidePowerUpsPanel);
-        
-        // Remove setting button listener
-        ChangeButtonFunc(settingButton, ShowSettingPanel, null);
-    }
-
-    private void HidePowerUpsPanel()
-    {
-        // Play the game
-        playButton.onClick.AddListener(PlayGame);
-        PlayGame();
-        
-        // Hide powerUps panel
         powerUpsPanel.SetActive(false);
-        
-        // Change the function of powerUps button
-        ChangeButtonFunc(powerUpsButton, HidePowerUpsPanel, ShowPowerUpsPanel);
-        
-        // Add setting button listener
-        ChangeButtonFunc(settingButton, null, ShowSettingPanel);
-        
+        if (isPanelOn)
+        {
+            // Show the setting panel
+            settingPanel.transform.Scaler(TTScale.ScaleUp, () =>
+            {
+                // Pause the game
+                PlayPauseGame(true);
+            });
+
+        }
+        else
+        {
+            // Play the game again
+            PlayPauseGame(false);
+
+
+            // Hide the setting panel
+            settingPanel.transform.Scaler(TTScale.ScaleDown);
+
+        }
+
+
     }
 
-    private void ChangeButtonFunc(Button btn, UnityAction lastListener, UnityAction newListener)
+
+    private void ShowHidePowerUpsPanel(bool isPanelOn)
     {
-        if(lastListener != null)
-            btn.onClick.RemoveListener(lastListener);
-        if(newListener != null)
-            btn.onClick.AddListener(newListener);
+        settingPanel.SetActive(false);
+        if (isPanelOn)
+        {
+            // Show the powerUps panel
+            powerUpsPanel.transform.Scaler(TTScale.XScaleUp, () =>
+             {
+                 powerUpsButton.image.sprite = closePanelSprite;
+                 // Pause the game
+                 PlayPauseGame(true);
+             });
+
+
+        }
+        else
+        {
+            // Play the game again
+            PlayPauseGame(false);
+
+            // Hide the powerUps panel
+            powerUpsPanel.transform.Scaler(TTScale.XScaleDown);
+            powerUpsButton.image.sprite = openPanelSprite;
+        }
     }
+
+
     #endregion
-    
+
     #region PowerUps Handling
 
     private void UseElectricalPK()
@@ -362,7 +345,7 @@ public class GameManager : Singleton<GameManager>
 
     private void UsePowerUps(GameStates currentState)
     {
-        HidePowerUpsPanel();
+        ShowHidePowerUpsPanel(false);
         gameState = currentState;
         IsNormalWeaponActive = false;
         isPowerUpActive = true;
@@ -379,11 +362,11 @@ public class GameManager : Singleton<GameManager>
     {
         isPowerUpActive = false;
         IsElectricalPkActive = false;
-        
+
         gameState = GameStates.Normal;
         IsNormalWeaponActive = true;
     }
 
-    
+
     #endregion
 }

@@ -11,6 +11,10 @@ public class Settings : MonoBehaviour
     public Button backgroundSound;
     [FormerlySerializedAs("insectSounds")] public Button insectsSound;
 
+    public Toggle SFXMuter; 
+    public Toggle MusicMuter; 
+
+
     public Sprite unMuteSprite;
     public Sprite muteSprite;
     #endregion
@@ -25,12 +29,19 @@ public class Settings : MonoBehaviour
     {
         backgroundSound.image.sprite = unMuteSprite;
         insectsSound.image.sprite = unMuteSprite;
+        SFXMuter?.onValueChanged.AddListener(MuteSFX);
+        MusicMuter?.onValueChanged.AddListener(MuteMusic);
     }
 
-    // Update is called once per frame
-    void Update()
+    void MuteSFX(bool isMute)
     {
-        
+        SFXMuter.image.sprite = isMute == true ? muteSprite : unMuteSprite;
+        SFXPlayer.Instance.MuteSFXPlayer(isMute);
+    }
+    void MuteMusic(bool isMute)
+    {
+        MusicMuter.image.sprite = isMute == true ? muteSprite : unMuteSprite;
+        MediaPlayer.Instance.MuteMediaPlayer(isMute);
     }
 
     #endregion
