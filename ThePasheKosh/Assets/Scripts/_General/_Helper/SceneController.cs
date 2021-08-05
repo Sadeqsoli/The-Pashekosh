@@ -8,12 +8,11 @@ using UnityEngine.UI;
 public class SceneController : Singleton<SceneController>
 {
     [SerializeField] Image BackgroundIMG;
-    [SerializeField] Image ProgressIMG;
-    [SerializeField] RTLTextMeshPro ProgressTXT;
     int TapCount = 0;
     float NewTime = 0;
     float MaxDubbleTapTime = 0.3f;
     public UnityAction escapeButtonAction;
+
 
     public void GoToNextOrPrevScene(bool isGoingNext)
     {
@@ -94,33 +93,32 @@ public class SceneController : Singleton<SceneController>
 
     IEnumerator LoadScene(int sceneIndex, bool isSplash = false)
     {
-
         if (!isSplash)
         {
-            ProgressIMG.fillAmount = 0f;
-            ProgressTXT.text = "%0";
-            float delay = 1.5f;
+        //    ProgressIMG.fillAmount = 0f;
+        //    ProgressTXT.text = "%0";
+            float delay = 0.5f;
 
             BackgroundIMG.transform.Scaler(TTScale.YScaleUp);
 
             yield return new WaitForSecondsRealtime(delay);
             AsyncOperation asyncLoader = SceneManager.LoadSceneAsync(sceneIndex);
 
-            ProgressTXT.TXTColoring( TTTColoring.SimpleColoring,_Color.G_DGreen);
+            //ProgressTXT.TXTColoring( TTTColoring.SimpleColoring,_Color.G_DGreen);
 
             while (!asyncLoader.isDone)
             {
-                float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
-                ProgressIMG.fillAmount = progress;
-                ProgressTXT.text = "% " + (progress * 100).ToString("###");
+            //    float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
+            //    ProgressIMG.fillAmount = progress;
+            //    ProgressTXT.text = "% " + (progress * 100).ToString("###");
                 yield return null;
             }
             yield return new WaitForSecondsRealtime(delay);
 
-            BackgroundIMG.transform.Scaler(TTScale.YScaleDown,delegate 
+            BackgroundIMG.transform.Scaler(TTScale.YScaleDown, delegate
             {
                 BackgroundIMG.gameObject.SetActive(false);
-                Debug.Log("Scaled Down Completed!");
+                Debug.Log("Async Index!");
             });
         }
         else
@@ -135,22 +133,22 @@ public class SceneController : Singleton<SceneController>
 
         if (!isSplash)
         {
-            ProgressIMG.fillAmount = 0f;
-            ProgressTXT.text = "%0";
-            float delay = 1.5f;
+            //ProgressIMG.fillAmount = 0f;
+            //ProgressTXT.text = "%0";
+            float delay = 0.5f;
 
             BackgroundIMG.gameObject.transform.Scaler(TTScale.XScaleUp);
 
             yield return new WaitForSecondsRealtime(delay);
             AsyncOperation asyncLoader = SceneManager.LoadSceneAsync(sceneName);
 
-            ProgressTXT.TXTColoring( TTTColoring.SimpleColoring,_Color.G_DGreen);
+            //ProgressTXT.TXTColoring( TTTColoring.SimpleColoring,_Color.G_DGreen);
 
             while (!asyncLoader.isDone)
             {
-                float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
-                ProgressIMG.fillAmount = progress;
-                ProgressTXT.text = "% " + (progress * 100).ToString("###");
+                //float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
+                //ProgressIMG.fillAmount = progress;
+                //ProgressTXT.text = "% " + (progress * 100).ToString("###");
                 yield return null;
             }
             yield return new WaitForSecondsRealtime(delay);
@@ -158,7 +156,7 @@ public class SceneController : Singleton<SceneController>
             BackgroundIMG.gameObject.transform.Scaler(TTScale.XScaleDown,delegate 
             {
                 BackgroundIMG.gameObject.SetActive(false);
-                Debug.Log("Fade Out Complete!");
+                Debug.Log("Async Name!");
             });
         }
         else

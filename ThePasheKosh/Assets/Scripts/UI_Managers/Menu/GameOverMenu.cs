@@ -11,10 +11,13 @@ public class GameOverMenu : MonoBehaviour
     [Space]
     [SerializeField] Button GoToMainButton;
 
+    Canvas canvas;
 
     void Start()
     {
         //Delete();
+        canvas = GetComponent<Canvas>();
+        canvas.worldCamera = CamTrack.Instance.GetComponent<Camera>();
 
         DisplayLatestScores(ScoreRepo.GetLastScore());
         DisplayBestOpenedLevel(LevelRepo.GetLevel());

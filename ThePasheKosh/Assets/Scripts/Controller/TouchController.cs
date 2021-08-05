@@ -12,6 +12,13 @@ public class TouchController : MonoBehaviour
     public WeaponType usingWeapon;
 
     Vector3 pos;
+    Camera cameraTouch;
+
+
+    void Awake()
+    {
+        cameraTouch = GetComponent<Camera>();
+    }
 
     /// <summary>
     /// Handling Touch
@@ -25,13 +32,13 @@ public class TouchController : MonoBehaviour
     {
         if (Input.touchCount>0 && GameManager.IsNormalWeaponActive)
         {
-            var weaponPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            var weaponPos = cameraTouch.ScreenToWorldPoint(Input.GetTouch(0).position);
             
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                if (!(Camera.main is null))
+                if (!(cameraTouch is null))
                 {
-                    RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
+                    RaycastHit2D hitInfo = Physics2D.Raycast(cameraTouch.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
                     // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
                     if (hitInfo)
                     {
@@ -58,11 +65,11 @@ public class TouchController : MonoBehaviour
         {
             pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20f);
 
-            var weaponPos = Camera.main.ScreenToWorldPoint(pos);
+            var weaponPos = cameraTouch.ScreenToWorldPoint(pos);
             
-            if (!(Camera.main is null))
+            if (!(cameraTouch is null))
             {
-                RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
+                RaycastHit2D hitInfo = Physics2D.Raycast(cameraTouch.ScreenToWorldPoint(pos), Vector2.zero);
                 // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
                 if (hitInfo)
                 {
@@ -84,9 +91,9 @@ public class TouchController : MonoBehaviour
         {
             pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20f);
 
-            var weaponPos = Camera.main.ScreenToWorldPoint(pos);
+            var weaponPos = cameraTouch.ScreenToWorldPoint(pos);
             
-            if (!(Camera.main is null))
+            if (!(cameraTouch is null))
             {
                 ItemPool.InstantiateGameObjectByName(WeaponType.ElectricalPashekosh.ToString(), weaponPos, Quaternion.identity);
             }
