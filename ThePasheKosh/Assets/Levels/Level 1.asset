@@ -14,21 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelParameters:
     badInsectParameters:
-      insectsName:
-      - Ant
-      - Bug
+      insectsName: 0000000002000000
       timeBetweenSpawn:
-        min: 3
-        max: 5
+        min: 2
+        max: 3
       insectSpeed:
-        min: 30
-        max: 45
+        min: 100
+        max: 110
       insectRotSpeed:
-        min: 50
-        max: 70
-      randomnessOfDirection: 0.051
+        min: 80
+        max: 90
+      randomnessOfDirection: 0.034
     goodInsectPrarmeters:
-      insectsName: []
+      insectsName: 
       timeBetweenSpawn:
         min: 0
         max: 0
@@ -39,4 +37,4 @@ MonoBehaviour:
         min: 0
         max: 0
       randomnessOfDirection: 0
-    passLevelTime: 20
+    passLevelTime: 40

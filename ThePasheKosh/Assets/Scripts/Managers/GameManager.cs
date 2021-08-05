@@ -187,6 +187,7 @@ public class GameManager : Singleton<GameManager>
     {
         Timers.Instance.StartTimer(levels[currentLevel].levelParameters.passLevelTime, GoToNextLevel);
         InsectManager.Instance.StartInsectSpawning(levels[currentLevel].levelParameters);
+        Debug.Log("currentLevel: " + currentLevel);
     }
 
     #endregion

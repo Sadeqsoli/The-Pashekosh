@@ -7,9 +7,12 @@ public enum AssetType { Music, SFXs, Background }
 public class SplashScreenManager : MonoBehaviour
 {
 
+    Canvas canvas;
 
     void Awake()
     {
+        canvas = GetComponentInParent<Canvas>();
+        canvas.worldCamera = CamTrack.Instance.GetComponent<Camera>();
         GoToMainMenu();
     }
 

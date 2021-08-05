@@ -142,8 +142,7 @@ public class InsectManager : Singleton<InsectManager>
         while (true)
         {
             GameObject newInsect;
-
-            string insectName = GetRandomItem<string>(insectParams.insectsName);
+            string insectName = GetRandomItem<InsectType>(insectParams.insectsName).ToString();
 
             SpawnPoint newSpawnPoint = GetRandomItem<SpawnPoint>(spawnPoints);
             Vector2 spawnPos = newSpawnPoint.gameObject.transform.position;

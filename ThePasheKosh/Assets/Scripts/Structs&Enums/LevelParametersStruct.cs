@@ -10,7 +10,7 @@ public struct MinMaxRandom
 [System.Serializable]
 public struct InsectParameters
 {
-    public string[] insectsName;
+    public InsectType[] insectsName;
     [Space]
     public MinMaxRandom timeBetweenSpawn;
     public MinMaxRandom insectSpeed;
@@ -31,3 +31,5 @@ public struct LevelParametersStruct
     [Header("General")]
     public int passLevelTime;
 }
+
+public enum InsectType { Ant, Bee, Bug, Butterfly, Dragonfly, BlueHousefly, LadyBug, Masquote, RedHousefly, Spider }

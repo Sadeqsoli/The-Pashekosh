@@ -8,11 +8,13 @@ using UnityEngine.UI;
 public class SceneController : Singleton<SceneController>
 {
     [SerializeField] Image BackgroundIMG;
+    [SerializeField] InsectIntro InsectIntroduction;
+    [SerializeField] IntroCard[] IntroCards;
     int TapCount = 0;
     float NewTime = 0;
     float MaxDubbleTapTime = 0.3f;
     public UnityAction escapeButtonAction;
-
+    
 
     public void GoToNextOrPrevScene(bool isGoingNext)
     {
@@ -93,11 +95,12 @@ public class SceneController : Singleton<SceneController>
 
     IEnumerator LoadScene(int sceneIndex, bool isSplash = false)
     {
+        InitAIntroCard();
         if (!isSplash)
         {
         //    ProgressIMG.fillAmount = 0f;
         //    ProgressTXT.text = "%0";
-            float delay = 0.5f;
+            float delay = 2f;
 
             BackgroundIMG.transform.Scaler(TTScale.YScaleUp);
 
@@ -118,7 +121,6 @@ public class SceneController : Singleton<SceneController>
             BackgroundIMG.transform.Scaler(TTScale.YScaleDown, delegate
             {
                 BackgroundIMG.gameObject.SetActive(false);
-                Debug.Log("Async Index!");
             });
         }
         else
@@ -130,7 +132,7 @@ public class SceneController : Singleton<SceneController>
     }
     IEnumerator LoadScene(string sceneName, bool isSplash = false)
     {
-
+        InitAIntroCard();
         if (!isSplash)
         {
             //ProgressIMG.fillAmount = 0f;
@@ -168,6 +170,11 @@ public class SceneController : Singleton<SceneController>
     }
   
 
+    void InitAIntroCard()
+    {
+        int rnd = Random.Range(0, IntroCards.Length);
+        InsectIntroduction.SetIntroductionCard(IntroCards[rnd], rnd); 
+    }
 
 
     void Update()

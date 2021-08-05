@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
 
     private void TweenHealthBar(float amount, Color nextColor)
     {
-        Debug.Log(counter);
+        //Debug.Log(counter);
         fillAmount = healthFillBar.DOFillAmount(amount, amount).SetEase(Ease.Linear).
             OnComplete(() =>
             {

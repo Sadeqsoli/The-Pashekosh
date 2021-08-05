@@ -18,6 +18,7 @@ public class MainMenu : Static<MainMenu>
     [SerializeField] GameObject SettingPanel;
     [SerializeField] GameObject UsernamePanel;
 
+    Canvas canvas;
 
     public void DeletingKeys()
     {
@@ -61,6 +62,8 @@ public class MainMenu : Static<MainMenu>
 
     void SetValues()
     {
+        canvas = GetComponent<Canvas>();
+        canvas.worldCamera = CamTrack.Instance.GetComponent<Camera>();
         SettingPanel.SetActive(false);
         ShopPanel.SetActive(false);
         UsernamePanel.SetActive(false);
