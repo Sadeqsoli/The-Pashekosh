@@ -35,11 +35,11 @@ public class MainMenu : Static<MainMenu>
 
     public void SetCoinsText()
     {
-        CTween.ToInt(0, CoinRepo.GetCoins(),1,delegate 
-        {
-            CoinCounterTXT.text = CoinRepo.GetCoins().ToString();
-        },
-        delegate 
+        CTween.ToInt(0, CoinRepo.GetCoins(), 1, delegate
+          {
+              CoinCounterTXT.text = CoinRepo.GetCoins().ToString();
+          },
+        delegate
         {
             CoinCounterTXT.transform.Scaler(TTScale.ShakeIt);
         });
@@ -79,10 +79,9 @@ public class MainMenu : Static<MainMenu>
 
     void ShakeThingsOff()
     {
-        CoinCounterTXT.transform.Scaler(TTScale.ShakeIt);
-        ShopButton.transform.Scaler(TTScale.ShakeIt);
-        SettingButton.transform.Scaler(TTScale.ShakeIt);
-        StartButton.transform.Scaler(TTScale.ShakeIt);
+        ShopButton.transform.Scaler(TTScale.ScaleUp);
+        SettingButton.transform.Scaler(TTScale.ScaleUp);
+        StartButton.transform.Scaler(TTScale.ScaleUp);
     }
 
     void GoToShop()
@@ -95,7 +94,7 @@ public class MainMenu : Static<MainMenu>
     }
     void GoToGameScene()
     {
-        SceneController.Instance.GoToNextOrPrevScene(true);
+        SceneController.Instance.GoToNextOrPrevScene(true, true);
     }
 
 

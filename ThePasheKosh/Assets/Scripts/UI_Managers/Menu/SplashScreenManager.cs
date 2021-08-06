@@ -6,7 +6,7 @@ using UnityEngine;
 public enum AssetType { Music, SFXs, Background }
 public class SplashScreenManager : MonoBehaviour
 {
-
+    [SerializeField] GameObject HouseFly;
     Canvas canvas;
 
     void Awake()
@@ -16,10 +16,14 @@ public class SplashScreenManager : MonoBehaviour
         GoToMainMenu();
     }
 
-
+    void TurnOnFly()
+    {
+        HouseFly.SetActive(true);
+    }
     void SplashIsDone()
     {
-        gameObject.transform.Scaler(TTScale.ScaleDown/*, ()=> DownloadingAll()*/);
+        HouseFly.SetActive(false);
+        gameObject.transform.Scaler(TTScale.ScaleDown);
     }
 
     void GoToMainMenu()

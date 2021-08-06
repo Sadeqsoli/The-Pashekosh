@@ -33,9 +33,11 @@ public class UIManager : MonoBehaviour
 
     private float lastAmount;
     private float maxHealth = 100f;
-
+    Canvas canvas;
     public void Start()
     {
+        canvas = GetComponent<Canvas>();
+        canvas.worldCamera = CamTrack.Instance.GetComponent<Camera>();
         EventManager.StartListening(Events.InsectKilled, DisplayHitScore);
     }
 
@@ -106,6 +108,16 @@ public class UIManager : MonoBehaviour
             hitScore.transform.SetParent(this.gameObject.transform);
             var hitScoreScript = hitScore.GetComponent<HitScore>();
             hitScoreScript.Initialize(badInsectComponent.addedPoints, Color.green);
+        }
+        else
+        {
+            //TODO: Change the dynamic for Good insects.
+            //var goodInsectComponent = insect.GetComponent<GoodInsect>();
+
+            var hitScore = Instantiate(hitScorePrefab, insect.transform.position, Quaternion.identity);
+            hitScore.transform.SetParent(this.gameObject.transform);
+            var hitScoreScript = hitScore.GetComponent<HitScore>();
+            hitScoreScript.Initialize("نهههههه", Color.red);
         }
     }
     

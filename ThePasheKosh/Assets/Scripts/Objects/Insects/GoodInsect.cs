@@ -7,8 +7,9 @@ public enum GoodInsectState { Move, Wind}
 
 public class GoodInsect : Insect
 {
+    //public int addedPoints;
     public float windPower;
-    
+
     public GoodInsectState CurrentState { get; private set; }
     
     protected override void Update()

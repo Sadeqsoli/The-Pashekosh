@@ -187,6 +187,7 @@ public class GameManager : Singleton<GameManager>
     {
         Timers.Instance.StartTimer(levels[currentLevel].levelParameters.passLevelTime, GoToNextLevel);
         InsectManager.Instance.StartInsectSpawning(levels[currentLevel].levelParameters);
+        LevelRepo.PushLevel(currentLevel);
         Debug.Log("currentLevel: " + currentLevel);
     }
 
@@ -290,7 +291,6 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-
     private void ShowHidePowerUpsPanel(bool isPanelOn)
     {
         settingPanel.SetActive(false);
@@ -303,8 +303,6 @@ public class GameManager : Singleton<GameManager>
                  // Pause the game
                  PlayPauseGame(true);
              });
-
-
         }
         else
         {

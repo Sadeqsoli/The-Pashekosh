@@ -8,15 +8,19 @@ using UnityEngine.UI;
 public class SceneController : Singleton<SceneController>
 {
     [SerializeField] Image BackgroundIMG;
+    [SerializeField] GameObject ProgressPack;
+    [SerializeField] Image ProgressIMG;
+    [SerializeField] RTLTextMeshPro ProgressTXT;
+    [SerializeField] Button StartButton;
     [SerializeField] InsectIntro InsectIntroduction;
     [SerializeField] IntroCard[] IntroCards;
     int TapCount = 0;
     float NewTime = 0;
     float MaxDubbleTapTime = 0.3f;
     public UnityAction escapeButtonAction;
-    
 
-    public void GoToNextOrPrevScene(bool isGoingNext)
+
+    public void GoToNextOrPrevScene(bool isGoingNext, bool isGoingGamePlay = false)
     {
         int currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
         int nextOrPrevSceneIndex;
@@ -28,7 +32,7 @@ public class SceneController : Singleton<SceneController>
         {
             nextOrPrevSceneIndex = currentBuildIndex - 1;
         }
-        StartCoroutine(LoadScene(nextOrPrevSceneIndex));
+        StartCoroutine(LoadScene(nextOrPrevSceneIndex, isGoingGamePlay));
     }
     public void GoToSpecificScene(int sceneIndex)
     {
@@ -69,7 +73,24 @@ public class SceneController : Singleton<SceneController>
     void Start()
     {
         BackgroundIMG.gameObject.SetActive(false);
+        StartButton.gameObject.SetActive(false);
+        ProgressPack.gameObject.SetActive(true);
+
+        StartButton.ChangeListener(CloseWaitingPanel);
     }
+
+    void CloseWaitingPanel()
+    {
+        Time.timeScale = 1;
+        BackgroundIMG.gameObject.transform.Scaler(TTScale.YScaleDown, delegate
+        {
+            InsectIntroduction.gameObject.transform.Scaler(TTScale.XScaleDown);
+            BackgroundIMG.gameObject.SetActive(false);
+            Debug.Log("Async Name!");
+        });
+    }
+
+
     void GoBackByEscapeButton()
     {
         // Check if Back was pressed this frame
@@ -93,13 +114,13 @@ public class SceneController : Singleton<SceneController>
     }
 
 
-    IEnumerator LoadScene(int sceneIndex, bool isSplash = false)
+    IEnumerator LoadScene(int sceneIndex, bool isGoingGamePlay = false)
     {
         InitAIntroCard();
-        if (!isSplash)
+        if (isGoingGamePlay)
         {
-        //    ProgressIMG.fillAmount = 0f;
-        //    ProgressTXT.text = "%0";
+            ProgressIMG.fillAmount = 0f;
+            ProgressTXT.text = "%0";
             float delay = 2f;
 
             BackgroundIMG.transform.Scaler(TTScale.YScaleUp);
@@ -111,35 +132,53 @@ public class SceneController : Singleton<SceneController>
 
             while (!asyncLoader.isDone)
             {
-            //    float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
-            //    ProgressIMG.fillAmount = progress;
-            //    ProgressTXT.text = "% " + (progress * 100).ToString("###");
+                float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
+                ProgressIMG.fillAmount = progress;
+                ProgressTXT.text = "% " + (progress * 100).ToString("###");
                 yield return null;
             }
             yield return new WaitForSecondsRealtime(delay);
-
-            BackgroundIMG.transform.Scaler(TTScale.YScaleDown, delegate
+            ProgressPack.gameObject.transform.Scaler(TTScale.ScaleDown, () =>
             {
-                BackgroundIMG.gameObject.SetActive(false);
+                StartButton.gameObject.transform.Scaler(TTScale.ScaleUp, () => Time.timeScale = 0);
             });
         }
         else
         {
-            SceneManager.LoadScene(sceneIndex);
+            ProgressIMG.fillAmount = 0f;
+            ProgressTXT.text = "%0";
+            float delay = 2f;
+
+            BackgroundIMG.transform.Scaler(TTScale.YScaleUp);
+
+            yield return new WaitForSecondsRealtime(delay);
+            AsyncOperation asyncLoader = SceneManager.LoadSceneAsync(sceneIndex);
+
+            //ProgressTXT.TXTColoring( TTTColoring.SimpleColoring,_Color.G_DGreen);
+
+            while (!asyncLoader.isDone)
+            {
+                float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
+                ProgressIMG.fillAmount = progress;
+                ProgressTXT.text = "% " + (progress * 100).ToString("###");
+                yield return null;
+            }
+            yield return new WaitForSecondsRealtime(delay);
+
+            CloseWaitingPanel();
         }
-        
 
     }
-    IEnumerator LoadScene(string sceneName, bool isSplash = false)
+    IEnumerator LoadScene(string sceneName, bool isGoingGamePlay = false)
     {
         InitAIntroCard();
-        if (!isSplash)
+        if (isGoingGamePlay)
         {
-            //ProgressIMG.fillAmount = 0f;
-            //ProgressTXT.text = "%0";
-            float delay = 0.5f;
+            ProgressIMG.fillAmount = 0f;
+            ProgressTXT.text = "%0";
+            float delay = 2f;
 
-            BackgroundIMG.gameObject.transform.Scaler(TTScale.XScaleUp);
+            BackgroundIMG.transform.Scaler(TTScale.YScaleUp);
 
             yield return new WaitForSecondsRealtime(delay);
             AsyncOperation asyncLoader = SceneManager.LoadSceneAsync(sceneName);
@@ -148,32 +187,52 @@ public class SceneController : Singleton<SceneController>
 
             while (!asyncLoader.isDone)
             {
-                //float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
-                //ProgressIMG.fillAmount = progress;
-                //ProgressTXT.text = "% " + (progress * 100).ToString("###");
+                float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
+                ProgressIMG.fillAmount = progress;
+                ProgressTXT.text = "% " + (progress * 100).ToString("###");
                 yield return null;
             }
             yield return new WaitForSecondsRealtime(delay);
 
-            BackgroundIMG.gameObject.transform.Scaler(TTScale.XScaleDown,delegate 
+            ProgressPack.gameObject.transform.Scaler(TTScale.ScaleDown, () =>
             {
-                BackgroundIMG.gameObject.SetActive(false);
-                Debug.Log("Async Name!");
+                 StartButton.gameObject.transform.Scaler(TTScale.ScaleUp, () => Time.timeScale = 0);
             });
         }
         else
         {
-            SceneManager.LoadScene(sceneName);
-        }
-        
+            ProgressIMG.fillAmount = 0f;
+            ProgressTXT.text = "%0";
+            float delay = 2f;
 
+            BackgroundIMG.transform.Scaler(TTScale.YScaleUp);
+
+            yield return new WaitForSecondsRealtime(delay);
+            AsyncOperation asyncLoader = SceneManager.LoadSceneAsync(sceneName);
+
+            //ProgressTXT.TXTColoring( TTTColoring.SimpleColoring,_Color.G_DGreen);
+
+            while (!asyncLoader.isDone)
+            {
+                float progress = Mathf.Clamp01(asyncLoader.progress / 0.9f);
+                ProgressIMG.fillAmount = progress;
+                ProgressTXT.text = "% " + (progress * 100).ToString("###");
+                yield return null;
+            }
+            yield return new WaitForSecondsRealtime(delay);
+
+            CloseWaitingPanel();
+        }
     }
-  
+
 
     void InitAIntroCard()
     {
+        StartButton.gameObject.SetActive(false);
+        InsectIntroduction.transform.Scaler(TTScale.ScaleUp);
+
         int rnd = Random.Range(0, IntroCards.Length);
-        InsectIntroduction.SetIntroductionCard(IntroCards[rnd], rnd); 
+        InsectIntroduction.SetIntroductionCard(IntroCards[rnd], rnd);
     }
 
 

@@ -30,7 +30,19 @@ public class HitScore : MonoBehaviour
             _rtlTextMeshPro.text = "+ " + scoreAmount;
         else
             _rtlTextMeshPro.text = "- " + -scoreAmount;
-            
+
+        scoreHit.transform.localScale = Vector3.zero;
+        scoreHit.transform.DOScale(Vector3.one, 1f).OnComplete(
+            () => Destroy(scoreHit.gameObject)
+        );
+    }
+
+    public void Initialize(string scoreAmount, Color color)
+    {
+        _rtlTextMeshPro.color = color;
+
+        _rtlTextMeshPro.text = scoreAmount;
+
         scoreHit.transform.localScale = Vector3.zero;
         scoreHit.transform.DOScale(Vector3.one, 1f).OnComplete(
             () => Destroy(scoreHit.gameObject)
@@ -38,5 +50,5 @@ public class HitScore : MonoBehaviour
     }
     #endregion
 
-    
+
 }

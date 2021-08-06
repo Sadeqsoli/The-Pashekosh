@@ -27,54 +27,53 @@ public static class ScoreRepo
             Save(lastScoreRepo, latestScore);
 
             //Check if new Score is bigger than the last high score and Set it as the new High Score.
+            //float highScore = GetHighScore();
+            //if (latestScore > highScore)
+            //{
+            //    Save(highScoreRepo, latestScore);
+            //}
+        }
+    }
+    public static bool PushHighScore(float latestScore)
+    {
+        if (latestScore > 0)
+        {
             float highScore = GetHighScore();
             if (latestScore > highScore)
             {
                 Save(highScoreRepo, latestScore);
+                return true;
             }
         }
+        return false;
     }
 
 
     public static float GetAllScore()
     {
-        float allScores = 0f;
-        if (PlayerPrefs.HasKey(allScoreRepo))
+        if (!PlayerPrefs.HasKey(allScoreRepo))
         {
-            allScores = Retrive(allScoreRepo);
-            return allScores;
+            return 0;
         }
-        else
-        {
-            return allScores;
-        }
+        return Retrive(allScoreRepo);
     }
     public static float GetLastScore()
     {
-        float latestScore = 0f;
-        if (PlayerPrefs.HasKey(lastScoreRepo))
+        if (!PlayerPrefs.HasKey(lastScoreRepo))
         {
-            latestScore = Retrive(lastScoreRepo);
-            return latestScore;
+            return 0;
         }
-        else
-        {
-            return latestScore;
-        }
+        return Retrive(lastScoreRepo);
     }
     public static float GetHighScore()
     {
-        float highestScore = 0f;
-        if (PlayerPrefs.HasKey(highScoreRepo))
+        if (!PlayerPrefs.HasKey(highScoreRepo))
         {
-            highestScore = Retrive(highScoreRepo);
-            return highestScore;
+            return 0;
         }
-        else
-        {
-            return highestScore;
-        }
+        return Retrive(highScoreRepo);
     }
+
     #endregion
 
 
@@ -95,7 +94,7 @@ public static class ScoreRepo
 
     static float Retrive(string key)
     {
-        return PlayerPrefs.GetInt(key);
+        return PlayerPrefs.GetFloat(key);
     }
     static void Save(string key, float val)
     {

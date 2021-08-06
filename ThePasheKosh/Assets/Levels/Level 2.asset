@@ -19,11 +19,11 @@ MonoBehaviour:
         min: 1
         max: 2
       insectSpeed:
-        min: 140
-        max: 150
+        min: 120
+        max: 130
       insectRotSpeed:
-        min: 130
-        max: 150
+        min: 110
+        max: 120
       randomnessOfDirection: 0.16
     goodInsectPrarmeters:
       insectsName: 

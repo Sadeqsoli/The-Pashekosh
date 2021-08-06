@@ -17,7 +17,7 @@ public class TouchController : MonoBehaviour
 
     void Awake()
     {
-        cameraTouch = GetComponent<Camera>();
+        cameraTouch = CamTrack.Instance.GetComponent<Camera>();
     }
 
     /// <summary>
