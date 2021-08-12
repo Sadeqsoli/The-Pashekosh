@@ -11,8 +11,6 @@ public class MainMenu : Static<MainMenu>
 
 
     [SerializeField] RTLTextMeshPro CoinCounterTXT;
-    [SerializeField] RTLTextMeshPro levelProgressionTXT;
-    [SerializeField] RTLTextMeshPro highScoreTXT;
 
     [SerializeField] GameObject ShopPanel;
     [SerializeField] GameObject SettingPanel;
@@ -41,7 +39,7 @@ public class MainMenu : Static<MainMenu>
           },
         delegate
         {
-            CoinCounterTXT.transform.Scaler(TTScale.ShakeIt);
+            CoinCounterTXT.transform.Scaler(TTScale.ScaleUp);
         });
 
         //SetScoresAndLevelProgressionText();
@@ -86,14 +84,22 @@ public class MainMenu : Static<MainMenu>
 
     void GoToShop()
     {
-        ShopPanel.SetActive(true);
+            SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
+        ShopPanel.transform.Scaler(TTScale.ScaleUp,() =>
+        {
+        });
+        
     }
     void GoToSetting()
     {
-        SettingPanel.SetActive(true);
+            SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
+        SettingPanel.transform.Scaler(TTScale.ScaleUp, () =>
+        {
+        });
     }
     void GoToGameScene()
     {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
         SceneController.Instance.GoToNextOrPrevScene(true, true);
     }
 
@@ -108,25 +114,6 @@ public class MainMenu : Static<MainMenu>
         {
             UsernamePanel.transform.Scaler(TTScale.ScaleUp);
         }
-    }
-    void CheckforScore()
-    {
-        if (!PlayerPrefs.HasKey(ScoreRepo.AllScoreRepoKey))
-        {
-            levelProgressionTXT.gameObject.SetActive(false);
-            highScoreTXT.gameObject.SetActive(false);
-        }
-        else
-        {
-            SetScoresAndLevelProgressionText();
-        }
-    }
-    void SetScoresAndLevelProgressionText()
-    {
-        levelProgressionTXT.gameObject.SetActive(true);
-        levelProgressionTXT.text = LevelRepo.GetLevel().ToString();
-        highScoreTXT.gameObject.SetActive(true);
-        highScoreTXT.text = ScoreRepo.GetHighScore().ToString();
     }
 
 

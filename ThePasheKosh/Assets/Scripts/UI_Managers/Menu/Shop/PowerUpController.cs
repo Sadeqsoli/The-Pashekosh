@@ -110,6 +110,7 @@ public class PowerUpController : MonoBehaviour
     {
         if (CoinRepo.PopCoins(currentPrice))
         {
+            SFXPlayer.Instance.PlaySFX(UIFeedback.BuyOrSelectItem);
             PowerupRepo.PushPowerupToNextLevel(powerUp);
             CalculateNewPrice(powerUp);
             InitializePowerups();
@@ -117,6 +118,7 @@ public class PowerUpController : MonoBehaviour
         }
         else
         {
+            SFXPlayer.Instance.PlaySFX(UIFeedback.Locked);
             Debug.Log("You need at least " + currentPrice + " coins!");
         }
     }

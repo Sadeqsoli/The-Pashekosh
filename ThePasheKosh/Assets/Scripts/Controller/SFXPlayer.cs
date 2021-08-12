@@ -5,7 +5,8 @@ using UnityEngine;
 
 public enum IdentitySound { PashekoshLogo, SloppyStudioLogo }
 public enum GameFeedback { BadInsectKill, GoodInsectKill, PlayerLevelUp, WrongInsect, CountDown }
-public enum UIFeedback { Alert, ButtonClick, BuyOrSelectItem, KillerLevelUp, Locked, Notif, PowerupsUnlock, PULevelup }
+public enum UIFeedback { Alert, ButtonClick,ButtonClick1,ButtonClick2, BuyOrSelectItem,
+                          Open, KillerLevelUp,Locked, Notif, PowerupsUnlock, PULevelup }
 
 [RequireComponent(typeof(AudioSource))]
 public class SFXPlayer : Singleton<SFXPlayer>
@@ -50,8 +51,6 @@ public class SFXPlayer : Singleton<SFXPlayer>
         Player.mute = isMute;
         PUPlayer.mute = isMute;
     }
-
-
 
 
 

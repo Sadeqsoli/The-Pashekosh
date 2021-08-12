@@ -81,6 +81,7 @@ public class SceneController : Singleton<SceneController>
 
     void CloseWaitingPanel()
     {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
         Time.timeScale = 1;
         BackgroundIMG.gameObject.transform.Scaler(TTScale.YScaleDown, delegate
         {

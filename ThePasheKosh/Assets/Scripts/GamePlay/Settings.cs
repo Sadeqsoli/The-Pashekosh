@@ -8,6 +8,8 @@ public class Settings : MonoBehaviour
 {
     #region Fields
 
+    public Button CloseButton;
+    [Space]
     public Button backgroundSound;
     [FormerlySerializedAs("insectSounds")] public Button insectsSound;
 
@@ -31,17 +33,25 @@ public class Settings : MonoBehaviour
         insectsSound.image.sprite = unMuteSprite;
         SFXMuter?.onValueChanged.AddListener(MuteSFX);
         MusicMuter?.onValueChanged.AddListener(MuteMusic);
+        CloseButton?.ChangeListener(ClosePanel);
     }
 
     void MuteSFX(bool isMute)
     {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
         SFXMuter.image.sprite = isMute == true ? muteSprite : unMuteSprite;
         SFXPlayer.Instance.MuteSFXPlayer(isMute);
     }
     void MuteMusic(bool isMute)
     {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
         MusicMuter.image.sprite = isMute == true ? muteSprite : unMuteSprite;
         MediaPlayer.Instance.MuteMediaPlayer(isMute);
+    }
+    void ClosePanel()
+    {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
+        transform.Scaler(TTScale.ScaleDown);
     }
 
     #endregion

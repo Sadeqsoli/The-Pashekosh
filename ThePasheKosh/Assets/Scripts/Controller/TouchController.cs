@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;
 
 public class TouchController : MonoBehaviour
 {
-    
-    public WeaponType usingWeapon;
+
+    WeaponType usingWeapon;
 
     Vector3 pos;
     Camera cameraTouch;
@@ -17,6 +17,7 @@ public class TouchController : MonoBehaviour
 
     void Awake()
     {
+        usingWeapon = WeaponRepo.Get();
         cameraTouch = CamTrack.Instance.GetComponent<Camera>();
     }
 

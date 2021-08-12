@@ -19,7 +19,8 @@ public class KillerStruct : MonoBehaviour
 
     void UpdateTargetState()
     {
-        for (int i = 1; i < Killers.Length; i++)
+        int kellerChildCount = Killers.Length;
+        for (int i = 1; i < kellerChildCount; i++)
         {
             int currentTargetNumb = i;
 
@@ -32,10 +33,20 @@ public class KillerStruct : MonoBehaviour
             locker?.IsLocked(isOpened);
             if (!isOpened)
             {
+
                 locker.SetDisplayFee(taxForOpeningNewTarget.ToString());
-                locker.ChangeListener(delegate { OpenNewWeapon(taxForOpeningNewTarget, (WeaponType)currentTargetNumb); });
+                locker.ChangeListener(delegate
+                {
+                    OpenNewWeapon(taxForOpeningNewTarget, (WeaponType)currentTargetNumb);
+                });
             }
-            Killers[currentTargetNumb].onClick.AddListener(delegate { SetNewTarget((WeaponType)currentTargetNumb); });
+            else
+            {
+                Killers[currentTargetNumb].onClick.AddListener(delegate
+                {
+                    SetNewTarget((WeaponType)currentTargetNumb);
+                });
+            }
         }
     }
 
@@ -43,17 +54,16 @@ public class KillerStruct : MonoBehaviour
     {
         if (CoinRepo.PopCoins(taxCoin))
         {
-            //TODO: Make a sound for opening 
             //TODO: Make a Visual for opening 
+            SFXPlayer.Instance.PlaySFX(UIFeedback.BuyOrSelectItem);
             LockRepo.OpenLock(DB.Key(weaponType), true);
             UpdateTargetState();
         }
         else
         {
-            //TODO: Make a sound for being locked. 
-            //TODO: Make a Visual for being locked. 
             //TODO: Open Warning for watching Ad to get some coin!
-            Debug.Log("You need more coin!");
+            SFXPlayer.Instance.PlaySFX(UIFeedback.Locked);
+            Toast.Instance.SendToast("You need more coin!");
         }
     }
 

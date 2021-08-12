@@ -19,7 +19,7 @@ public class InfoManager : MonoBehaviour
 
     void UsernameEvaluation(string usernameInput)
     {
-        if(usernameInput.Length >= 3)
+        if (usernameInput.Length >= 3)
         {
             SubmitButton.interactable = true;
         }
@@ -28,9 +28,10 @@ public class InfoManager : MonoBehaviour
             SubmitButton.interactable = false;
         }
     }
-    
+
     void Submit()
     {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
         string username = UsernameInputField.text;
         UserRepo.PushUsername(username);
         UserRepo.SetUserSignedIn(true);

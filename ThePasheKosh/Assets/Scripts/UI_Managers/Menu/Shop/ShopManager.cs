@@ -52,8 +52,9 @@ public class ShopManager : MonoBehaviour
 
     void GetBackToMain()
     {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
         MainMenu.Instance.SetCoinsText();
-        gameObject.SetActive(false);
+        gameObject.transform.Scaler(TTScale.ScaleDown);
     }
 
 
@@ -68,6 +69,7 @@ public class ShopManager : MonoBehaviour
         {
             if (numb == i)
             {
+                SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
                 buttons[i].gameObject.GetComponent<Image>().sprite = selectedSprite;
                 buttons[i].gameObject.GetComponentInChildren<RTLTextMeshPro>()
                     .TXTColoring(TTTColoring.SimpleColoring, Color.black);
@@ -86,11 +88,16 @@ public class ShopManager : MonoBehaviour
         {
             if (numb == i)
             {
-                gameObjects[i].transform.Scaler(TTScale.ScaleUp);
+                if (!gameObjects[i].activeSelf)
+                {
+                    gameObjects[i].transform.Scaler(TTScale.ScaleUp);
+                    SFXPlayer.Instance.PlaySFX(UIFeedback.Open);
+                }
             }
             else
             {
-                gameObjects[i].transform.Scaler(TTScale.ScaleDown);
+                if (gameObjects[i].activeSelf)
+                    gameObjects[i].transform.Scaler(TTScale.ScaleDown, null, 0.5f);
             }
         }
     }
