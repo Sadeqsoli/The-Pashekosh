@@ -91,9 +91,12 @@ public class GameManager : Singleton<GameManager>
         // Initializing GameUIManager
         gameUIManager.Initialize(0, 100);
 
+        //GettingTargetIndex
+        foodIndex = (int)TargetManager.Instance.CurrentTarget;
+
         // Show the food in the game
         FoodManager.Instance.MakeFoodReady(foods[foodIndex]);
-
+        
         // Make sure that the game is touchable
         IsNormalWeaponActive = true;
     }
@@ -218,7 +221,7 @@ public class GameManager : Singleton<GameManager>
         LevelRepo.PushLevel(currentLevel + 1);
 
         var loadNextScene = new UnityAction(() => SceneController.Instance.GoToNextOrPrevScene(true));
-        Timers.Instance.StartTimer(1, loadNextScene);
+        Timers.Instance.StartTimer(3, loadNextScene);
     }
     #endregion
 

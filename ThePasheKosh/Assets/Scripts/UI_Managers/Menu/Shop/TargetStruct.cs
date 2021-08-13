@@ -9,6 +9,7 @@ public class TargetStruct : MonoBehaviour
     /// Targets[X] = ENume TargetManager.TargetType
     /// </summary>
     [SerializeField] Button[] Targets;
+    [SerializeField] GameObject[] SelectIcons;
 
 
     const int TAXCOINonTARGETS = 1000;
@@ -20,15 +21,32 @@ public class TargetStruct : MonoBehaviour
 
     void UpdateTargetState()
     {
-        for (int i = 1; i < Targets.Length; i++)
+        int targets = Targets.Length;
+        for (int i = 0; i < targets; i++)
         {
             int currentTargetNumb = i;
 
             int taxForOpeningNewTarget = (currentTargetNumb + 1) * TAXCOINonTARGETS;
 
-            Locker locker = Targets[currentTargetNumb].gameObject.GetComponentInChildren<Locker>();
+            if (TargetRepo.Get() == (FoodType)currentTargetNumb)
+            {
+                SelectIcons[i].SetActive(true);
+            }
+            else
+            {
+                SelectIcons[i].SetActive(false);
+            }
 
-            bool isOpened = LockRepo.IsOpened(DB.Key((FoodType)currentTargetNumb));
+            Locker locker = Targets[currentTargetNumb].gameObject.GetComponentInChildren<Locker>();
+            bool isOpened;
+            if (currentTargetNumb == 0)
+            {
+                isOpened = true;
+            }
+            else
+            {
+                isOpened = LockRepo.IsOpened(DB.Key((FoodType)currentTargetNumb));
+            }
 
             locker?.IsLocked(isOpened);
             if (!isOpened)
@@ -45,15 +63,13 @@ public class TargetStruct : MonoBehaviour
     {
         if (CoinRepo.PopCoins(taxCoin))
         {
-            //TODO: Make a sound for opening 
-            //TODO: Make a Visual for opening 
+            SFXPlayer.Instance.PlaySFX(UIFeedback.BuyOrSelectItem);
             LockRepo.OpenLock(DB.Key(targetType),true);
             UpdateTargetState();
         }
         else
         {
-            //TODO: Make a sound for being locked. 
-            //TODO: Make a Visual for being locked. 
+            SFXPlayer.Instance.PlaySFX(UIFeedback.Locked);
             //TODO: Open Warning for watching Ad to get some coin!
             Debug.Log("You need more coin!");
         }
@@ -61,23 +77,13 @@ public class TargetStruct : MonoBehaviour
 
     void SetNewTarget(FoodType targetType)
     {
+        SFXPlayer.Instance.PlaySFX(UIFeedback.Notif);
         if (TargetManager.Instance.CurrentTarget != targetType)
             TargetManager.Instance.UpdateBackground(targetType);
+        TargetRepo.Push(targetType);
+        TrExt.SetObj_On(SelectIcons, (int)targetType);
     }
 
-    void SetObj_On(GameObject[] gameObjects, int numb)
-    {
-        for (int i = 0; i < gameObjects.Length; i++)
-        {
-            if (numb == i)
-            {
-                gameObjects[i].SetActive(true);
-            }
-            else
-            {
-                gameObjects[i].SetActive(false);
-            }
-        }
-    }
+
 
 }//EndClassss

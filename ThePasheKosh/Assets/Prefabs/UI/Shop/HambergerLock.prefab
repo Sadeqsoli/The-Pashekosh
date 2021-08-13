@@ -211,7 +211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e5946607b96b29a4383bd72a0f61b4e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9edd653eb6a601043a1e5a58550c60e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -640,7 +640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d5916b194a20e49a4f16cbdeaada24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LockerBackground: {fileID: 6100670512206244159}
   DisplayFeeTXT: {fileID: 6100670512932808019}
   LockerButton: {fileID: 6100670512906690687}
 --- !u!114 &6100670512738679772
@@ -895,7 +894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 121323232
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3c0e3d489641b2445b3b6b54c8e8cd70, type: 2}
   m_sharedMaterial: {fileID: -7180341827202300715, guid: 3c0e3d489641b2445b3b6b54c8e8cd70,
@@ -965,7 +964,7 @@ MonoBehaviour:
   m_margin: {x: 10, y: 15, z: 15, w: 0}
   m_textInfo:
     textComponent: {fileID: 6100670512932808019}
-    characterCount: 9
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -990,7 +989,7 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   preserveNumbers: 0
   farsi: 1
-  originalText: 121323232
+  originalText: 0
   fixTags: 1
   forceFix: 0
 --- !u!1 &6100670513129400147

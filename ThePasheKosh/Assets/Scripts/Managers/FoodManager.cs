@@ -43,8 +43,9 @@ public class FoodManager : Singleton<FoodManager>
     private void FoodDestructionHandling()
     {
         Destroy(currentFood);
-        //EventManager.TriggerEvent(Events.GameOver);
+        EventManager.TriggerEvent(Events.GameOver);
     }
+
 
     private void DisplayFood(FoodInfo foodInfo)
     {

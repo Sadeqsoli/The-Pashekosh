@@ -7,6 +7,28 @@ public class TrExt : Singleton<TrExt>
 {
     WaitForSeconds wait = new WaitForSeconds(0.000000000000001f);
 
+    public static void SetObj_On(GameObject[] gameObjects, int numb)
+    {
+        int arrayLength = gameObjects.Length;
+        for (int i = 0; i < arrayLength; i++)
+        {
+            if (numb == i)
+            {
+                if (!gameObjects[i].activeSelf)
+                {
+                    gameObjects[i].transform.Scaler(TTScale.ScaleUp);
+                    //SFXPlayer.Instance.PlaySFX(UIFeedback.Open);
+                }
+            }
+            else
+            {
+                if (gameObjects[i].activeSelf)
+                    gameObjects[i].transform.Scaler(TTScale.ScaleDown, null, 0.5f);
+            }
+        }
+    }
+
+
     public static void DestroyAllChildren(Transform tr)
     {
         int childCount = tr.childCount;
@@ -15,6 +37,16 @@ public class TrExt : Singleton<TrExt>
             for (int i = 0; i < childCount; i++)
             {
                 Destroy(tr.GetChild(i).gameObject);
+            }
+    }
+    public static void SetOffAllChildren(Transform tr)
+    {
+        int childCount = tr.childCount;
+
+        if (childCount > 0)
+            for (int i = 0; i < childCount; i++)
+            {
+                tr.GetChild(i).gameObject.SetActive(false);
             }
     }
     public static void DestroyTargetChild(Transform tr, int numb)

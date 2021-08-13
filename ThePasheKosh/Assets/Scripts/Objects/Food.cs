@@ -177,7 +177,7 @@ public class Food : MonoBehaviour
     private void OnCakeHit(GameObject hit)
     {
         if(hit == gameObject)
-            Health -= maxHealth / 2;
+            Health -= maxHealth / 5;
     }
 
     #endregion

@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class WeaponRepo
+public static class TargetRepo 
 {
     #region Properties
 
     #endregion
 
     #region Fields
-    const string WeaponRepository = "WeaponRepository";
+    const string TargetFoodRepository = "TargetFoodRepository";
 
     #endregion
 
     #region Public Methods
 
-    public static void Push(WeaponType newWeapon)
+    public static void Push(FoodType newFood)
     {
-        Save(WeaponRepository, (int)newWeapon);
+        Save(TargetFoodRepository, (int)newFood);
     }
 
-    public static WeaponType Get()
+    public static FoodType Get()
     {
 
-        return (WeaponType)Retrive(WeaponRepository);
+        return (FoodType)Retrive(TargetFoodRepository);
     }
 
     #endregion

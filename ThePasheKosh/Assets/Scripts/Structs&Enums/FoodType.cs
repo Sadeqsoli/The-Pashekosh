@@ -1,12 +1,12 @@
 ﻿
 public enum FoodType
 {
-    Spagetti,
-    Pizza,
-    Cake,
-    IceCream,
     Burger,
-    QormehSabzi,
+    Cake,
     Chicken,
-    KalehPache
+    IceCream,
+    KalehPache,
+    Pizza,
+    QormehSabzi,
+    Spagetti
 }

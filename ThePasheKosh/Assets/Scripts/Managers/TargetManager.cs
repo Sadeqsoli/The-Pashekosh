@@ -21,7 +21,7 @@ public class TargetManager : AbsSingleton<TargetManager>
 
     // Fields --->>>
 
-    FoodType _currentTarget = FoodType.Spagetti;
+    FoodType _currentTarget = FoodType.Burger;
     GameState _currentState = GameState.MainMenu;
 
     SpriteRenderer _spriteRenderer;
@@ -41,50 +41,8 @@ public class TargetManager : AbsSingleton<TargetManager>
 
         //For Changing table design with every Background Update
         SetActiveRandomTableDesigns();
-        //PlaybackRelatedAudio(SoundAfterSelection[(int)bgType]);
-        //ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-        switch (bgType)
-        {
-            case FoodType.Spagetti://WhiteWooden Table
+        ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
 
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-
-
-            case FoodType.Pizza: //Glass Table
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-
-
-            case FoodType.Cake: //Brown Wooden Table
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-
-
-            case FoodType.IceCream: //Metall Table
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-
-
-            case FoodType.Burger: //Plastic Table
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-
-
-            case FoodType.QormehSabzi:  //Iranian Table
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-
-
-            case FoodType.Chicken:  //Glass Table
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-
-
-            case FoodType.KalehPache:  //Stone Table
-                ChangeRelatedSprite(SpriteOfTargets[(int)bgType]);
-                break;
-        }
     }
 
 
@@ -104,7 +62,6 @@ public class TargetManager : AbsSingleton<TargetManager>
                 break;
         }
     }
-
 
 
 
@@ -152,9 +109,4 @@ public class TargetManager : AbsSingleton<TargetManager>
         }
     }
 
-
-    void AddSprite(Sprite sprite)
-    {
-        SpriteOfTargets.Add(sprite);
-    }
 }//EndClassss

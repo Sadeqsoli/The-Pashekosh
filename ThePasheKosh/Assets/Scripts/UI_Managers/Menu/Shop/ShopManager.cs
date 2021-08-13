@@ -33,19 +33,19 @@ public class ShopManager : MonoBehaviour
     //when Target Shop is selected.
     void ChangeToTargetShop()
     {
-        SetObj_On(shops, 0);
+        TrExt.SetObj_On(shops, 0);
         ChangeColor(shopButtons, 0);
     }
     //when Killer Shop is selected.
     void ChangeToKillerShop()
     {
-        SetObj_On(shops, 1);
+        TrExt.SetObj_On(shops, 1);
         ChangeColor(shopButtons, 1);
     }
     //when powerUps Shop is selected.
     void ChangeToPowerupsShop()
     {
-        SetObj_On(shops, 2);
+        TrExt.SetObj_On(shops, 2);
         ChangeColor(shopButtons, 2);
     }
 
@@ -82,25 +82,7 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
-    void SetObj_On(GameObject[] gameObjects, int numb)
-    {
-        for (int i = 0; i < gameObjects.Length; i++)
-        {
-            if (numb == i)
-            {
-                if (!gameObjects[i].activeSelf)
-                {
-                    gameObjects[i].transform.Scaler(TTScale.ScaleUp);
-                    SFXPlayer.Instance.PlaySFX(UIFeedback.Open);
-                }
-            }
-            else
-            {
-                if (gameObjects[i].activeSelf)
-                    gameObjects[i].transform.Scaler(TTScale.ScaleDown, null, 0.5f);
-            }
-        }
-    }
+
 
 
 }//End Class

@@ -110,7 +110,7 @@ public class PowerUpController : MonoBehaviour
     {
         if (CoinRepo.PopCoins(currentPrice))
         {
-            SFXPlayer.Instance.PlaySFX(UIFeedback.BuyOrSelectItem);
+            SFXPlayer.Instance.PlaySFX(UIFeedback.KillerLevelUp);
             PowerupRepo.PushPowerupToNextLevel(powerUp);
             CalculateNewPrice(powerUp);
             InitializePowerups();
