@@ -26,7 +26,11 @@ public class TouchController : MonoBehaviour
     /// </summary>
     void Update()
     {
+#if UNITY_EDITOR
         MouseHandling();
+#elif UNITY_ANDROID || UNITY_IOS
+        TouchHandling();
+#endif
     }
 
     public void TouchHandling()
@@ -52,6 +56,8 @@ public class TouchController : MonoBehaviour
                     }
                     else
                     {
+                        //TODO: Noise for touching the ground.
+                        SFXPlayer.Instance.PlaySFX(WeaponType.Hand);
                         EventManager.TriggerEvent(Events.TouchScreen);
                         ShowImpact(weaponPos);
                     }
@@ -83,6 +89,8 @@ public class TouchController : MonoBehaviour
                 }
                 else
                 {
+                    //TODO: Noise for touching the ground.
+                    SFXPlayer.Instance.PlaySFX(WeaponType.Hand);
                     EventManager.TriggerEvent(Events.TouchScreen);
                     ShowImpact(weaponPos);
                 }

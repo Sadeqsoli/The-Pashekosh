@@ -73,6 +73,8 @@ public class GameManager : Singleton<GameManager>
             //PlayerPrefs.SetFloat("HighScore", 0);
         }
 
+        //TODO: This Needs to add to a Start Sound.
+
         // Hide in-game panels
         settingPanel.SetActive(false);
         powerUpsPanel.SetActive(false);
@@ -96,7 +98,7 @@ public class GameManager : Singleton<GameManager>
 
         // Show the food in the game
         FoodManager.Instance.MakeFoodReady(foods[foodIndex]);
-        
+
         // Make sure that the game is touchable
         IsNormalWeaponActive = true;
     }
@@ -190,7 +192,8 @@ public class GameManager : Singleton<GameManager>
     {
         Timers.Instance.StartTimer(levels[currentLevel].levelParameters.passLevelTime, GoToNextLevel);
         InsectManager.Instance.StartInsectSpawning(levels[currentLevel].levelParameters);
-        LevelRepo.PushLevel(currentLevel);
+        if (currentLevel != 0)
+            SFXPlayer.Instance.PlaySFX(GameFeedback.PlayerLevelUp);
         Debug.Log("currentLevel: " + currentLevel);
     }
 
@@ -200,13 +203,21 @@ public class GameManager : Singleton<GameManager>
     private void ProcessKillings(GameObject insect)
     {
         Insect insectComponent = insect.GetComponent<Insect>();
+
+        //TODO: Needs improvment.
+        SFXPlayer.Instance.PlaySFX(WeaponRepo.Get());
+
         if (insectComponent.IsBadInsect)
         {
             BadInsect badInsectComponent = insect.GetComponent<BadInsect>();
             ResultsController.Instance.AddToScore(badInsectComponent.addedPoints);
             ResultsController.Instance.TrueKill();
         }
-        else GameOver();
+        else
+        {
+            SFXPlayer.Instance.PlaySFX(GameFeedback.GoodInsectKill);
+            GameOver();
+        }
         gameUIManager.UpdateScore(ResultsController.Instance.Score);
     }
 
@@ -220,8 +231,11 @@ public class GameManager : Singleton<GameManager>
         TimeRepo.PushTime(timer);
         LevelRepo.PushLevel(currentLevel + 1);
 
+        //TODO: This Needs to Change to a Game over Sound.
+        SFXPlayer.Instance.PlaySFX(GameFeedback.WrongInsect);
+
         var loadNextScene = new UnityAction(() => SceneController.Instance.GoToNextOrPrevScene(true));
-        Timers.Instance.StartTimer(3, loadNextScene);
+        Timers.Instance.StartTimer(1f, loadNextScene);
     }
     #endregion
 
@@ -347,6 +361,7 @@ public class GameManager : Singleton<GameManager>
 
     private void UsePowerUps(GameStates currentState)
     {
+        //TODO: Add Correct powerup SFX here.
         ShowHidePowerUpsPanel(false);
         gameState = currentState;
         IsNormalWeaponActive = false;
