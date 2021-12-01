@@ -19,8 +19,8 @@ MonoBehaviour:
         min: 2
         max: 3
       insectSpeed:
-        min: 120
-        max: 130
+        min: 145
+        max: 150
       insectRotSpeed:
         min: 120
         max: 130

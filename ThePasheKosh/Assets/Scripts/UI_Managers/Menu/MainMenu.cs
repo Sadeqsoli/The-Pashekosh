@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MainMenu : Static<MainMenu>
 {
+
     [SerializeField] Button SettingButton;
     [SerializeField] Button ShopButton;
     [SerializeField] Button StartButton;
@@ -22,7 +23,7 @@ public class MainMenu : Static<MainMenu>
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        SetCoinsText();
+        SceneController.Instance.ResetScene();
     }
     public void AddCoinsDebug(int coins)
     {
@@ -84,15 +85,15 @@ public class MainMenu : Static<MainMenu>
 
     void GoToShop()
     {
-            SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
-        ShopPanel.transform.Scaler(TTScale.ScaleUp,() =>
-        {
-        });
-        
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
+        ShopPanel.transform.Scaler(TTScale.ScaleUp, () =>
+         {
+         });
+
     }
     void GoToSetting()
     {
-            SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
+        SFXPlayer.Instance.PlaySFX(UIFeedback.ButtonClick);
         SettingPanel.transform.Scaler(TTScale.ScaleUp, () =>
         {
         });
