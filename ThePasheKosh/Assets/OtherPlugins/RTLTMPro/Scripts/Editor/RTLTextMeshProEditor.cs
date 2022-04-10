@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RTLTMPro
 {
     [CustomEditor(typeof(RTLTextMeshPro)), CanEditMultipleObjects]
-    public class RTLTextMeshProEditor : TMP_UiEditorPanel
+    public class RTLTextMeshProEditor : TMP_EditorPanel
     {
         private SerializedProperty originalTextProp;
         private SerializedProperty preserveNumbersProp;
