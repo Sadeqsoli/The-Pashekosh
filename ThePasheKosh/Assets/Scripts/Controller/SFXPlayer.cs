@@ -82,7 +82,7 @@ public class SFXPlayer : Singleton<SFXPlayer>
                 return i;
             }
         }
-        return -1;
+        return 0;
     }
 
 
