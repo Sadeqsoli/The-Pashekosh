@@ -70,3 +70,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 APK/0-UniversalDebug/Android/A-debug-thepashekosh-Test.rar
+
+ThePasheKosh/Packages/manifest.json
+ThePasheKosh/ProjectSettings/ProjectVersion.txt
