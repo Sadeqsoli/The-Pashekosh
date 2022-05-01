@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6606288180739864463}
   - component: {fileID: 8245363621245234566}
   - component: {fileID: 7955360040184462723}
+  - component: {fileID: 9202160766311663910}
   m_Layer: 0
   m_Name: SprayFC
   m_TagString: Untagged
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -115,3 +117,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpType: 3
+--- !u!114 &9202160766311663910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828474959975464238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42008d0d0a899e04eb363eba38b408d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3653810521359544725}
   - component: {fileID: 3653810521359544726}
   - component: {fileID: -1935893997268578286}
+  - component: {fileID: -1630481263677764216}
   m_Layer: 0
   m_Name: GasFC
   m_TagString: Untagged
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -115,3 +117,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpType: 2
+--- !u!114 &-1630481263677764216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653810521359544727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42008d0d0a899e04eb363eba38b408d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1251037064912695393}
   - component: {fileID: 8791425641104394903}
   - component: {fileID: -7717907097020252696}
+  - component: {fileID: 2360936539564625911}
   m_Layer: 0
   m_Name: WindFC
   m_TagString: Untagged
@@ -48,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -115,3 +117,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpType: 1
+--- !u!114 &2360936539564625911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438314565159650570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42008d0d0a899e04eb363eba38b408d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
