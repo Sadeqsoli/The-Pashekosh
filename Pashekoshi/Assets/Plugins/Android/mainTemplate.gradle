@@ -1,0 +1,72 @@
+
+
+apply plugin: 'com.android.library'
+**APPLY_PLUGINS**
+
+// Android Resolver Repos Start
+    ([rootProject] + (rootProject.subprojects as List)).each {
+    ext {
+    it.setProperty("android.useAndroidX", true)
+    it.setProperty("android.enableJetifier", true)
+    }
+   }
+   
+dependencies {
+def supportedAdmob = "20.6.0"
+   implementation("com.google.android.gms:play-services-ads:$supportedAdmob")
+   // for AdMob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+    // for UnityAds
+    implementation 'com.unity3d.ads:unity-ads:3.7.5'
+    // for Chartboost
+    implementation 'com.chartboost:chartboost-sdk:8.2.1'
+    // for AdColony
+    implementation 'com.adcolony:sdk:4.6.5'
+    // for Applovin
+    implementation 'com.applovin:applovin-sdk:10.3.4'
+
+
+
+    // For Mintegral - NOTE: Add custom repository (explained after this)
+    implementation "com.mbridge.msdk.oversea:videojs:15.6.11"
+    implementation "com.mbridge.msdk.oversea:mbbanner:15.6.11"
+    implementation "com.mbridge.msdk.oversea:mbjscommon:15.6.11"
+    implementation "com.mbridge.msdk.oversea:playercommon:15.6.11"
+    implementation "com.mbridge.msdk.oversea:reward:15.6.11"
+    implementation "com.mbridge.msdk.oversea:videocommon:15.6.11"
+    implementation "com.mbridge.msdk.oversea:same:15.6.11"
+    implementation "com.mbridge.msdk.oversea:interstitialvideo:15.6.11"
+	
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation 'ir.tapsell.plus:tapsell-plus-sdk-unity:2.1.7'
+**DEPS**}
+
+android {
+    compileSdkVersion **APIVERSION**
+    buildToolsVersion '**BUILDTOOLS**'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion **MINSDKVERSION**
+        targetSdkVersion **TARGETSDKVERSION**
+        ndk {
+            abiFilters **ABIFILTERS**
+        }
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+        consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }**PACKAGING_OPTIONS**
+}**REPOSITORIES****SOURCE_BUILD_SETUP**
+**EXTERNAL_SOURCES**
