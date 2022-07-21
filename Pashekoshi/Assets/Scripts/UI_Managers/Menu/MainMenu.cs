@@ -19,7 +19,10 @@ public class MainMenu : Static<MainMenu>
 
     Canvas canvas;
 
-    public void DeletingKeys()
+    const string firstTime= "FirstTime";
+
+
+    void DeletingKeys()
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
@@ -52,7 +55,11 @@ public class MainMenu : Static<MainMenu>
         AddButtonListeners();
         //SignUpCheck();
         //CheckforScore();
-        SetCoinsText();
+        if (!PlayerPrefs2.GetBool(firstTime))
+        {
+            AddCoinsDebug(2000);
+            PlayerPrefs2.SetBool(firstTime, true);
+        }
     }
 
     void SetValues()

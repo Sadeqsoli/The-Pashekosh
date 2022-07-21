@@ -228,22 +228,23 @@ public class GameManager : Singleton<GameManager>
 
     private void GameOver()
     {
+        IsNormalWeaponActive = false;
+
+        float score = ResultsController.Instance.Score;
+        ScoreRepo.PushScore(score);
+        CoinRepo.PushCoins((int)score);
+        TimeRepo.PushTime(timer);
+        LevelRepo.PushLevel(currentLevel + 1);
+
+        //TODO: This Needs to Change to a Game over Sound.
+        SFXPlayer.Instance.PlaySFX(GameFeedback.WrongInsect);
+
+        Timers.Instance.StartTimer(1f, () => SceneController.Instance.GoToNextOrPrevScene(true));
+
+        AnalyticsHandler.CCEvent("Level" + (currentLevel + 1));
         if (haveDiedBefore)
         {
-            IsNormalWeaponActive = false;
-
-            float score = ResultsController.Instance.Score;
-            ScoreRepo.PushScore(score);
-            CoinRepo.PushCoins((int)score);
-            TimeRepo.PushTime(timer);
-            LevelRepo.PushLevel(currentLevel + 1);
-
-            //TODO: This Needs to Change to a Game over Sound.
-            SFXPlayer.Instance.PlaySFX(GameFeedback.WrongInsect);
-
-            Timers.Instance.StartTimer(1f, () => SceneController.Instance.GoToNextOrPrevScene(true));
-
-            AnalyticsHandler.CCEvent("Level" + (currentLevel + 1));
+            
         }
         else
         {
