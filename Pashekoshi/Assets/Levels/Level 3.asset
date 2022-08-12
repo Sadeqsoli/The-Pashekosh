@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelParameters:
     badInsectParameters:
-      insectsName: 0000000002000000
+      insectsName: 000000000200000003000000040000000500000006000000070000000800000009000000
       timeBetweenSpawn:
-        min: 1
-        max: 2
+        min: 0.25
+        max: 0.92
       insectSpeed:
         min: 125
         max: 135

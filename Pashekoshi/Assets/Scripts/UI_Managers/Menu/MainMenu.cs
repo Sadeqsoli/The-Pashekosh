@@ -69,7 +69,6 @@ public class MainMenu : Static<MainMenu>
         SettingPanel.SetActive(false);
         ShopPanel.SetActive(false);
         UsernamePanel.SetActive(false);
-        AnalyticsHandler.InitializeAnalytics();
     }
 
 

@@ -8,7 +8,7 @@ public class AutomatedPrepare : MonoBehaviour
 
     readonly static string bundleIdentifier = "com.sloppystudio.pashekoshi";
 
-    readonly static string keystoreAddress = @"..\AndroidKeystore\PashekoshiKS.keystore";
+    readonly static string keystoreAddress = @"..\Keystore\pashekoshi.keystore";
     readonly static string keystorePass = "C&hqS!*w3z=j?gEY!ARJQgLB8MgcCqaMj%@uhfh5X-7xR%qv9sU7aQY7MrhstLwP";
 
     readonly static string keyAliasAddress = "Pashekoshialias";

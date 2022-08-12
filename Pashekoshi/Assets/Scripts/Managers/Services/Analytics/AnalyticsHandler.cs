@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-public static class AnalyticsHandler
+public static class AnalyticHandler
 {
     public static bool IsAnalytics_Initialized { get; private set; } = false;
 

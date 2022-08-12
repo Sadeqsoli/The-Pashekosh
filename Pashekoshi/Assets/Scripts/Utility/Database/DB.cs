@@ -8,22 +8,22 @@ public static class DB
     public class VC
     {
         public static int dbVersionCode = 1;
-        public static string dbVersion { get { return "1.1.2"; } }
+        public static string dbVersion { get { return "1.1.3"; } }
 
         public static int mkVersionCode = 1;
-        public static string mkVersion { get { return "1.1.2"; } }
+        public static string mkVersion { get { return "1.1.3"; } }
 
         public static int cbVersionCode = 1;
-        public static string cbVersion { get { return "1.1.2"; } }
+        public static string cbVersion { get { return "1.1.3"; } }
 
         public static int gsVersionCode = 1;
-        public static string gsVersion { get { return "1.1.2"; } }
+        public static string gsVersion { get { return "1.1.3"; } }
 
         public static int iaVersionCode = 1;
-        public static string iaVersion { get { return "1.1.2"; } }
+        public static string iaVersion { get { return "1.1.3"; } }
 
-        public static string saVersion { get { return "1.1.2"; } }
-        public static string asVersion { get { return "1.1.2"; } }
+        public static string saVersion { get { return "1.1.3"; } }
+        public static string asVersion { get { return "1.1.3"; } }
     }
 
 
