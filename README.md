@@ -1,29 +1,51 @@
-# README #
+# The Pashekosh
 
-This README would normally document whatever steps are necessary to get your application up and running.
+**The Pashekosh** is a captivating 2D game designed primarily for Persian players. It offers an engaging gameplay experience on mobile platforms such as Android and iOS, and is also ready for deployment on various other platforms, including Windows, Linux, macOS, and WebGL.
 
-### What is this repository for? ###
+## Table of Contents
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+- [About the Game](#about-the-game)
+- [Installation](#installation)
+- [Platform Support](#platform-support)
+- [License](#license)
+- [Contact](#contact)
 
-### How do I get set up? ###
+## About the Game
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+**The Pashekosh** is a 2D adventure game filled with challenges and fun, tailored for Persian-speaking audiences. The game is fully developed and ready for export, offering players an immersive experience with its captivating storyline and engaging gameplay.
 
-### Contribution guidelines ###
+## Installation
 
-* Writing tests
-* Code review
-* Other guidelines
+To install and run **The Pashekosh**, follow these steps:
 
-### Who do I talk to? ###
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Sadeqsoli/The-Pashekosh.git
+ ```
 
-* Repo owner or admin
-* Other community or team contact
+2. **Open with Unity:
+
+Ensure you have Unity installed on your machine. You can download it from Unity's official website.
+Open Unity Hub and add the cloned project to your projects.
+Open the project in Unity.
+
+3. **Build the Game:
+
+Go to File > Build Settings.
+Select your target platform (e.g., Android, iOS, Windows, Linux, macOS, WebGL).
+Click on Build and follow the prompts.
+
+## Platform Support
+The Pashekosh is designed to run on multiple platforms:
+
+Mobile: Android, iOS
+Desktop: Windows, Linux, macOS
+Web: WebGL
+
+## License
+This project is licensed under the MIT License. Feel free to download, modify, and use the entire project.
+
+## Contact
+For any inquiries or support, please contact us at solisadeq@gamil.com.
+
+Enjoy playing The Pashekosh
