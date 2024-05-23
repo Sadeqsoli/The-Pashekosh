@@ -1,6 +1,6 @@
 # The Pashekosh
 
-**The Pashekosh** is a captivating 2D game designed primarily for Persian players. It offers an engaging gameplay experience on mobile platforms such as Android and iOS, and is also ready for deployment on various other platforms, including Windows, Linux, macOS, and WebGL.
+**The Pashekosh** is a captivating 2D game designed primarily for Persian players. It offers an engaging gameplay experience on mobile platforms such as Android and iOS and is also ready for deployment on various other platforms including Windows, Linux, macOS, and WebGL.
 
 ## Table of Contents
 
@@ -12,17 +12,24 @@
 
 ## About the Game
 
-**The Pashekosh** is a 2D adventure game filled with challenges and fun, tailored for Persian-speaking audiences. The game is fully developed and ready for export, offering players an immersive experience with its captivating storyline and engaging gameplay.
+**The Pashekosh** is a 2D arcade-style hyper-casual game where players must defend a piece of food from swarms of insects using a swatter. The game features dynamic music, visual feedback, and is tailored for both Persian and English-speaking audiences. The game is designed for players aged 3 and above, with no inappropriate language used.
+
+### Features
+- 2D arcade game
+- Single player
+- Fixed camera view
+- Dynamic music and feedback
+- Visual feedback
+- Engaging gameplay mechanics involving tapping to defend food from insects
 
 ## Installation
 
 To install and run **The Pashekosh**, follow these steps:
 
 1. **Clone the Repository**:
-   ```bash
+```bash
    git clone https://github.com/Sadeqsoli/The-Pashekosh.git
- ```
-
+ ```  
 2. **Open with Unity:
 
 Ensure you have Unity installed on your machine. You can download it from Unity's official website.
