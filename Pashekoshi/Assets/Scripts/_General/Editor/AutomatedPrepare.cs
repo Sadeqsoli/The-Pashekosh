@@ -193,7 +193,7 @@ public class AutomatedPrepare : MonoBehaviour
         SwitchPlatform(targetGroup, BuildTarget.Android);
         //todo update all of these in right time
         GameData.CurrentPlatform = Platform.Android;
-        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel22;
+        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel23;
         PlayerSettings.Android.targetSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
         PlayerSettings.Android.useCustomKeystore = isCustomeKeyStore;//build as DEBUGE or for STORE
         if (isCustomeKeyStore)

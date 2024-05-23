@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameServices
 {
-    public class AdService : MonoBehaviour,IService, IUnityAdsListener
+    public class AdService : MonoBehaviour,IService/*, IUnityAdsListener*/
     {
         const string iOSGameID = "3974240";
         const string AndroidGameID = "3974241";
@@ -23,7 +23,7 @@ namespace GameServices
         public void Initialize()
         {
 #if UNITY_IOS || UNITY_ANDROID
-            Advertisement.AddListener(this);
+            //Advertisement.AddListener(this);
             Advertisement.Initialize(AndroidGameID, testMode);
 #else
             Debug.LogWarning("current platform doesn't support monetization!!!");
@@ -32,7 +32,7 @@ namespace GameServices
 
         public void DisplayNon_RewardedAd()
         {
-            if (!Advertisement.IsReady(PlacementID_NonRewarded))
+            if (!Advertisement.isInitialized)
             {
                 Debug.Log(PlacementID_NonRewarded + "Not Ready to Display!");
                 return;
@@ -54,7 +54,7 @@ namespace GameServices
         IEnumerator WaitAndDisplayBanner()
         {
 
-            yield return new WaitUntil(() => Advertisement.IsReady(PlacementID_Banner));
+            yield return new WaitUntil(() => Advertisement.isInitialized);
 
             Advertisement.Banner.Show(PlacementID_Banner);
         }
@@ -69,7 +69,7 @@ namespace GameServices
         public IEnumerator WaitAndDisplayRewardedAd()
         {
 
-            yield return new WaitUntil(() => Advertisement.IsReady(PlacementID_Rewarded));
+            yield return new WaitUntil(() => Advertisement.isInitialized);
 
             Advertisement.Show(PlacementID_Rewarded);
         }
