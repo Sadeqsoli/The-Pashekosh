@@ -22,6 +22,22 @@
 - Visual feedback
 - Engaging gameplay mechanics involving tapping to defend food from insects
 
+## Screenshots
+
+![Main Menu](https://github.com/Sadeqsoli/The-Pashekosh/blob/master/Shots/0%20(1).jpg)
+*Main Menu of The Pashekosh*
+
+![Waiting Panel](https://github.com/Sadeqsoli/The-Pashekosh/blob/master/Shots/0%20(2).jpg)
+*Gameplay showing the player defending the food*
+
+![Waiting Panel](https://github.com/Sadeqsoli/The-Pashekosh/blob/master/Shots/0%20(1).jpg)
+*Waiting Panel screen showing some hint and info to the player*
+
+![Gameplay](https://github.com/Sadeqsoli/The-Pashekosh/blob/master/Shots/0%20(5).jpg)
+*Gameplay showing the player defending the food*
+
+![Gameplay](https://github.com/Sadeqsoli/The-Pashekosh/blob/master/Shots/0%20(7).jpg)
+*Gameplay showing the player defending the food*
 ## Installation
 
 To install and run **The Pashekosh**, follow these steps:
