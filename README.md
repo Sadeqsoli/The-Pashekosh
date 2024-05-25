@@ -1,4 +1,4 @@
-# The Pashekosh
+# The Pashekosh (Crazy Killer)
 
 **The Pashekosh** is a captivating 2D game designed primarily for Persian players. It offers an engaging gameplay experience on mobile platforms such as Android and iOS and is also ready for deployment on various other platforms including Windows, Linux, macOS, and WebGL.
 
